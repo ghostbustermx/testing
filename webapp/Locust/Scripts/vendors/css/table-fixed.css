@@ -1,0 +1,54 @@
+﻿.table-fixed thead {
+    width: 97%;
+}
+
+.table-fixed tbody {
+    color: #2A3F54;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+    color: #2A3F54;
+    text-align:center;
+    display: block;
+}
+
+    .table-fixed tbody td, .table-fixed thead > tr > th {
+        float: left;
+    }
+
+.subtitle {
+    color: #2A3F54;
+    font-size: 14px;
+    border-bottom-width: 0px;
+    border-color: black;
+}
+
+div.vertical-line {
+    width: 1px; /* Line width */
+    background-color: black; /* Line color */
+    height: 100%; /* Override in-line if you want specific height. */
+    float: left; /* Causes the line to float to left of content. You can instead use position:absolute or display:inline-block if this fits better with your design */
+}
+
+.tagspan {
+    background-color: #2a3f54;
+    font-size: 14px;
+    color: #ffffff;
+    box-sizing: border-box;
+    margin: 2px;
+    border-radius: 2px;
+    padding: 3px 5px;
+    border: 1px solid;
+}
+
+input[type="text"]#subdomaintwo {
+    -webkit-appearance: none !important;
+    color: red;
+    text-align: right;
+    border: 1px solid gray;
+    border-left: 0px;
+    margin: 0 0 0 -7px;
+    background: white;
+}

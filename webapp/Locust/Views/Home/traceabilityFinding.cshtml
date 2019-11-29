@@ -1,0 +1,276 @@
+﻿@Scripts.Render("~/bundles/AdjustUI")
+@{
+    Layout = null;
+}
+
+<div class="right_col" role="main">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item" ng-click="projectDetails()"><a href="" ng-click="projectDetails()">{{projectName}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Traceability Findings</li>
+        </ol>
+    </nav>
+    <div class="clearfix"></div>
+    <div class="row">
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Project "{{projectName}}"<small> Traceability Findings</small></h2>
+                    <ul class="nav navbar-right panel_toolbox" id="demo">
+                        <li>
+                            <a class="collapse-link" data-toggle="collapse" data-target="#hi" id="collapse"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+
+                <script>
+                    $(document).ready(function () {
+                        $("#hi").on("hide.bs.collapse", function () {
+                            $("#demo").html('<li> <a class="collapse-link" data-toggle="collapse" data-target="#hi" id="collapse"><i class="fa fa-chevron-down"></i></a></li>');
+                        });
+                        $("#hi").on("show.bs.collapse", function () {
+                            $("#demo").html('<li> <a class="collapse-link" data-toggle="collapse" data-target="#hi" id="collapse"><i class="fa fa-chevron-up"></i></a></li>');
+                        });
+                        $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+                            localStorage.setItem('activeTab', $(e.target).attr('data-target'));
+                        });
+                        var activeTab = localStorage.getItem('activeTab');
+                        if (activeTab) {
+                            $('a[data-target="' + activeTab + '"]').tab('show');
+                        }
+                    });
+                </script>
+                @* Here start the contern *@
+                <div class="x_content collapse in" id="hi" aria-expanded="true">
+                    <div class="customContainer">
+                        <div>
+                            <a class="customTitle">Project ID:</a>
+                            <a class="message">{{id}}</a>
+                        </div>
+                        <div>
+                            <a class="customTitle"> Description:</a>
+                            <p class="message">{{description}}</p>
+                        </div>
+                        <div>
+                            <a class="customTitle">Status:</a>
+                            <span class="label {{class}}">{{status}}</span>
+                            @*<span ng-if="status==='Inactive'" class="label label-danger">{{status}}</span>*@
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="x_content">
+                    <div class="tab" role="tabpanel">
+
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a data-target="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Requirements without test evidence ({{requirements.length}})</a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a data-target="#tab_content2" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">TC without TP ({{testCases.length}})</a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a data-target="#tab_content3" role="tab" id="profile-tab3" data-toggle="tab" aria-expanded="false">TP without TC ({{testProcedures.length}})</a>
+                            </li>
+                        </ul>
+
+
+
+
+
+
+                        <div id="myTabContent" class="tab-content">
+
+
+                            <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group row">
+                                        <div class="col-md-1 col-sm-4 col-xs-4 selectCustom">
+                                            <select name="priority" required class="form-control" ng-model="RowsSelectedReq" ng-change="changeValueReq(RowsSelectedReq)"
+                                                    ng-options="option as option for option in Options"></select>
+                                        </div>
+
+                                        <div class="col-md-3 col-sm-8 col-xs-8">
+                                            <div class="input-group">
+                                                <input auto-focus ng-model="filterREQ" type="text" class="form-control" id="filter" autocomplete="off" placeholder="Search">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default filterButton" type="button"><i class="fa fa-search"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8 col-sm-12 col-xs-12" align="right">
+                                            <button class="btn btn-default" type="button" ng-click="projectDetails()"><i class="fa fa-arrow-left" aria-hidden="true"></i>  Project Details</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <table style="overflow:hidden" class="table table-striped table-bordered dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable-buttons_info">
+
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 218px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Axosoft ID</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 218px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Number</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 218px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Requirement</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 167px;" aria-label="Developer Assigned: activate to sort column ascending">Developer Assigned</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 92px;" aria-label="Tester Assigned: activate to sort column ascending">Tester Assigned</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 92px;" aria-label="Actions: activate to sort column ascending">Actions</th>
+                                    </thead>
+                                    <tbody style="overflow:hidden">
+                                        <tr role="row" class="odd" href="" dir-paginate="requirement in filteredArray = (requirements | REQFilter:filterREQ) | itemsPerPage: pageSizeReq" current-page="currentPageREQ" pagination-id="paginationREQ">
+                                            <td ng-click="requirementDetails(requirement.Id)" tabindex="0" class="sorting_1">{{requirement.Axosoft_Task_Id}}</td>
+                                            <td ng-click="requirementDetails(requirement.Id)" tabindex="0" class="sorting_1">{{requirement.req_number}}</td>
+                                            <td ng-click="requirementDetails(requirement.Id)" tabindex="0" style="overflow:hidden;" class="sorting_1">{{requirement.Name}}</td>
+                                            <td ng-click="requirementDetails(requirement.Id)" style="overflow:hidden">{{requirement.Developer_Assigned}}</td>
+                                            <td ng-click="requirementDetails(requirement.Id)" style="overflow:hidden">{{requirement.Tester_Assigned}}</td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Forward" aria-describedby="tooltip802045" ng-click="requirementDetails(requirement.Id)"><i class="fa fa-info-circle"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr ng-if="filteredArray.length===0">
+                                            <td colspan="6">@Resource.NoDataFound</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="dataTables_info" id="datatable-buttons_info" role="status" aria-live="polite">
+                                    {{filteredArray.length}} entries
+                                </div>
+                                <div class="paginationContainer">
+                                    <dir-pagination-controls boundary-links="true" pagination-id="paginationREQ" template-url="Pages/dirPagination.tpl.html"></dir-pagination-controls>
+                                </div>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group row">
+                                        <div class="col-md-1 col-sm-4 col-xs-4 selectCustom">
+                                            <select name="priority" required class="form-control" ng-model="RowsSelectedTC" ng-change="changeValueTC(RowsSelectedTC)"
+                                                    ng-options="option as option for option in Options"></select>
+                                        </div>
+
+                                        <div class="col-md-3 col-sm-8 col-xs-8">
+                                            <div class="input-group">
+                                                <input auto-focus ng-model="string" type="text" class="form-control" id="filter" autocomplete="off" placeholder="Search">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default filterButton" type="button"><i class="fa fa-search"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8 col-sm-12 col-xs-12" align="right">
+                                            <button class="btn btn-default" type="button" ng-click="projectDetails()"><i class="fa fa-arrow-left" aria-hidden="true"></i>  Project Details</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table table-striped table-bordered dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable-buttons_info">
+
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 218px;" aria-sort="ascending" aria-label="Test Case Number: activate to sort column descending">TC Number</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 340px;" aria-label="Priority: activate to sort column ascending">Priority</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 167px;" aria-label="Title: activate to sort column ascending">Title</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 92px;" aria-label="Creator: activate to sort column ascending">Creator</th>
+                                            <th ng-if="CurrentUserRole!='VBP' && CurrentUserRole!='BA'" class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 92px;" aria-label="Creator: activate to sort column ascending">Actions</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr role="row" class="odd" href="" dir-paginate="testCase in filteredArrayTC = ( testCases | TCFilter : string )| itemsPerPage: pageSizeTC" current-page="currentPageTC" pagination-id="pagination">
+
+                                            <td tabindex="0" class="sorting_1">{{testCase.tc_number}}</td>
+                                            <td>{{testCase.Test_Priority}}</td>
+                                            <td>{{testCase.Title}}</td>
+                                            <td>{{testCase.Test_Case_Creator}}</td>
+
+                                            <td ng-if="CurrentUserRole!='VBP' && CurrentUserRole!='BA'">
+                                                <div class="btn-group">
+                                                    <button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Print" ng-click="testcaseEdit(testCase.Test_Case_Id)"><i class="fa fa-pencil"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr ng-if="filteredArrayTC.length===0">
+                                            <td ng-if="CurrentUserRole!='VBP' && CurrentUserRole!='BA'" colspan="5">@Resource.NoDataFound</td>
+                                            <td ng-if="CurrentUserRole=='VBP' || CurrentUserRole=='BA'" colspan="4">@Resource.NoDataFound</td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="dataTables_info" id="datatable-buttons_info" role="status" aria-live="polite">
+                                    {{filteredArrayTC.length}} entries
+                                </div>
+                                <div class="paginationContainer">
+                                    <dir-pagination-controls boundary-links="true" pagination-id="pagination" template-url="Pages/dirPagination.tpl.html"></dir-pagination-controls>
+                                </div>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group row">
+                                        <div class="col-md-1 col-sm-4 col-xs-4 selectCustom">
+                                            <select name="priority" required class="form-control" ng-model="RowsSelectedTP" ng-change="changeValueTP(RowsSelectedTP)"
+                                                    ng-options="option as option for option in Options"></select>
+                                        </div>
+
+                                        <div class="col-md-3 col-sm-8 col-xs-8">
+                                            <div class="input-group">
+                                                <input auto-focus ng-model="filterSTP" type="text" class="form-control" id="filter" autocomplete="off" placeholder="Search">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default filterButton" type="button"><i class="fa fa-search"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8 col-sm-12 col-xs-12" align="right">
+                                            <button class="btn btn-default" type="button" ng-click="projectDetails()"><i class="fa fa-arrow-left" aria-hidden="true"></i>  Project Details</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <table class="table table-striped table-bordered dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable-buttons_info">
+
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 218px;" aria-sort="ascending" aria-label="Test Case Number: activate to sort column descending">TP Number</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 340px;" aria-label="Priority: activate to sort column ascending">Priority</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 167px;" aria-label="Title: activate to sort column ascending">Title</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 92px;" aria-label="Creator: activate to sort column ascending">Creator</th>
+                                            <th ng-if="CurrentUserRole!='VBP' && CurrentUserRole!='BA'" class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 92px;" aria-label="Creator: activate to sort column ascending">Actions</th>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr role="row" class="odd" href="" dir-paginate="testProcedure in filteredArraySTP = (testProcedures |  TPFilter: filterSTP) | itemsPerPage: pageSizeTP" current-page="currentPageTP" pagination-id="paginationTP">
+                                            <td tabindex="0" class="sorting_1">{{testProcedure.tp_number}}</td>
+                                            <td>{{testProcedure.Test_Priority}}</td>
+                                            <td>{{testProcedure.Title}}</td>
+                                            <td>{{testProcedure.Test_Procedure_Creator}}</td>
+
+                                            <td ng-if="CurrentUserRole!='VBP' && CurrentUserRole!='BA'">
+                                                <div class="btn-group">
+                                                    <button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Print" ng-click="testprocedureEdit(testProcedure.Test_Procedure_Id)"><i class="fa fa-pencil"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr ng-if="filteredArraySTP.length===0">
+                                            <td ng-if="CurrentUserRole!='VBP' && CurrentUserRole!='BA'" colspan="5">@Resource.NoDataFound</td>
+                                            <td ng-if="CurrentUserRole=='VBP' || CurrentUserRole=='BA'" colspan="4">@Resource.NoDataFound</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="dataTables_info" id="datatable-buttons_info" role="status" aria-live="polite">
+                                    {{filteredArraySTP.length}} entries
+                                </div>
+                                <div class="paginationContainer">
+                                    <dir-pagination-controls boundary-links="true" pagination-id="paginationTP" template-url="Pages/dirPagination.tpl.html"></dir-pagination-controls>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

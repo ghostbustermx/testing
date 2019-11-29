@@ -1,0 +1,262 @@
+﻿@Scripts.Render("~/bundles/AdjustUI")
+@{
+    Layout = null;
+}
+<div class="right_col" role="main">
+    <div class="clearfix"></div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item" ng-click="projectDetails()"><a href="" ng-click="projectDetails()">{{Name}}</a></li>
+            <li class="breadcrumb-item">
+                <a href="" ng-click="ExecutionList()">Execution Groups</a>
+            </li>
+            <li class="breadcrumb-item" aria-current="page" ng-click="ExecutionsList()">
+                <a href="">Test's Execution</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                Execution View
+            </li>
+        </ol>
+    </nav>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+
+                    <div class="col-md-12">
+                        <h2>Test Execution</h2>
+                        <div class="btn-group" style="float:right">
+                            <button class="btn btn-primary" ng-disabled="IsTaken" ng-if="ActiveTest" ng-click="ClearSelection()"><i class="fa fa-remove"></i> Remove my selection</button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                @* Here start the content*@
+                <div class="col-lg-12">
+                    <div class="col-md-12">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" style="width:{{Passed}}%">
+                                <a ng-if="Passed>3" class="font">Passed ({{Passed}}%)</a>
+                                <a ng-if="Passed<4" class="font">{{Passed}}%</a>
+                            </div>
+                            <div class="progress-bar progress-bar-danger" role="progressbar" style="width:{{Failed}}%">
+                                <a ng-if="Failed>3" class="font">Failed ({{Failed}}%)</a>
+                                <a ng-if="Failed<4" class="font">{{Failed}}%</a>
+                            </div>
+                            <div class="progress-bar progress-bar-dark" role="progressbar" style="width:{{TBD}}%">
+                                <a ng-if="TBD>3" class="font">To Be Executed ({{TBD}}%)</a>
+                                <a ng-if="TBD<4" class="font">{{TBD}}%</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row tile_count">
+                        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                            <span class="count_top"><i class="fa fa-file-o"></i> Total Evidence</span>
+                            <div class="count"> {{Total}}</div>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                            <span class="count_top"><i class="fa fa-clock-o"></i> Test Strategy</span>
+                            <div class="count">{{Strategy}}</div>
+                        </div>
+
+                        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                            <span class="count_top"><i class="fa fa-check-circle"></i> Total Passed</span>
+                            <div class="count">{{Passed}}</div>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                            <span class="count_top"><i class="fa fa-times-circle"></i> Total Failed</span>
+                            <div class="count">{{Failed}}</div>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                            <span class="count_top"><i class="fa fa-warning"></i> Total To Be Executed</span>
+                            <div class="count">{{TBD}}</div>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                            <span class="count_top"><i class="fa fa-files-o"></i> Test Evidence</span><br>
+                            <span class="count_bottom ng-binding">
+                                <i class="ng-binding">
+                                    <i class="fa fa-file-o"></i> <strong>TP:</strong>
+                                </i> {{TP_Count}}
+                            </span><br>
+                            <span class="count_bottom ng-binding"><i class="ng-binding"><i class="fa fa-file-o"></i> <strong>TC:</strong> </i>  {{TC_Count}}</span><br>
+                            <span class="count_bottom ng-binding"><i class="ng-binding"><i class="fa fa-file-o"></i> <strong>TS:</strong> </i> {{TS_Count}}</span><br>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="col-md-4 col-sm-4 col-xs-4 ">
+                            <div class="selectCustom">
+                                <select name="priority" required class="form-control" ng-model="RowsSelected" ng-change="ChangeFilter(RowsSelected)"
+                                        ng-options="option as option for option in Options">
+                                    Choose Filter
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-sm-4 col-xs-4 search-bar-list">
+                            <div class="input-group">
+                                <input auto-focus ng-model="filter2" type="text" class="form-control" id="filter" autocomplete="off" placeholder="Search">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default filterButton" type="button"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-sm-4 col-xs-4">
+                            <div class="list-group" style="height:610px; max-height:610px; overflow:hidden; overflow-y:auto;">
+                                <div style="width:100%; height:50px;cursor: pointer;" class="list-group-item {{test.Status}}" ng-click="SelectTest(test)" ng-repeat="test in tests2 =(testProceduresArray| filter:filter2)">
+                                    <div style="float:left; width:70%; color:#c3c3c3!important;"><a class="textColor" data-toggle="tooltip" title="{{test.Title}}">({{test.Identifier_number}}) | {{test.Title}}</a></div>
+                                    <div class="col-md-3" style=" float:right; width:16%;">
+                                        <img class="img-circle" style="float:left; height:35px; width:35px;" ng-if="test.PhotoUrl!=null" ng-src="{{test.PhotoUrl}}">
+                                        <i ng-if="test.HasViewer" class="fa fa-eye" style="float:right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="input-group col-md-12 ">
+                                    <h2>Steps</h2>
+                                    <span class="input-group-btn">
+                                        <button ng-click="LoadSteps(testSelected.Element_id)" class="btn btn-default filterButton" type="button"><i class="fa fa-refresh"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div style="height:587px; max-height:587px; overflow:hidden; overflow-y:auto;">
+                                <table class="table table-bordered customTable" role="grid" aria-describedby="datatable-buttons_info" id="stepsTable" ng-model="table" ng-table="tableParams">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="customTH sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width:1px;" aria-label="Number: activate to sort column ascending">#</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending">Description</th>
+                                    </thead>
+                                    <tbody ng-model="update">
+                                        <tr role="row" ng-repeat="step in steps | orderObjectBy:'number_steps'">
+                                            <td class="customTD sorting_1" ng-if="step.subType!='STP'"><strong> {{step.number_steps}} <a ng-if="step.subType=='Expected Result'"> <br />Expected Result</a></strong></td>
+                                            <td tabindex="0" class=" customTD sorting_1 gray" ng-if="step.subType=='STP'"> <a>{{step.number_steps}}</a></td>
+                                            <td ng-if="step.subType!='STP'">{{step.action}}</td>
+                                            <td ng-if="step.subType=='STP'">{{step.action}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td tabindex="0" ng-if="testSelected.Evidence!='TS'"><strong> Expected Result</strong></td>
+                                            <td tabindex="0" ng-if="testSelected.Evidence!='TS'"><strong>{{testToDisplay.Expected_Result}}</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4 panel-right">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="input-group col-md-12 ">
+                                    <h2>Test Information</h2>
+                                    <span class="input-group-btn">
+                                        <button ng-click="GetTestInformation(testSelected)" class="btn btn-default filterButton" type="button"><i class="fa fa-refresh"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="panel-body" style="height:587px; max-height:587px; overflow:hidden; overflow-y:auto;">
+                                <h2>Test Evidence</h2>
+                                <div>
+                                    <div class="input-group col-md-12 ">
+                                        <a class="customTitle">Number:</a>
+                                        <a ng-if="testSelected.Evidence=='TC'" class="message">{{testToDisplay.tc_number}}</a>
+                                        <a ng-if="testSelected.Evidence=='TP'" class="message">{{testToDisplay.tp_number}}</a>
+                                        <a ng-if="testSelected.Evidence=='TS'" class="message">{{testToDisplay.ts_number}}</a>
+                                        <span class="input-group-btn">
+                                            <button ng-click="goTestEvidence(testSelected)" type="button" class="btn btn-primary" ng-if="showEdit">Edit {{testSelected.Evidence}}</button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a class="customTitle">Title:</a>
+                                    <a class="message">{{testToDisplay.Title}}</a>
+                                </div>
+                                <div>
+                                    <a class="customTitle">Test Priority:</a>
+                                    <a class="message">{{testToDisplay.Test_Priority}}</a>
+                                </div>
+                                <div>
+                                    <a class="customTitle">Test Type:</a>
+                                    <a class="message">{{testToDisplay.Type}}</a>
+                                </div>
+                                <div>
+                                    <a class="customTitle">Description:</a>
+                                    <br />
+                                    <p class="message">{{testToDisplay.Description}}</p>
+                                </div>
+                                <div>
+                                    <a ng-if="testSelected.Evidence!='TP'" class="customTitle">Preconditions:</a>
+                                    <a ng-if="testSelected.Evidence!='TP'" class="message">{{testToDisplay.Preconditions}}</a>
+                                </div>
+                                <div>
+                                    <a class="customTitle">Creator:</a>
+                                    <a ng-if="testSelected.Evidence=='TC'" class="message">{{testToDisplay.Test_Case_Creator}}</a>
+                                    <a ng-if="testSelected.Evidence=='TP'" class="message">{{testToDisplay.Test_Procedure_Creator}}</a>
+                                    <a ng-if="testSelected.Evidence=='TS'" class="message">{{testToDisplay.Test_Scenario_Creator}}</a>
+                                </div>
+                                <div>
+                                    <a ng-if="testSelected.Evidence!='TS'" class="customTitle">Expected Result:</a>
+                                    <a ng-if="testSelected.Evidence!='TS' " class="message">{{testToDisplay.Expected_Result}}</a>
+                                </div>
+                                <h2 ng-if="reqs2.length>1">Requirements ({{reqs2.length}})</h2>
+                                <h2 ng-if="reqs2.length==1">Requirement</h2>
+                                <div ng-repeat="req in  reqs2">
+                                    <div>
+                                        <div style="background-color:#696969 !important; width:100%; height:1px; margin-bottom:10px;"></div>
+                                        <div class="input-group col-md-12 ">
+                                            <a class="customTitle"><strong>Requirement Number:</strong></a>
+                                            <a class="message"><strong>{{req.req_number}}</strong></a>
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-primary" ng-click="goRequirement(req.Id)" ng-if="user.Role!='VBP'">Edit Requirement</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <a class="customTitle"><strong>Axosoft ID:</strong></a>
+                                        <a class="message"> <strong>{{req.Axosoft_Task_Id}}</strong></a>
+                                    </div>
+                                    <div>
+                                        <a class="customTitle"><strong>Title:</strong></a>
+                                        <a class="message"><strong>{{req.Name}}</strong></a>
+                                    </div>
+                                    <div>
+                                        <a class="customTitle">Description:</a>
+                                        <p class="message">{{req.Description}}</p>
+
+                                    </div>
+                                    <div>
+                                        <a class="customTitle">Acceptance Criteria:</a>
+                                        <p class="message">{{req.Acceptance_Criteria}}</p>
+                                    </div>
+                                    <div>
+                                        <a class="customTitle">Developer:</a>
+                                        <p class="message">{{req.Developer_Assigned}}</p>
+                                    </div>
+                                    <div>
+                                        <a class="customTitle">Tester:</a>
+                                        <p class="message">{{req.Tester_Assigned}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="loadingModalPlay" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modalCenter" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="loader"></div>
+                <div class="loader-txt"><p>Pulling in all <b>Test Execution</b> data</p></div>
+            </div>
+        </div>
+    </div>
+</div>

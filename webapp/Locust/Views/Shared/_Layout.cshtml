@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+
+    @if (ViewBag.template == "Dark")
+    {
+        <script type="text/javascript">
+            var fileref = document.createElement("link")
+            fileref.setAttribute("rel", "stylesheet")
+            fileref.setAttribute("id", "dark")
+            fileref.setAttribute("type", "text/css")
+            fileref.setAttribute("href", "../Content/css/mode2.css")
+            document.getElementsByTagName("head")[0].appendChild(fileref)
+        </script>
+    }
+    @Styles.Render("~/Content/template")
+    @RenderSection("styles", false)
+    @if (ViewBag.template == "Dark")
+    {
+        <script type="text/javascript">
+            var fileref = document.createElement("link")
+            fileref.setAttribute("rel", "stylesheet")
+            fileref.setAttribute("id", "dark")
+            fileref.setAttribute("type", "text/css")
+            fileref.setAttribute("href", "../Content/css/mode2.css")
+            document.getElementsByTagName("head")[0].appendChild(fileref)
+        </script>
+    }
+
+    <script>
+        var appName = 'Locust';
+        var virtualPath = '@Url.RouteUrl(ViewContext.RouteData.Values)';
+    </script>
+
+</head>
+<body class="nav-md" ng-app="Locust">
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/app")
+
+  
+</body>
+</html>
+

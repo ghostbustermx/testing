@@ -1,0 +1,176 @@
+﻿@Scripts.Render("~/bundles/AdjustUI")
+@{
+    Layout = null;
+}
+<div class="right_col" role="main">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item" ng-click="projectDetails()"><a href="" ng-click="projectDetails()">{{projectName}}</a></li>
+            <li class="breadcrumb-item" ng-click="requirementDetails()"><a href="" ng-click="requirementDetails()">{{requirementName}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{tcNumber}}</li>
+        </ol>
+    </nav>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Test Case "{{title}}"<small>Details</small></h2>
+                    <ul class="nav navbar-right panel_toolbox" id="demo">
+                        <li>
+                            <a class="collapse-link" data-toggle="collapse" data-target="#hi" id="collapse"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <script>
+                    $(document).ready(function () {
+                        $("#hi").on("hide.bs.collapse", function () {
+                            $("#demo").html('<li> <a class="collapse-link" data-toggle="collapse" data-target="#hi" id="collapse"><i class="fa fa-chevron-down"></i></a></li>');
+                        });
+                        $("#hi").on("show.bs.collapse", function () {
+                            $("#demo").html('<li> <a class="collapse-link" data-toggle="collapse" data-target="#hi" id="collapse"><i class="fa fa-chevron-up"></i></a></li>');
+                        });
+                    });
+                </script>
+                @* Here start the contern *@
+                <div class="x_content collapse in" id="hi" aria-expanded="true">
+
+                    <div class="customContainer col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12  first-container">
+                            <div>
+                                <a class="customTitle">TC Number:</a>
+                                <a class="message">{{tcNumber}}</a>
+                            </div>
+                            <div>
+                                <a class="customTitle">Test Priority:</a>
+                                <a class="message">{{testPriority}}</a>
+                            </div>
+                            <div>
+                                <a class="customTitle">Test Type:</a>
+                                <a class="message">{{type}}</a>
+                            </div>
+                            <div>
+                                <a class="customTitle">Title:</a>
+                                <a class="message">{{title}}</a>
+                            </div>
+                            <div>
+                                <a class="customTitle">Creator:</a>
+                                <a class="message">{{creator}}</a>
+                            </div>
+                            <div ng-if="lastEditor!=null">
+                                <a class="customTitle">Last Editor:</a>
+                                <a class="message">{{lastEditor}}</a>
+                            </div>
+                            <div>
+                                <a class="customTitle">Creation Date:</a>
+                                <a class="message">{{creation_date}}</a>
+                            </div>
+                            <div>
+                                <a class="customTitle">Status:</a>
+                                <span ng-if="status===true" class="label label-success">Active</span>
+                                <span ng-if="status===false" class="label label-danger">Inactive</span>
+                            </div>
+                            <div>
+                                <a class="customTitle">Description:</a>
+                                <p class="message">{{description}}</p>
+                            </div>
+                            <div>
+                                <a class="customTitle">Attachments</a>
+                                <div class="list-group">
+                                    <div ng-repeat="files in FilestoDisplay">
+                                        <a style="cursor:pointer;" ng-click="DownloadFile(files.Id)"><b>{{files.Name}}</b></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-group-btn" style="text-align:right">
+                                <button type="button" class="btn btn-default" aria-label="Change Log" ng-click="TestCaseChangelog()"><i class="fa fa-history" aria-hidden="true"></i> Change Log </button>
+                            </div>
+                        </div>
+                        <div class="InfoDetailsContainer col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div>
+                                <a class="customTitle">Preconditions:</a>
+                                <p class="message">{{preconditions}}</p>
+                            </div>
+                        </div>
+                        <div class="InfoDetailsContainer col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div>
+                                <a class="customTitle">Expected Result:</a>
+                                <a class="message">{{expected}}</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="x_content">
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <div class="x_title">
+                        <h2>Steps<small></small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="x_title">
+                        <h2>Tags<small></small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <table class="table table-bordered dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable-buttons_info" id="stepsTable" ng-model="table">
+                        <thead>
+                            <tr role="row">
+                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 92px;" aria-label="Number: activate to sort column ascending">#</th>
+                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 92px;" aria-label="Action: activate to sort column ascending">Action</th>
+                        </thead>
+                        <tbody ng-model="update">
+                            <tr role="row" class="odd" ng-repeat="step in steps | orderBy:'number_steps'">
+                                <td tabindex="0" class="sorting_1">{{step.number_steps}}</td>
+                                <td style="text-align:justify">
+                                    <div style="max-height:230px; overflow:auto">
+                                        <p class="message">{{step.action}}</p>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="expectedResult" role="row">
+                                <td tabindex="0" class="sorting_1" style="font-weight:bold;">Expected Result</td>
+                                <td style="text-align:justify;">{{expected}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="dataTables_info" id="datatable-buttons_info" role="status" aria-live="polite">
+                        {{steps.length}} entries
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div>
+                        <input id="tags_1" type="text" class="tags form-control" data-tagsinput-init="true" style="display: none;">
+                        <div id="tags_1_tagsinput" class="tagsinput" style="width: auto; min-height: 100px; height: 100px;">
+                            <span class="tag" ng-repeat="tag in tags"><span>{{tag.name}}</span></span>
+                            <div id="tags_1_addTag"><input id="tags_1_tag" value="" data-default="add a tag" class="" style="color: rgb(102, 102, 102); width: 72px;"></div>
+                            <div class="tags_clear"></div>
+                        </div>
+                        <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:right">
+                        <button class="btn btn-default" type="button" ng-click="redirectToList()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Requirement Details</button>
+                    </div>
+                </div>
+                <!--
+                <div class="input-group-btn" style="text-align:right">
+                    <button class="btnAdd" type="button" ng-click="redirectToList()">Back</button>
+                </div>
+                    -->
+            </div>
+        </div>
+    </div>
+</div>
+
+

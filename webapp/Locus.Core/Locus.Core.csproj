@@ -1,0 +1,459 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{856E5E10-0A30-4C15-8EA2-8306B85E4664}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Locus.Core</RootNamespace>
+    <AssemblyName>Locus.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.1, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.5.3.1\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Context\LocustDBContext.cs" />
+    <Compile Include="DTO\RunnerDTO.cs" />
+    <Compile Include="DTO\BackupDTO.cs" />
+    <Compile Include="DTO\DashboardDTO.cs" />
+    <Compile Include="DTO\EmployeesDTO .cs" />
+    <Compile Include="DTO\EmployeeInfoDTO.cs" />
+    <Compile Include="DTO\EvidenceDTO.cs" />
+    <Compile Include="DTO\LinkCellDTO.cs" />
+    <Compile Include="DTO\MissingTestEvidenceDTO.cs" />
+    <Compile Include="DTO\ProjectDTO.cs" />
+    <Compile Include="DTO\RequirementDTO.cs" />
+    <Compile Include="DTO\RequirementIDDTO.cs" />
+    <Compile Include="DTO\RestoreStatusDTO.cs" />
+    <Compile Include="DTO\AssignedStatusDTO.cs" />
+    <Compile Include="DTO\ScriptDTO.cs" />
+    <Compile Include="DTO\StepDTO.cs" />
+    <Compile Include="DTO\SupplementalTestProcedureDTO.cs" />
+    <Compile Include="DTO\TestDTO.cs" />
+    <Compile Include="DTO\TestResultDTO.cs" />
+    <Compile Include="DTO\UsersPermissionsDTO.cs" />
+    <Compile Include="DTO\UsersProjectDTO.cs" />
+    <Compile Include="DTO\ValidationsDTO.cs" />
+    <Compile Include="Helpers\APIRequestor.cs" />
+    <Compile Include="Helpers\DateTimeFormatter.cs" />
+    <Compile Include="Helpers\ExcelCreator.cs" />
+    <Compile Include="Helpers\ExcelRequestor.cs" />
+    <Compile Include="Helpers\TextExtractorHelper.cs" />
+    <Compile Include="Helpers\ZipFileCreatorHelper.cs" />
+    <Compile Include="Migrations\201901081506057_initial.cs" />
+    <Compile Include="Migrations\201901081506057_initial.Designer.cs">
+      <DependentUpon>201901081506057_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901081618211_Suplemental.cs" />
+    <Compile Include="Migrations\201901081618211_Suplemental.Designer.cs">
+      <DependentUpon>201901081618211_Suplemental.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901101850213_Status_TPSTP.cs" />
+    <Compile Include="Migrations\201901101850213_Status_TPSTP.Designer.cs">
+      <DependentUpon>201901101850213_Status_TPSTP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901141624426_requirement.cs" />
+    <Compile Include="Migrations\201901141624426_requirement.Designer.cs">
+      <DependentUpon>201901141624426_requirement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901181541206_size-image.cs" />
+    <Compile Include="Migrations\201901181541206_size-image.Designer.cs">
+      <DependentUpon>201901181541206_size-image.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901211541263_ChangeLog.cs" />
+    <Compile Include="Migrations\201901211541263_ChangeLog.Designer.cs">
+      <DependentUpon>201901211541263_ChangeLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901212102225_IsActive.cs" />
+    <Compile Include="Migrations\201901212102225_IsActive.Designer.cs">
+      <DependentUpon>201901212102225_IsActive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901222156141_FixRequired.cs" />
+    <Compile Include="Migrations\201901222156141_FixRequired.Designer.cs">
+      <DependentUpon>201901222156141_FixRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901291956351_preconditions.cs" />
+    <Compile Include="Migrations\201901291956351_preconditions.Designer.cs">
+      <DependentUpon>201901291956351_preconditions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901302205339_preconditions1.cs" />
+    <Compile Include="Migrations\201901302205339_preconditions1.Designer.cs">
+      <DependentUpon>201901302205339_preconditions1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905222309013_users.cs" />
+    <Compile Include="Migrations\201905222309013_users.Designer.cs">
+      <DependentUpon>201905222309013_users.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905281550290_UsersInformation.cs" />
+    <Compile Include="Migrations\201905281550290_UsersInformation.Designer.cs">
+      <DependentUpon>201905281550290_UsersInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905301653005_LastEditorField.cs" />
+    <Compile Include="Migrations\201905301653005_LastEditorField.Designer.cs">
+      <DependentUpon>201905301653005_LastEditorField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906031537098_UpdateOnSteps.cs" />
+    <Compile Include="Migrations\201906031537098_UpdateOnSteps.Designer.cs">
+      <DependentUpon>201906031537098_UpdateOnSteps.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906050114508_remove_expected_result.cs" />
+    <Compile Include="Migrations\201906050114508_remove_expected_result.Designer.cs">
+      <DependentUpon>201906050114508_remove_expected_result.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906051658506_remove_required_prop_last_editor.cs" />
+    <Compile Include="Migrations\201906051658506_remove_required_prop_last_editor.Designer.cs">
+      <DependentUpon>201906051658506_remove_required_prop_last_editor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906051957408_remove_required_prop_last_editor_tp_ts.cs" />
+    <Compile Include="Migrations\201906051957408_remove_required_prop_last_editor_tp_ts.Designer.cs">
+      <DependentUpon>201906051957408_remove_required_prop_last_editor_tp_ts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906061738469_Added_Type_Test_Evidence.cs" />
+    <Compile Include="Migrations\201906061738469_Added_Type_Test_Evidence.Designer.cs">
+      <DependentUpon>201906061738469_Added_Type_Test_Evidence.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906211721110_settings.cs" />
+    <Compile Include="Migrations\201906211721110_settings.Designer.cs">
+      <DependentUpon>201906211721110_settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906211851198_users_models.cs" />
+    <Compile Include="Migrations\201906211851198_users_models.Designer.cs">
+      <DependentUpon>201906211851198_users_models.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906261837395_test_execution.cs" />
+    <Compile Include="Migrations\201906261837395_test_execution.Designer.cs">
+      <DependentUpon>201906261837395_test_execution.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906272017105_test-environment.cs" />
+    <Compile Include="Migrations\201906272017105_test-environment.Designer.cs">
+      <DependentUpon>201906272017105_test-environment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906281822104_update-te-model.cs" />
+    <Compile Include="Migrations\201906281822104_update-te-model.Designer.cs">
+      <DependentUpon>201906281822104_update-te-model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907011719589_TestExecution.cs" />
+    <Compile Include="Migrations\201907011719589_TestExecution.Designer.cs">
+      <DependentUpon>201907011719589_TestExecution.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907011731136_update_group_model.cs" />
+    <Compile Include="Migrations\201907011731136_update_group_model.Designer.cs">
+      <DependentUpon>201907011731136_update_group_model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907011853077_groupIdOnTestExecution.cs" />
+    <Compile Include="Migrations\201907011853077_groupIdOnTestExecution.Designer.cs">
+      <DependentUpon>201907011853077_groupIdOnTestExecution.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907051549263_TestResultHolder.cs" />
+    <Compile Include="Migrations\201907051549263_TestResultHolder.Designer.cs">
+      <DependentUpon>201907051549263_TestResultHolder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907171531104_TestExecutionValidationResults.cs" />
+    <Compile Include="Migrations\201907171531104_TestExecutionValidationResults.Designer.cs">
+      <DependentUpon>201907171531104_TestExecutionValidationResults.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907181726301_TestResultHolderandTitles.cs" />
+    <Compile Include="Migrations\201907181726301_TestResultHolderandTitles.Designer.cs">
+      <DependentUpon>201907181726301_TestResultHolderandTitles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907181829203_EvidenceResultField.cs" />
+    <Compile Include="Migrations\201907181829203_EvidenceResultField.Designer.cs">
+      <DependentUpon>201907181829203_EvidenceResultField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907240122502_remove-version-creation-group.cs" />
+    <Compile Include="Migrations\201907240122502_remove-version-creation-group.Designer.cs">
+      <DependentUpon>201907240122502_remove-version-creation-group.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907240124478_added-version-Test-Execution.cs" />
+    <Compile Include="Migrations\201907240124478_added-version-Test-Execution.Designer.cs">
+      <DependentUpon>201907240124478_added-version-Test-Execution.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908261834558_Attachments.cs" />
+    <Compile Include="Migrations\201908261834558_Attachments.Designer.cs">
+      <DependentUpon>201908261834558_Attachments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909182240296_Attachments\Size.cs" />
+    <Compile Include="Migrations\201909182241070_Attachments_Size.cs" />
+    <Compile Include="Migrations\201909182241070_Attachments_Size.Designer.cs">
+      <DependentUpon>201909182241070_Attachments_Size.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909182334078_Attachments_Size_DataType.cs" />
+    <Compile Include="Migrations\201909182334078_Attachments_Size_DataType.Designer.cs">
+      <DependentUpon>201909182334078_Attachments_Size_DataType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910182026173_ExecutionGroupIsReadyProperty.cs" />
+    <Compile Include="Migrations\201910182026173_ExecutionGroupIsReadyProperty.Designer.cs">
+      <DependentUpon>201910182026173_ExecutionGroupIsReadyProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911251724250_runner_version.cs" />
+    <Compile Include="Migrations\201911251724250_runner_version.Designer.cs">
+      <DependentUpon>201911251724250_runner_version.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911281835247_FilesDependencies.cs" />
+    <Compile Include="Migrations\201911281835247_FilesDependencies.Designer.cs">
+      <DependentUpon>201911281835247_FilesDependencies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Attachment.cs" />
+    <Compile Include="Models\Backup.cs" />
+    <Compile Include="DTO\BackupNameDTO.cs" />
+    <Compile Include="Models\ChangeLog.cs" />
+    <Compile Include="Models\ExecutionGroup.cs" />
+    <Compile Include="Models\ExecutionTestEvidence.cs" />
+    <Compile Include="Models\FilesDependencies.cs" />
+    <Compile Include="Models\Project.cs" />
+    <Compile Include="Models\Requirement.cs" />
+    <Compile Include="Models\RequirementsTest.cs" />
+    <Compile Include="Models\Runner.cs" />
+    <Compile Include="Models\Scripts.cs" />
+    <Compile Include="Models\ScriptsGroup.cs" />
+    <Compile Include="Models\Step.cs" />
+    <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\TestCase.cs" />
+    <Compile Include="Models\TestEnvironment.cs" />
+    <Compile Include="Models\TestExecution.cs" />
+    <Compile Include="Models\TestProcedure.cs" />
+    <Compile Include="Models\TestResult.cs" />
+    <Compile Include="Models\TestScenario.cs" />
+    <Compile Include="Models\Test_ChangeLog.cs" />
+    <Compile Include="Models\Test_Tags.cs" />
+    <Compile Include="Models\TestSuplemental.cs" />
+    <Compile Include="Models\Test_Procedure_Test_Suplemental.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Setting.cs" />
+    <Compile Include="Models\UsersProjects.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AttachmentRepository.cs" />
+    <Compile Include="Repositories\ExecutionGroupRepository.cs" />
+    <Compile Include="Repositories\ExecutionTestEvidenceRepository.cs" />
+    <Compile Include="Repositories\ScriptsGroupRepository.cs" />
+    <Compile Include="Repositories\ScriptsRepository.cs" />
+    <Compile Include="Repositories\RunnerRepository.cs" />
+    <Compile Include="Repositories\TestEnvironmentRepository.cs" />
+    <Compile Include="Repositories\TestExecutionRepository.cs" />
+    <Compile Include="Repositories\TestResultRepository.cs" />
+    <Compile Include="Repositories\UserProjectRepository.cs" />
+    <Compile Include="Repositories\SettingsRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Repositories\BackupRepository.cs" />
+    <Compile Include="Repositories\ProcedureSuplementalRepository.cs" />
+    <Compile Include="Repositories\ProjectRepository.cs" />
+    <Compile Include="Repositories\RequirementRepository.cs" />
+    <Compile Include="Repositories\RequirementsTestRepository.cs" />
+    <Compile Include="Repositories\StepRepository.cs" />
+    <Compile Include="Repositories\TagRepository.cs" />
+    <Compile Include="Repositories\TestCaseRepository.cs" />
+    <Compile Include="Services\AttachmentService.cs" />
+    <Compile Include="Services\ScriptsGroupService.cs" />
+    <Compile Include="Services\ScriptsService.cs" />
+    <Compile Include="Services\RunnerService.cs" />
+    <Compile Include="Services\TestEnvironmentService.cs" />
+    <Compile Include="Services\SettingService.cs" />
+    <Compile Include="Services\ExecutionGroupService.cs" />
+    <Compile Include="Services\ExecutionTestService.cs" />
+    <Compile Include="Services\TestExecutionService.cs" />
+    <Compile Include="Services\TestResultService.cs" />
+    <Compile Include="Services\UserService.cs" />
+    <Compile Include="Services\BackupService.cs" />
+    <Compile Include="Repositories\TestProcedureRepository.cs" />
+    <Compile Include="Repositories\TestScenarioRepository.cs" />
+    <Compile Include="Repositories\TestSuplementalRepository.cs" />
+    <Compile Include="Repositories\TestTagsRepository.cs" />
+    <Compile Include="Services\JanusService.cs" />
+    <Compile Include="Services\ProcedureSuplementalService.cs" />
+    <Compile Include="Services\TraceabilityFindingService.cs" />
+    <Compile Include="Services\ProjectService.cs" />
+    <Compile Include="Services\RequirementService.cs" />
+    <Compile Include="Services\RequirementsTestService.cs" />
+    <Compile Include="Services\StepService.cs" />
+    <Compile Include="Services\TagService.cs" />
+    <Compile Include="Services\TestCaseService.cs" />
+    <Compile Include="Services\TestProcedureService.cs" />
+    <Compile Include="Services\TestScenarioService.cs" />
+    <Compile Include="Services\TestSuplementalService.cs" />
+    <Compile Include="Services\TestTagsService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".editorconfig" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201901081506057_initial.resx">
+      <DependentUpon>201901081506057_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901081618211_Suplemental.resx">
+      <DependentUpon>201901081618211_Suplemental.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901101850213_Status_TPSTP.resx">
+      <DependentUpon>201901101850213_Status_TPSTP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901141624426_requirement.resx">
+      <DependentUpon>201901141624426_requirement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901181541206_size-image.resx">
+      <DependentUpon>201901181541206_size-image.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901211541263_ChangeLog.resx">
+      <DependentUpon>201901211541263_ChangeLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901212102225_IsActive.resx">
+      <DependentUpon>201901212102225_IsActive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901222156141_FixRequired.resx">
+      <DependentUpon>201901222156141_FixRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901291956351_preconditions.resx">
+      <DependentUpon>201901291956351_preconditions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901302205339_preconditions1.resx">
+      <DependentUpon>201901302205339_preconditions1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905222309013_users.resx">
+      <DependentUpon>201905222309013_users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905281550290_UsersInformation.resx">
+      <DependentUpon>201905281550290_UsersInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905301653005_LastEditorField.resx">
+      <DependentUpon>201905301653005_LastEditorField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906031537098_UpdateOnSteps.resx">
+      <DependentUpon>201906031537098_UpdateOnSteps.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906050114508_remove_expected_result.resx">
+      <DependentUpon>201906050114508_remove_expected_result.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906051658506_remove_required_prop_last_editor.resx">
+      <DependentUpon>201906051658506_remove_required_prop_last_editor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906051957408_remove_required_prop_last_editor_tp_ts.resx">
+      <DependentUpon>201906051957408_remove_required_prop_last_editor_tp_ts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906061738469_Added_Type_Test_Evidence.resx">
+      <DependentUpon>201906061738469_Added_Type_Test_Evidence.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906211721110_settings.resx">
+      <DependentUpon>201906211721110_settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906211851198_users_models.resx">
+      <DependentUpon>201906211851198_users_models.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906261837395_test_execution.resx">
+      <DependentUpon>201906261837395_test_execution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906272017105_test-environment.resx">
+      <DependentUpon>201906272017105_test-environment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906281822104_update-te-model.resx">
+      <DependentUpon>201906281822104_update-te-model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907011719589_TestExecution.resx">
+      <DependentUpon>201907011719589_TestExecution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907011731136_update_group_model.resx">
+      <DependentUpon>201907011731136_update_group_model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907011853077_groupIdOnTestExecution.resx">
+      <DependentUpon>201907011853077_groupIdOnTestExecution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907051549263_TestResultHolder.resx">
+      <DependentUpon>201907051549263_TestResultHolder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907171531104_TestExecutionValidationResults.resx">
+      <DependentUpon>201907171531104_TestExecutionValidationResults.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907181726301_TestResultHolderandTitles.resx">
+      <DependentUpon>201907181726301_TestResultHolderandTitles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907181829203_EvidenceResultField.resx">
+      <DependentUpon>201907181829203_EvidenceResultField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907240122502_remove-version-creation-group.resx">
+      <DependentUpon>201907240122502_remove-version-creation-group.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907240124478_added-version-Test-Execution.resx">
+      <DependentUpon>201907240124478_added-version-Test-Execution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908261834558_Attachments.resx">
+      <DependentUpon>201908261834558_Attachments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909182241070_Attachments_Size.resx">
+      <DependentUpon>201909182241070_Attachments_Size.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909182334078_Attachments_Size_DataType.resx">
+      <DependentUpon>201909182334078_Attachments_Size_DataType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910182026173_ExecutionGroupIsReadyProperty.resx">
+      <DependentUpon>201910182026173_ExecutionGroupIsReadyProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911251724250_runner_version.resx">
+      <DependentUpon>201911251724250_runner_version.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911281835247_FilesDependencies.resx">
+      <DependentUpon>201911281835247_FilesDependencies.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

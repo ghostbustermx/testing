@@ -1,0 +1,102 @@
+﻿@Scripts.Render("~/bundles/AdjustUI")
+@{
+    Layout = null;
+}
+
+<div class="right_col" role="main">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item" ng-click="projectDetails()"><a href="" ng-click="projectDetails()">{{NameProject}}</a></li>
+            <li class="breadcrumb-item" ng-click="testEnvironment()"><a href="" ng-click="testEnvironment()">Test Environment</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+                {{action}} Test Environment
+            </li>
+        </ol>
+    </nav>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Test Environment "{{Name}}"<small>Details</small></h2>
+                   
+                    <div class="clearfix"></div>
+                </div>
+                <script>
+                    $(document).ready(function () {
+                        $("#hi").on("hide.bs.collapse", function () {
+                            $("#demo").html('<li> <a class="collapse-link" data-toggle="collapse" data-target="#hi" id="collapse"><i class="fa fa-chevron-down"></i></a></li>');
+                        });
+                        $("#hi").on("show.bs.collapse", function () {
+                            $("#demo").html('<li> <a class="collapse-link" data-toggle="collapse" data-target="#hi" id="collapse"><i class="fa fa-chevron-up"></i></a></li>');
+                        });
+                    });
+                </script>
+                <div class="x_content collapse in" id="hi" aria-expanded="true">
+                    <div class="customContainer">
+                        <div>
+                            <a class="customTitle">Test Environment Name:</a>
+                            <a class="message">{{Name}}</a>
+                        </div>
+
+                        <div>
+                            <a class="customTitle">Server:</a>
+                            <a class="message">{{Server}}</a>
+                        </div>
+                        <div>
+                            <a class="customTitle">Processor:</a>
+                            <a class="message">{{Processor}}</a>
+                        </div>
+                        <div>
+                            <a class="customTitle">RAM:</a>
+                            <a class="message">{{RAM}}</a>
+                        </div>
+                        <div>
+                            <a class="customTitle">HardDisk:</a>
+                            <a class="message">{{HardDisk}}</a>
+                        </div>
+                        <div>
+                            <a class="customTitle">OS:</a>
+                            <a class="message">{{os}}</a>
+                        </div>
+                        <div>
+                            <a class="customTitle">Creator:</a>
+                            <a class="message">{{Creator}}</a>
+                        </div>
+                        <div ng-if="lastEditor!=null">
+                            <a class="customTitle">Last Editor:</a>
+                            <a class="message">{{Last_Editor}}</a>
+                        </div>
+                        <div>
+                            <a class="customTitle">Database:</a>
+                            <a class="message">{{Database}}</a>
+                        </div>
+                        <div>
+                            <a class="customTitle">URL:</a>
+                            <a class="message">{{URL}}</a>
+                        </div>
+                        <div>
+                            <a class="customTitle">Environment Type:</a>
+                            <a class="message">{{type}}</a>
+                        </div>
+                        <div>
+                            <a class="customTitle">Notes:</a>
+                            <a class="message">{{Notes}}</a>
+                        </div>
+
+
+
+                        <div>
+                            <a class="customTitle">Status:</a>
+                            <span ng-if="IsActive===true" class="label label-success">Active</span>
+                            <span ng-if="IsActive===false" class="label label-danger">Inactive</span>
+                        </div>
+                        <div class="input-group-btn" style="text-align:right">
+                            <button class="btn btn-default" type="button" ng-click="redirectToList()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Test Environment List</button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

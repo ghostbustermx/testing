@@ -1,0 +1,212 @@
+﻿@Scripts.Render("~/bundles/AdjustUI")
+
+@{
+    Layout = null;
+}
+
+<div class="right_col" role="main">
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+
+                    <div class="col-md-8 col-sm-5 col-xs-12">
+                        <h2>Users<small>Register of all users</small></h2>
+                    </div>
+
+
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="x_content">
+
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+
+                            <div class="col-md-1 col-sm-4 col-xs-4 selectCustom">
+                                <select name="priority" required class="form-control" ng-model="RowsSelected" ng-change="changeValue(RowsSelected)"
+                                        ng-options="option as option for option in Options"></select>
+                            </div>
+
+                            <div class="col-md-3 col-sm-8 col-xs-8">
+                                <div class="input-group">
+                                    <input auto-focus ng-model="filter" type="text" class="form-control" id="filter" autocomplete="off" placeholder="Search">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default filterButton" type="button"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-8 col-sm-12 col-xs-12" align="right">
+                                <span class="input-group-btn">
+                                    <button data-toggle="modal" data-target="#modalAddUserForm" class="btn btn-default" type="button" ng-click="setVariables('Add',null)"><i class="fa fa-plus"></i> Add User</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="container">
+
+
+
+                    <table class="table table-bordered dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable-buttons_info">
+
+                        <thead>
+                            <tr role="row">
+                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 218px;">User</th>
+                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 218px;">User Name</th>
+                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 340px;">Full Name</th>
+                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 167px;">Role</th>
+                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 167px;">Email</th>
+                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 167px;">Department</th>
+                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 167px;">Status</th>
+                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 167px;">Actions</th>
+                        </thead>
+
+                        @*<tr role="row" class="odd" dir-paginate="project in filteredArray = (projects | PROJFilter: filter )| itemsPerPage: pageSize" current-page="currentPage" pagination-id="pagination">*@
+
+                        <tr role="row" dir-paginate="user in filteredArray = (users | UserFilter: filter ) | itemsPerPage: pageSize" current-page="currentPage" pagination-id="pagination">
+                            <td width="5%">
+                                <img ng-if="user.PhotoUrl!=null" width="50" height="50" ng-src="{{ user.PhotoUrl }}" />
+                                <img ng-if="user.PhotoUrl==null" width="50" height="50" src="~/Content/img/default-user.png" />
+                            </td>
+                            <td><p>{{user.UserName}}</p></td>
+                            <td><p>{{user.FirstName}} {{user.LastName}}</p></td>
+                            <td>{{user.Role}}</td>
+                            <td>{{user.Email}}</td>
+                            <td ng-if="user.Department">{{user.Department}}</td>
+                            <td ng-if="!user.Department">INTERN</td>
+
+                            <td>
+                                <span ng-if="user.IsActive" class="label label-success">ACTIVE</span>
+                                <span ng-if="!user.IsActive" class="label label-danger">DISABLED</span>
+                            </td>
+
+                            <td valign="middle" width="10%">
+
+                                <div ng-if="user.Role!='ADMIN'" class="btn-group">
+                                    <button data-toggle="modal" data-target="#modalAddUserForm" class="btn btn-sm btn-default" type="button" ng-click="setVariables('Edit',user)"><i class="fa fa-pencil"></i></button>
+                                    <button data-toggle="modal" data-target="#disableUser" class="btn btn-sm btn-default" type="button" data-placement="top" data-original-title="Trash" ng-click="selectUser(user)"><i ng-class="user.IsActive==true? 'fa fa-trash-o' :'fa fa-check-square'"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-if="filteredArray.length===0">
+                            <td colspan="8">@Resource.NoDataFound</td>
+                        </tr>
+                    </table>
+                    <div class="dataTables_info" id="datatable-buttons_info" role="status" aria-live="polite">
+                        {{filteredArray.length}} entries
+                    </div>
+                    <div class="paginationContainer">
+                        <dir-pagination-controls boundary-links="true" pagination-id="pagination" template-url="Pages/dirPagination.tpl.html"></dir-pagination-controls>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="modalAddUserForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">{{addEditAction}} Users</h4>
+            </div>
+            <div class="modal-body">
+                <form name="form" autocomplete="off" id="form" novalidate class="form-horizontal form-label-left" align="right" style="border:0">
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-1" for="Tester">
+                            User: <span class="required">*</span>
+                        </label>
+                        <div class="col-md-4 col-sm-4 col-lg-9">
+                            <ui-select ng-disabled="UItoEdit" ng-model="userAssigned.selectedItems">
+                                <ui-select-match placeholder="User">{{$select.selected.UserName}}</ui-select-match>
+                                <ui-select-choices repeat="employee in employees.Items | filter: $select.search">
+                                    <img ng-if="employee.PhotoUrl!=null" width="50" height="50" ng-src="{{ employee.PhotoUrl }}" />
+                                    <img ng-if="employee.PhotoUrl==null" width="50" height="50" src="~/Content/img/default-user.png" />
+                                    (<span ng-bind-html="employee.UserName | highlight: $select.search"></span>)
+
+                                    <span ng-bind-html="employee.FirstName | highlight: $select.search"></span>
+                                    <span ng-bind-html="employee.LastName | highlight: $select.search"></span>
+
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-1" for="Tester">
+                            Role: <span class="required">*</span>
+                        </label>
+                        <div class="col-md-4 col-sm-4 col-lg-9">
+                            <ui-select ng-model="roleAssigned.selectedItems" ng-change="SelectValidation(roleAssigned.selectedItems)">
+                                <ui-select-match placeholder="Role">{{$select.selected}}</ui-select-match>
+                                <ui-select-choices repeat="role in rolesOptions | filter: $select.search">
+                                    <span ng-bind-html=role | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-1" for="Tester">
+                            Project: <span class="required">*</span>
+                        </label>
+                        <div class="col-md-4 col-sm-4 col-lg-9">
+                            <ui-select ng-disabled="UIProject" ng-model="projectAssigned.selectedItems" ng-change="AddProject(projectAssigned.selectedItems)">
+                                <ui-select-match placeholder="Project">{{$select.selected.Name}}</ui-select-match>
+                                <ui-select-choices repeat="project in projects | filter: $select.search">
+                                    <span ng-bind-html="project.Name | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-1" for="Tester">
+                            List of Projects:
+                        </label>
+                        <div class="col-md-4 col-sm-4 col-lg-9">
+                            <ul class="list-group">
+                                <li ng-repeat="projectAssigned in projectsAssigned" class="list-group-item">{{projectAssigned.Name}} <span><i ng-click="removeProject(projectAssigned)" class="fa fa-times"></i></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a>{{errorMessage}}</a>
+                </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn btn-success" ng-click="Action(addEditAction)">{{addEditAction}} User</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="disableUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>{{action}} Users</h3>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to <strong>{{action}}</strong> the User: <strong>{{userSelected.UserName}}</strong></p>
+            </div>
+            <div class="modal-footer">
+                <button ng-class="userSelected.IsActive==false? 'btn btn-success' :'btn btn-danger'" ng-click="DisableUser(userSelected)" data-dismiss="modal">{{action}}</button>
+
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

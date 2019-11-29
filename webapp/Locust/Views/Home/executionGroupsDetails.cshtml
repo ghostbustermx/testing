@@ -1,0 +1,295 @@
+﻿@Scripts.Render("~/bundles/AdjustUI")
+
+@{
+    Layout = null;
+}
+
+<div class="right_col" role="main">
+    <div class="clearfix"></div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item" ng-click="projectDetails()"><a href="" ng-click="projectDetails()">{{pName}}</a></li>
+            <li class="breadcrumb-item">
+                <a href="" ng-click="ExecutionList()">Execution Groups</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                Test's Executions
+            </li>
+        </ol>
+    </nav>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+
+                    <div class="col-lg-12">
+                        <h2>Test Executions<small>Records of the executions of the selected group</small></h2>
+
+                    </div>
+
+
+                    <div class="clearfix"></div>
+                </div>
+
+                @* Here start the content*@
+                <div class="x_content">
+
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div class="col-md-1 col-sm-4 col-xs-4 selectCustom">
+                                <select name="priority" required class="form-control" ng-model="RowsSelected" ng-change="changeValue(RowsSelected)"
+                                        ng-options="option as option for option in Options"></select>
+                            </div>
+
+                            <div class="col-md-3 col-sm-8 col-xs-8">
+                                <div class="input-group">
+                                    <input auto-focus ng-model="filter" type="text" class="form-control" id="filter" autocomplete="off" placeholder="Search">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default filterButton" type="button"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+
+                                <span class="input-group-btn" style="text-align:right;">
+                                    <button ng-if="CurrentUserRole!='VBP' && CurrentUserRole!='BA'" class="btn btn-default" type="button" data-toggle="modal" data-target="#modalRegisterForm"><i class="fa fa-hdd-o"></i> Create Test Execution</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table class="table table-bordered dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable-buttons_info">
+
+                        <thead>
+                            <tr role="row">
+                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 218px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Name</th>
+                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 340px;" aria-label="Description: activate to sort column ascending">Description</th>
+                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 167px;" aria-label="Developer Assigned: activate to sort column ascending">Version</th>
+                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 167px;" aria-label="Developer Assigned: activate to sort column ascending">Creator</th>
+                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 167px;" aria-label="Tester Assigned: activate to sort column ascending">Status</th>
+                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 92px;" aria-label="Tester Assigned: activate to sort column ascending">Creation Date</th>
+                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 167px;" aria-label="Actions: activate to sort column ascending">Actions</th>
+                        </thead>
+                        <tbody>
+                            <tr role="row" class="odd" dir-paginate="test in filteredArray = (testGroups | filter: filter:strict) | itemsPerPage:pageSize " current-page="currentPage" pagination-id="pagination">
+                                <td>{{test.Name}}</td>
+                                <td>{{test.Description}}</td>
+                                <td>{{test.Version}}</td>
+                                <td>{{test.Creator}}</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" ng-mouseover="DisplaySMenu(test)">{{test.State}} <span ng-if="test.State!='Changed'" class="caret"></span></button>
+                                        <div class="dropdown-menu custom-dropdown" ng-if="test.State!='Changed' && (test.State=='Finished' &&  CurrentUserRole=='ADMIN') || (test.State=='Created' || test.State=='In progress') || test.State=='Closed'">
+                                            <a data-toggle="modal" data-target="#changeStatus" class="list-group-item" ng-if="test.State=='Created' ||  test.State=='In progress'" ng-click="SetState(test,'Closed')">Close</a>
+                                            <a data-toggle="modal" data-target="#changeStatus" class="list-group-item" ng-if="test.State=='Closed' || (test.State=='Finished' &&  CurrentUserRole=='ADMIN')" ng-click="SetState(test, 'In progress')">Open</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>{{test.CreationDate}}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button ng-if="CurrentUserRole!='VBP' && CurrentUserRole!='BA'" class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEditForm" ng-click="selectGroup(test)"> <i class="fa fa-pencil"></i></button>
+                                        <button ng-if="CurrentUserRole!='VBP' && CurrentUserRole!='BA'" class="btn btn-sm btn-default" data-toggle="tooltip" title="Test Execution" ng-disabled="test.Blocked" ng-click="PlayGroup(test.Test_Execution_Id, test.State)"> <i class="fa fa-play"></i></button>
+                                        <button class="btn btn-sm btn-default" data-toggle="tooltip" title="Test Execution View" ng-disabled="test.Blocked" ng-click="ViewGroup(test.Test_Execution_Id)"> <i class="fa fa-eye"></i></button>
+                                        <button class="btn btn-sm btn-default" ng-disabled="download" ng-click="downloadFileExcel(test.Test_Execution_Id)"> <i class="fa fa-download"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr ng-if="filteredArray.length===0">
+                                <td colspan="7">@Resource.NoDataFound</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="dataTables_info" id="datatable-buttons_info" role="status" aria-live="polite">
+                        {{filteredArray.length}} entries
+                    </div>
+                    <div class="paginationContainer">
+                        <dir-pagination-controls boundary-links="true" pagination-id="pagination" template-url="Pages/dirPagination.tpl.html"></dir-pagination-controls>
+                    </div>
+                </div>
+            </div>
+            @* Here end the content*@
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="aas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Create Execution</h4>
+            </div>
+
+
+            <div class="modal-body mx-3">
+                <div class="form-group">
+                    <label class="control-label col-md-2 col-sm-2 col-xs-1" for="Tester">
+                        Project: <span class="required">*</span>
+                    </label>
+                    <div class="col-md-4 col-sm-4 col-lg-9">
+                        <ui-select ng-disabled="UIProject" ng-model="projectAssigned.selectedItems" ng-change="AddProject(projectAssigned.selectedItems)">
+                            <ui-select-match placeholder="Project">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="project in projects | filter: $select.search">
+                                <span ng-bind-html="project.Name | highlight: $select.search"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" ng-click="createExecution()" data-dismiss="modal">Generate</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modalCenter" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="loader"></div>
+                <div class="loader-txt"><p>Pulling in all <b>Test Execution</b> data</p></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="loadingModalExecutionReport" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modalCenter" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="loader"></div>
+                <div class="loader-txt">
+                    {{message}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Create Execution</h4>
+            </div>
+
+            <div class="modal-body">
+                <form name="form" autocomplete="off" id="form" novalidate class="form-horizontal form-label-left" align="right" style="border:0" ng-submit="createExecution(form)">
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-1" for="Tester">
+                            Name:<span class="required">*</span>
+                        </label>
+                        <div class="col-md-4 col-sm-4 col-lg-9">
+                            <input ng-model="Name" type="text" name="Name" id="Name" ng-maxlength="100" autofocus required class="form-control">
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-1" for="Tester">
+                            Version:<span class="required">*</span>
+                        </label>
+                        <div class="col-md-4 col-sm-4 col-lg-9">
+                            <input ng-model="Version" type="text" name="Version" id="Version" ng-maxlength="100" required class="form-control">
+
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-1" for="Tester">
+                            Description:<span class="required">*</span>
+                        </label>
+                        <div class="col-md-4 col-sm-4 col-lg-9">
+                            <textarea ng-model="Description" type="text" name="Description" id="Description" ng-maxlength="500" required class="form-control"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" form="form" class="btn btn-success">Create</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="CleanFields()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalEditForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Edit Execution</h4>
+            </div>
+            <div class="modal-body">
+                <form name="form2" autocomplete="off" id="form2" novalidate class="form-horizontal form-label-left" align="right" style="border:0" ng-submit="UpdateExecution(form2)">
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-1" for="Tester">
+                            Name:<span class="required">*</span>
+                        </label>
+                        <div class="col-md-4 col-sm-4 col-lg-9">
+                            <input ng-model="Name" type="text" name="Name" id="Name" ng-maxlength="100" autofocus required class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-1" for="Tester">
+                            Version:<span class="required">*</span>
+                        </label>
+                        <div class="col-md-4 col-sm-4 col-lg-9">
+                            <input ng-model="Version" type="text" name="Version" id="Version" ng-maxlength="100" required class="form-control">
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-1" for="Tester">
+                            Description:<span class="required">*</span>
+                        </label>
+                        <div class="col-md-4 col-sm-4 col-lg-9">
+                            <textarea ng-model="Description" type="text" name="Description" id="Description" ng-maxlength="500" required class="form-control"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success" form="form2">Edit</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="CleanFields()">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="changeStatus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Change Status</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <p>Are you sure to change the status of the <strong>{{ATest.Name}}</strong> Test execution to <strong>{{selectedState}}</strong>?</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" ng-click="ChangeStatus()" data-dismiss="modal">Submit</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="CleanFields()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,316 @@
+﻿@Scripts.Render("~/bundles/AdjustUI")
+
+@{
+    Layout = null;
+}
+<div class="right_col" role="main">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item" ng-click="projectDetails()"><a href="" ng-click="projectDetails()">{{projectName}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{action}} Test Supplemental</li>
+        </ol>
+    </nav>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel" id="here">
+                <div class="x_title">
+                    <h2>{{action}} Test Supplemental<small></small></h2>
+                    <div class="col-md-2 col-sm-2 col-xs-12 input-group" align="right" style="float:right">
+
+                        <span class="input-group-btn" style="text-align:right; margin:5px">
+                            <button ng-disabled="saved" ng-show="saveBtn" type="submit" form="form" class="btn btn-default" id="save" style="margin:5px"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save Test Supplemental  </button>
+                        </span>
+                        <span class="input-group-btn" style="text-align:right; margin:5px">
+                            <button type="button" class="btn btn-default" ng-click="cancel()"><i class="fa fa-ban" aria-hidden="true"></i> Cancel </button>
+                        </span>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                @* Here start the contern *@
+                <div class="x_content">
+                    <div id="wizard" class="form_wizard wizard_horizontal">
+                        <ul class="wizard_steps anchor">
+                            <li>
+                                <a ng-disabled="step1" for="form" ng-click="gogo(0)" class="{{customStatusLine[0]}}" isdone="1">
+                                    <span class="step_no {{customStatus[0]}}">1</span>
+                                    <span class="step_descr">
+                                        TP<br>
+                                        <small></small>
+                                    </span>
+                                </a>
+                            </li>
+                            <li ng-disabled="step2">
+                                <a ng-click="gogo(1)" class="{{customStatusLine[1]}}" isdone="0">
+                                    <span class="step_no {{customStatus[1]}}">2</span>
+                                    <span class="step_descr">
+                                        Attachments<br>
+                                        <small></small>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a ng-disabled="step3" ng-click="gogo(2)" class="{{customStatusLine[2]}}" isdone="0">
+                                    <span class="step_no {{customStatus[2]}}">3</span>
+                                    <span class="step_descr">
+                                        Steps<br>
+                                        <small></small>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <div ng-show="isVisible[0]" class="step1" id="step1" name="first">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_title">
+                                <h2>Information<small></small></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <form name="form" autocomplete="off" id="form" novalidate class="form-horizontal form-label-left" ng-submit="AddUpdate(form)">
+                            <div class="form-group col-sm-12 col-md-12">
+                                <label class="control-label col-md-4" for="Name">
+                                    Title <span class="required">*</span>
+                                </label>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <input auto-focus ng-model="title" type="text" name="title" id="Title" ng-maxlength="150" maxlength="150" class="form-control" required>
+                                    <div class="help-block" ng-messages="form.title.$error" ng-if="form.$submitted">
+                                        <div ng-messages-include="Pages/messages.html"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-12 col-md-12">
+                                <label class="control-label col-md-4" for="Description">
+                                    Description <span class="required">*</span>
+                                </label>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <textarea class="form-control" required ng-model="description" type="text" name="description" id="Description" />
+                                    <div class="help-block" ng-messages="form.description.$error" ng-if="form.$submitted">
+                                        <div ng-messages-include="Pages/messages.html"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-12 col-md-12">
+                                <label class="control-label col-md-4" for="Tags">
+                                    Tags <span class="required">*</span>
+                                </label>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <tags-input ng-model="tags"
+                                                add-on-enter="true"
+                                                min-length="0"
+                                                display-property="name"
+                                                key-property="name"
+                                                ng-maxlength="150"
+                                                max-length="45"
+                                                on-tag-added="onTagAdded($tag)"
+                                                on-tag-removing="onTagRemoved($tag)"
+                                                class="tagsinput">
+                                    </tags-input>
+                                </div>
+                                <script>
+                                    $('#tags_1_tagsinput').tagsInput({
+                                        maxChars: 45
+                                    });
+                                    $("#click").keydown(function (e) {
+                                        if (e.which === 13) { // Don't submit the form
+                                            angular.element('#click').scope().AddTag();
+                                        }
+                                    });
+                                </script>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div ng-show="isVisible[1]" class="step1" id="step1" name="first">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_title">
+                                <h2>Attachments<small></small></h2>
+                                <div class="clearfix">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-md-5 col-sm-5 col-xs-12" style="display:inline-block;">
+                                    <div class="form-group">
+                                        <label style="margin-right:10px;" class="control-label col-md-2 col-sm-2 col-xs-6" for="File">
+                                            Choose Attachments
+                                        </label>
+                                        <input type="file" ng-model="attachment" name="image" class="btn btn-default" id="File"
+                                               data-role="magic-overlay"
+                                               onchange="" multiple />
+                                        <script>
+                                            $('#File').change(function (event) {
+                                                angular.element(this).scope().onfileSelected(event);
+                                            });
+
+
+                                        </script>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn btn-default" ng-click="RemoveAllAttachments()"><i class=" fa fa-remove"></i> Remove All Attachments</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="attachmentList media block-update-card" ng-repeat="files in FilestoDisplay" ng-if="files.flag!='Removed'">
+                                            <div class="pull-left" href="" ng-if="files.flag!='Removed'">
+                                                <div ng-show="files.Path!=''">
+                                                    <img ng-if="files.show==true" style="height:90px;" class="media-object update-card-MDimentions" ng-src="~/{{files.Path}}">
+                                                    <img ng-if="files.show==false" style="height:90px;" class="media-object update-card-MDimentions" ng-src="~/Content/img/NotAvailable.png">
+                                                </div>
+
+                                                <div ng-show="files.Path==''">
+                                                    <img style="height:90px;" class="media-object update-card-MDimentions" ng-src="~/Content/img/NotAvailable.png">
+                                                </div>
+
+                                            </div>
+                                            <div ng-if="files.flag!='Removed'" class="media-body update-card-body">
+                                                <h4 style="margin-top:5px; margin-left: 5px;" class="media-heading">Name: <b>{{files.Name}}</b></h4>
+                                                <h4 style="margin-top:5px; margin-left: 5px; width:100%; overflow:hidden; text-overflow:ellipsis" class="media-heading">Size: <b>{{files.Size}} MB</b></h4>
+                                                <h4 style="margin-top:5px; margin-left: 5px;" class="media-heading">Type: <b>{{files.Extention}}</b></h4>
+                                                <span style="float:right">
+                                                    <i ng-if="files.flag=='Original'" style="float:left; margin-right:5px; cursor:pointer;" class="fa fa-2x fa-download" ng-click="DownloadFile(files.Id)"></i>
+                                                    <i ng-if="files.flag!='Removed'" class="fa fa-2x fa-trash" style="float:right; cursor:pointer; margin-right:5px;" ng-click="RemoveFile(files.Id)"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="help-block" style="float:left; display:none" id="NameWarning">
+                                    <div>Warning: Attachments with the same name will be overwritten</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="isVisible[2]" class="step1" id="step1" name="first">
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_title">
+                                <h2>Steps<small></small></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-md-4 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label class="control-label" for="Expected" style="margin-bottom:15px; margin-top:10px;">
+                                        Step Description<span class="required">*</span>
+                                    </label>
+                                    <textarea id="stepDescription" maxlength="5000" ng-model="stepDescription" class="resizable_textarea form-control" placeholder="Action"></textarea>
+                                </div>
+
+                                <span class="input-group-btn">
+
+                                    <button class="btn btn-default filterButton" style="float:right" id="addStep" type="button" ng-click="addStep()"><i class="fa fa-plus"></i> Add Step</button>
+                                    <button class="btn btn-default filterButton" style="display: none; float:right" type="button" ng-click="editSteps()" id="editStep"><i class="fa fa-pencil"></i> Edit Step</button>
+                                </span>
+
+                            </div>
+
+
+
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <div class="col-md-4 col-xs-12" style="float:right; padding-right:0px; margin-bottom:5px;">
+                                    <span style="float:right;">
+                                        <button ng-disabled="saved" ng-show="saveBtn" class="btn btn-default" id="DownloadSteps" style="margin-right:5px;" type="button" ng-click="download()"><i class="fa fa-download"></i> Download</button>
+                                        <button ng-disabled="saved" ng-show="saveBtn" class="btn btn-default" style="margin-right:0px;" type="button" data-toggle="modal" data-target="#ConfirmationSteps"><i class="fa fa-remove"></i> Remove All Steps</button>
+                                    </span>
+                                </div>
+                                <table class="table table-striped fixed_headers" role="grid" aria-describedby="datatable-buttons_info" id="stepsTable" ng-model="table" ng-table="tableParams">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting">#</th>
+                                            <th class="sorting">Description</th>
+                                            <th class="sorting">Actions</th>
+                                    </thead>
+                                    <tbody ng-model="update">
+                                        <tr role="row" class="odd ui-sortable-handle" ng-repeat="step in steps | orderObjectBy:'number_steps'" ng-if="step.flag != 'Removed'">
+                                            <td tabindex="0" class="sorting_1">{{step.number_steps}}</td>
+
+                                            <td tabindex="1">
+                                                <div style="max-height:230px; overflow:auto">
+                                                    <p class="message">{{step.action}}</p>
+                                                </div>
+                                            </td>
+                                            <td tabindex="2" hidden>{{step.Id}}</td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button id="editClick" class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Print" ng-click="updateStep(step.number_steps)"><i class="fa fa-pencil"></i></button>
+                                                    <button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Trash" ng-click="removeStep(step)"><i class="fa fa-trash-o"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <script>
+                                    $("#stepsTable tbody").sortable({
+                                        update: function (event, ui) {
+                                            $(this).children().each(function (index) {
+                                                $(this).find('td').first().html(index + 1);
+                                            });
+                                        }
+                                    });
+                                </script>
+                                <div class="dataTables_info col-md-12 col-sm-12 col-xs-12" id="datatable-buttons_info" role="status" aria-live="polite" style="text-align:right; width:100%" align="right">
+                                    {{(steps | filter: {flag : '!Removed'}).length}} entries
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <label hidden type="text" class="control-label" ng-model="userModel" id="userModel" name="userModel">
+                                    @User.Identity.Name.ToString()
+                                </label>
+                            </div>
+
+                            <script>
+
+                                $("#editClick").click(function () {
+                                    $("#addStep").hide();
+                                    $("#editStep").show();
+                                });
+
+                                $("#editStep").click(function () {
+                                    //$("#stepsTable").sortable('enables');
+                                    $("#addStep").show();
+                                    $("#editStep").hide();
+                                })
+
+                            </script>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ConfirmationSteps" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Remove All Steps</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to remove all steps from the Step table?</p>
+                    <div class="help-block">
+                        <p class="danger">This action can't be undone</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" ng-click="RemoveAllSteps()" data-dismiss="modal">Confirm</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>

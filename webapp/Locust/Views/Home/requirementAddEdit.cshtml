@@ -1,0 +1,192 @@
+﻿@Scripts.Render("~/bundles/AdjustUI")
+
+@{
+    Layout = null;
+}
+<div class="right_col" role="main">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item" ng-click="redirectToList()"><a href="" ng-click="redirectToList()">{{projectName}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{action}} Requirement</li>
+        </ol>
+    </nav>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>{{action}} Requirement<small></small></h2>
+
+                    <div class="clearfix"></div>
+                </div>
+                @* Here start the contern *@
+                <div class="x_content">
+                    <form name="form" autocomplete="off" id="form" novalidate class="form-horizontal form-label-left" ng-submit="AddUpdate(form)" align="right" style="border:0">
+
+                        <div class="form-group col-sm-12 col-md-12">
+                            <label for="AxosoftId" class="control-label col-md-4">
+                                Axosoft ID <span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <input ng-model="axosoftId" type="text" name="axosoft" id="AxosoftId" ng-maxlength="9" autofocus required class="form-control col-sm-5 col-md-2">
+                                @*<input maxlength="20" min="0" step="1" ng-change="setValue()" ng-model="axosoftId" type="number" max="10000000000000" name="axosoft" id="AxosoftId" ng-maxlength="20" autofocus required class="form-control col-sm-5 col-md-2">*@
+                                <div class="help-block" ng-messages="form.axosoft.$error" ng-if="form.$submitted">
+                                    <div ng-messages-include="Pages/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-sm-12 col-md-12">
+                            <label class="control-label col-md-4" for="Name">
+                                Requirement <span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <input maxlength="150" ng-model="name" type="text" name="name" id="Name" ng-maxlength="150" required class="form-control col-md-6 col-xs-12">
+                                <div class="help-block" ng-messages="form.name.$error" ng-if="form.$submitted">
+                                    <div ng-messages-include="Pages/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-12 col-md-12">
+                            <label class="control-label col-md-4" for="Description">
+                                Description
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <textarea maxlength="12500" ng-model="description" type="text" name="description" id="Description" class="form-control col-md-3 col-xs-12" />
+                                <div class="help-block" ng-messages="form.description.$error" ng-if="form.$submitted">
+                                    <div ng-messages-include="Pages/messages.html"></div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-12 col-md-12">
+
+                            <label class="control-label col-md-4 col-sm-3 col-xs-12" for="Acceptance">
+                                Acceptance Criteria
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <textarea maxlength="12500" ng-model="acceptance" type="text" name="acceptance" id="Acceptance" class="form-control col-md-7 col-xs-12" />
+                                <div class="help-block" ng-messages="form.acceptance.$error" ng-if="form.$submitted">
+                                    <div ng-messages-include="Pages/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-12">
+                            <label class="control-label col-md-4" for="Release">
+                                Release <span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <input required maxlength="50" ng-model="release" type="text" name="release" id="Release" ng-maxlength="50" class="form-control col-md-7 col-xs-12">
+                                <div class="help-block" ng-messages="form.release.$error" ng-if="form.$submitted">
+                                    <div ng-messages-include="Pages/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            <label class="control-label col-md-4 col-sm-4 col-xs-12" for="Tester">
+                                Developer Assigned
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <ui-select required ng-model="developerAssigned.selectedItems">
+                                    <ui-select-match placeholder="Select Developer">{{$select.selected.UserName}}</ui-select-match>
+                                    <ui-select-choices repeat="employee in employees.Items | filter: $select.search">
+                                        <img ng-if="employee.PhotoUrl!=null" width="50" height="50" ng-src="{{ employee.PhotoUrl }}" />
+                                        <img ng-if="employee.PhotoUrl==null" width="50" height="50" src="~/Content/img/default-user.png" />
+                                        (<span ng-bind-html="employee.UserName | highlight: $select.search"></span>)
+
+                                        <span ng-bind-html="employee.FirstName | highlight: $select.search"></span>
+                                        <span ng-bind-html="employee.LastName | highlight: $select.search"></span>
+
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div style="padding-top:6px" class="form-group">
+                            <label class="control-label col-md-4 col-sm-4 col-xs-12" for="Tester">
+                                Tester Assigned
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <ui-select required ng-model="testerAssigned.selectedItems">
+                                    <ui-select-match placeholder="Select Tester">{{$select.selected.UserName}}</ui-select-match>
+                                    <ui-select-choices repeat="employee in employees.Items | filter: $select.search">
+                                        <img ng-if="employee.PhotoUrl!=null" width="50" height="50" ng-src="{{ employee.PhotoUrl }}" />
+                                        <img ng-if="employee.PhotoUrl==null" width="50" height="50" src="~/Content/img/default-user.png" />
+                                        (<span ng-bind-html="employee.UserName | highlight: $select.search"></span>)
+
+                                        <span ng-bind-html="employee.FirstName | highlight: $select.search"></span>
+                                        <span ng-bind-html="employee.LastName | highlight: $select.search"></span>
+
+                                    </ui-select-choices>
+                                </ui-select>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group" >
+                            <label style="margin-right:10px;" class="control-label col-md-4 col-sm-4 col-xs-12" for="File">
+                                Attachment
+                            </label>
+                            <input type="file" ng-model="attachment" name="image" class="btn btn-default" id="File"
+                                   data-role="magic-overlay"
+                                   onchange="" multiple />
+                            <script>
+                                $('#File').change(function (event) {
+                                    angular.element(this).scope().onfileSelected(event);
+                                });
+
+
+                            </script>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4 col-sm-4 col-xs-12" for="Release">
+                                List of Attachments
+                            </label>
+                            <div class="col-lg-3 col-sm-2 col-xs-2">
+                                <div class="list-group">
+                                    <span ng-repeat="files in FilestoDisplay">
+                                        <span ng-if="files.flag!='Removed'" class="list-group-item" style="text-align:left">
+                                            <span ng-if="files.flag!='Removed'"><b>{{files.Name}}</b></span>
+                                            <span style="float:right">
+                                                <i ng-if="files.flag!='Removed' && files.flag!='New'" style="float:left; margin-right:4px; cursor:pointer;" class="fa fa-2x fa-download" ng-click="DownloadFile(files.Id)"></i>
+                                                <i ng-if="files.flag!='Removed'" class="fa fa-2x fa-trash" style="float:right; cursor:pointer;" ng-click="RemoveFile(files.Id)"></i>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="help-block" style="float:left; display:none" id="NameWarning">
+                                <div >Warning: Attachments with the same name will be overwritten</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-md-4 col-sm-4 col-xs-4 col-md-offset-4" style="text-align:right">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" ng-disabled="btnSave" type="submit" style="margin:5px"><i class="fa fa-floppy-o" aria-hidden="true"></i> @Resource.BtnSave Requirement</button>
+                                    <button class="btn btn-default" type="button" ng-click="cancel()"><i class="fa fa-ban" aria-hidden="true"></i> @Resource.BtnCancel</button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+
+
+
+
+                </div>
+                @* Here start the contern *@
+            </div>
+        </div>
+    </div>
+</div>

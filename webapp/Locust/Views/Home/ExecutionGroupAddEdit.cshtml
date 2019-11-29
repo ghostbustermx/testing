@@ -1,0 +1,329 @@
+﻿@Scripts.Render("~/bundles/AdjustUI")
+@{
+    Layout = null;
+}
+
+<div class="right_col" role="main">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item" ng-click="projectDetails()"><a href="" ng-click="projectDetails()">{{Name}}</a></li>
+            <li class="breadcrumb-item" ng-click="executionGroup()"><a href="" ng-click="executionGroup()">Execution Groups</a></li>
+
+            <li class="breadcrumb-item active" aria-current="page">
+                {{action}} Execution Group
+            </li>
+        </ol>
+    </nav>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2> Execution Group<small></small></h2>
+                    <div class="col-md-2 col-sm-2 col-xs-12 input-group" align="right" style="float:right">
+
+
+
+
+
+                        <span class="input-group-btn" style="text-align:right; margin:5px">
+                            <button class="btn btn-default" type="submit" form="form" style="margin:5px"><i class="fa fa-floppy-o" aria-hidden="true"></i> @Resource.BtnSave Group</button>
+                        </span>
+                        <span class="input-group-btn" style="text-align:right; margin:5px">
+                            <button class="btn btn-default" type="button" ng-click="cancel()"><i class="fa fa-ban" aria-hidden="true"></i> @Resource.BtnCancel</button>
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="row tile_count">
+                    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                        <span class="count_top"><i class="fa fa-file-o"></i> Requirements</span>
+                        <div class="count ng-binding"> {{requirementsArray.length}}</div>
+                    </div>
+
+                    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                        <span class="count_top"><i class="fa fa-clock-o"></i> Test Strategy</span>
+                        <div class="count ng-binding">{{Strategy}}</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                        <span class="count_top"><i class="fa  fa-check-circle"></i> Evidence Selected</span>
+                        <div class="count ng-binding">{{selectedCount()}}</div>
+                    </div>
+
+                    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                        <span class="count_top"><i class="fa fa-check-circle"></i> Unique Evidence Selected</span>
+                        <div class="count ng-binding"> {{uniqueCount()}}</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                        <span class="count_top"><i class="fa  fa-check-circle"></i> Evidence Added</span>
+                        <div class="count ng-binding">{{testEvidenceToSaveArray.length}}</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                        <span class="count_top"><i class="fa fa-files-o"></i> Test Evidence</span><br>
+                        <span class="count_bottom ng-binding">
+                            <i class="ng-binding">
+                                <i class="fa fa-file-o"></i> <strong>TP:</strong>
+                            </i> {{TP}}
+                        </span><br>
+                        <span class="count_bottom ng-binding"><i class="ng-binding"><i class="fa fa-file-o"></i> <strong>TC:</strong> </i> {{TC}}</span><br>
+                        <span class="count_bottom ng-binding"><i class="ng-binding"><i class="fa fa-file-o"></i> <strong>TS:</strong> </i> {{TS}}</span><br>
+                    </div>
+
+
+
+                </div>
+
+                @* Here start the contern *@
+                <div class="x_content">
+                    <form name="form" autocomplete="off" id="form" novalidate class="col-md-4 col-xs-12 form-horizontal" ng-submit="Save(form)">
+                        <div class="form-group">
+                            <label class="control-label" for="Title">
+                                Name <span class="required">*</span>
+                            </label>
+                            <input auto-focus maxlength="70" ng-model="name" type="text" name="name" id="Name" ng-maxlength="70" required class="form-control col-md-7 col-xs-12">
+                            <div class="help-block" ng-messages="form.name.$error" ng-if="form.$submitted">
+                                <div ng-messages-include="Pages/messages.html"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="Title">
+                                Description <span class="required">*</span>
+                            </label>
+                            <textarea required ng-model="description" type="text" name="description" id="Description" class="form-control col-md-7 col-xs-12" />
+                            <div class="help-block" ng-messages="form.description.$error" ng-if="form.$submitted">
+                                <div ng-messages-include="Pages/messages.html"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-if="IsAutomated==0">
+                            <label class="control-label" for="Title">
+                                Test Environment <span class="required">*</span>
+                            </label>
+                            <ui-select required id="te" name="te" ng-model="te.selectedItems">
+                                <ui-select-match placeholder="Test Environment">{{$select.selected.Name}} [OS: {{$select.selected.OS}}] [Enviroment Type: {{$select.selected.SiteType}}]</ui-select-match>
+                                <ui-select-choices repeat="te in TE | filter: $select.search">
+                                    Name: <span ng-bind-html=te.Name | highlight: $select.search"></span>
+                                    | OS: <span ng-bind-html=te.OS | highlight: $select.search"></span><br />
+                                    Environment Type:  <span ng-bind-html=te.SiteType | highlight: $select.search"></span>
+                                    | RAM:  <span ng-bind-html=te.RAM | highlight: $select.search"></span>
+                                    | Hard Disk:  <span ng-bind-html=te.HardDisk | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                            <div class="help-block" ng-messages="form.te.$error" ng-if="form.$submitted">
+                                <div ng-messages-include="Pages/messages.html"></div>
+
+                            </div>
+                       
+                        </div>
+
+                        <div class="form-group" ng-if="IsAutomated==1">
+                            <label class="control-label" for="Title">
+                                Runners<span class="required">*</span>
+                            </label>
+                            <ui-select id="runner" required ng-model="runner.selectedItems">
+                                <ui-select-match placeholder="Select Runner">
+                                    Identifier: [{{$select.selected.Identifier}}]
+                                    @*MAC [{{$select.selected.MAC}}]*@
+                                </ui-select-match>
+                                <ui-select-choices repeat="run in runners | filter: $select.search">
+                                    ID: (<span ng-bind-html="run.Identifier | highlight: $select.search"></span>)
+                                    | MAC: (<span ng-bind-html="run.MAC | highlight: $select.search"></span>)
+                                    @*| IP Address:(<span ng-bind-html="run.IPAddress | highlight: $select.search"></span>)*@
+                                </ui-select-choices>
+                            </ui-select>
+                            <div class="help-block" ng-messages="form.te.$error" ng-if="form.$submitted">
+                                <div ng-messages-include="Pages/messages.html"></div>
+
+                            </div>
+                        </div>
+                    </form>
+
+
+                    <div class="col-md-4 col-xs-12" style="margin-top: 26px;">
+                        <div class="col-md-12">
+                            <div class="input-group col-md-12 ">
+                                <input auto-focus ng-model="filter" type="text" class="form-control" id="filter" autocomplete="off" placeholder="Search">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default filterButton" type="button"><i class="fa fa-search"></i></button>
+                                </span>
+                                <span class="input-group-btn">
+                                    <button data-toggle="modal" data-target="#SelectFiltered" class="btn btn-default filterButton" type="button"><i class="fa fa-filter"></i></button>
+                                </span>
+                                <span class="input-group-btn">
+                                    <button ng-click="selectAll()" class="btn btn-default filterButton" type="button"><i class="fa fa-check-square-o"></i></button>
+                                </span>
+                                <span class="input-group-btn">
+                                    <button ng-click="unselectPreload()" class="btn btn-default filterButton" type="button"><i class="fa fa-square-o"></i></button>
+                                </span>
+                                <span class="input-group-btn">
+                                    <button ng-click="LoadTestCases()" class="btn btn-default filterButton" type="button"><i class="fa fa-plus"></i></button>
+                                </span>
+                            </div>
+
+                            <div class="list-group" style="height:620px; max-height:620px; overflow:hidden; overflow-y:scroll;">
+                                <a style="cursor:pointer" ng-repeat="req in reqs =(requirementsArray| filter:filter)">
+                                    <div ng-if="req.HasEvidence" data-toggle="collapse" data-target="#{{req.req_number}}" ng-click="preloadList(req)" class="list-group-item {{req.style}}"><strong>({{req.req_number}})</strong> {{req.Name}}<i style="float:right;" class="fa fa-chevron-down "></i></div>
+                                    <div ng-if="req.HasEvidence" id="{{req.req_number}}" class="collapse">
+                                        <div class="input-group col-md-12">
+                                            <input ng-model="filter3" type="text" class="form-control" id="filter3" autocomplete="off" placeholder="Search">
+                                            <span class="input-group-btn">
+                                                <button ng-click="selectTestByReq(req)" id="selectAll" class=" btn btn-default filterButton" type="button"><i class="fa fa-check-square"></i></button>
+                                                <button ng-click="unselectTestByReq(req)" id="selectAll" class=" btn btn-default filterButton" type="button"><i class="fa fa-square-o"></i></button>
+                                                <button data-toggle="modal" data-target="#RemoveByReq" ng-click="selectReqFocus(req)" id="selectAll" class=" btn btn-default filterButton" type="button"><i class="fa fa-trash"></i></button>
+                                            </span>
+                                        </div>
+                                        <div ng-click="SelectEvidence(te)" ng-repeat="te in tev =(testEvidenceArrayFilter| filter:filter3)" class="{{te.Style}} list-group-item "><strong>({{te.Identifier_number}})</strong> {{te.Title}}</div>
+
+
+                                        <div ng-if="testEvidenceArrayFilter.length==0" class="list-elements">
+                                            @Resource.NoDataFound
+                                        </div>
+
+
+                                    </div>
+                                    <div ng-if="!req.HasEvidence" class="list-group-item {{req.style}}"><strong>({{req.req_number}})</strong> {{req.Name}}</div>
+                                </a>
+                                <a ng-if="reqs.length===0">
+                                    <div class="list-elements">
+                                        @Resource.NoDataFound
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-12" style="margin-top: 26px;">
+                        <div class="col-md-12">
+                            <div class="input-group col-md-12 ">
+                                <input auto-focus ng-model="filter2" type="text" class="form-control" id="filter" autocomplete="off" placeholder="Search">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default filterButton" type="button"><i class="fa fa-search"></i></button>
+                                </span>
+                                <span class="input-group-btn">
+                                    <button data-toggle="modal" data-target="#RemoveAll" class="btn btn-default filterButton" type="button"><i class="fa fa-trash"></i></button>
+                                </span>
+                            </div>
+                            <div class="list-group" style="height:620px; max-height:620px; overflow:hidden; overflow-y:scroll;">
+                                <a style="cursor:pointer" ng-repeat="test in tests1 =(testEvidenceToSaveArray| filter:filter2) ">
+                                    <div ng-class="test.isSelected? ' list-group-item active' : 'list-group-item '"><strong>({{test.Identifier_number}})</strong> {{test.Title}}<i style="float:right;" ng-click="removeEvidenceFromSaveList(test)" class="fa fa-trash"></i> </div>
+                                </a>
+                                <a ng-if="tests1.length===0">
+                                    <div class="list-elements">
+                                        @Resource.NoDataFound
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="RemoveAll" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Remove all the evidence</h3>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to remove all the evidence added?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" ng-click="unselectAll()" data-dismiss="modal">Remove</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="SelectFiltered" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Select Test Evidence by filter</h3>
+            </div>
+            <div class="modal-body">
+                <form name="form" autocomplete="off" id="form" novalidate class="form-horizontal" style="border:0">
+
+
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-1" for="Tester">
+                            Select an sprint: <span class="required">*</span>
+                        </label>
+                        <div class="col-md-4 col-sm-4 col-lg-9">
+                            <ui-select ng-model="FilterReq" ng-change="AddReq(FilterReq)">
+                                <ui-select-match placeholder="Sprint">{{FilterReq}}</ui-select-match>
+                                <ui-select-choices repeat="sprints in RequirementOptions | filter: $select.search">
+                                    <span ng-bind-html="sprints | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-1" for="Tester">
+                            Sprints Selected:
+                        </label>
+                        <div class="col-md-2 col-sm-2 col-lg-9">
+                            <ul class="list-group">
+                                <li ng-repeat="item in ListOfReqSprint" class="list-group-item">{{item}} <span><i ng-click="removeReq(item)" class="fa fa-times"></i></span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-1" for="Tester">
+                            Select an option: <span class="required">*</span>
+                        </label>
+                        <div class="col-md-4 col-sm-4 col-lg-9">
+                            <select name="priority" required class="form-control" ng-model="optionSelected"
+                                    ng-options="option as option for option in Options2">
+                                Choose An Option
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" data-dismiss="modal" ng-click="selectFiltered()">Select</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="RemoveByReq" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Remove the evidence</h3>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to remove the evidence selected?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" ng-click="deleteEvidenceByReq(reqFocus)" data-dismiss="modal">Remove</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="loadingModalGroupData" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modalCenter" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="loader"></div>
+                <div class="loader-txt" ng-if="action=='Add'"><p>Pulling in all of the <b>Project's data</b></p></div>
+                <div class="loader-txt" ng-if="action=='Edit'"><p>Pulling in all of the <b>Execution Group's</b> data</p></div>
+            </div>
+        </div>
+    </div>
+</div>

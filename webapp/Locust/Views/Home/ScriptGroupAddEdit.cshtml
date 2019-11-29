@@ -1,0 +1,179 @@
+﻿@Scripts.Render("~/bundles/AdjustUI")
+@{
+    Layout = null;
+}
+
+<div class="right_col" role="main">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item" ng-click="projectDetails()"><a href="" ng-click="projectDetails()">{{ProjectName}}</a></li>
+
+            <li class="breadcrumb-item active" aria-current="page">
+                {{action}} Script Group
+            </li>
+        </ol>
+    </nav>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2> Scripts<small></small></h2>
+                    <div class="clearfix">
+                        <div class="btn-group" style="float:right;">
+                            <button class="btn btn-default" ng-click="AddUpdate()">Save</button>
+                            <button type="button" class="btn btn-default" ng-click="RedirectToDetails()">Cancel</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                @* Here start the contern *@
+                <div class="x_content">
+                    <form name="form" autocomplete="off" id="form" novalidate class="col-md-5 col-xs-12 form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label" for="name">
+                                Name <span class="required">*</span>
+                            </label>
+                            <input auto-focus maxlength="70" ng-model="name" type="text" name="name" id="ScriptGAddEdit_Name" ng-maxlength="70" required class="form-control col-md-7 col-xs-12">
+                            <div class="help-block" ng-messages="form.name.$error" ng-if="form.$submitted">
+                                <div ng-messages-include="Pages/messages.html"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="release">
+                                Release <span class="required">*</span>
+                            </label>
+                            <input maxlength="70" ng-model="release" type="text" name="release" id="ScriptGAddEdit_Release" ng-maxlength="70" required class="form-control col-md-7 col-xs-12">
+                            <div class="help-block" ng-messages="form.name.$error" ng-if="form.$submitted">
+                                <div ng-messages-include="Pages/messages.html"></div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label" for="Priority">
+                                Priority<span class="required">*</span>
+                            </label>
+                            <div>
+                                <select name="priority" required class="form-control col-md-7 col-xs-12" ng-model="selectedPriority"
+                                        ng-options="option as option for option in priorityOptions" id="ScriptGAddEdit_Priority">
+                                    <option value="">Choose option</option>
+                                </select>
+                                <div class="help-block" ng-messages="form.priority.$error" ng-if="form.$submitted">
+                                    <div ng-messages-include="Pages/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label" for="Title">
+                                Select Files <span class="required">*</span>
+                            </label>
+                            <input type="file" ng-model="script" name="image" class="btn btn-default" id="ScriptGAddEdit_File"
+                                   data-role="magic-overlay"
+                                   onchange="" multiple />
+                            <script>
+                                $('#ScriptGAddEdit_File').change(function (event) {
+                                    angular.element(this).scope().onfileSelected(event);
+                                });
+
+
+                            </script>
+                            <div class="help-block" ng-messages="form.te.$error" ng-if="form.$submitted">
+                                <div ng-messages-include="Pages/messages.html"></div>
+
+                            </div>
+                        </div>
+
+
+                    </form>
+                    <div class="col-md-7 col-xs-12">
+
+                        <h2>Script Files</h2>
+                        <ul class="list-group to_do" style="margin-top:25px; overflow-y:auto; height:220px; max-height:221px;" id="ScriptGAddEdit_FileList">
+                            <li class="list-group-item" ng-repeat="script in FilestoDisplay" style="margin-bottom:2px;">
+                                <div class="" ng-if="script.flag!='Removed'">
+                                    <i class="fa fa-close" ng-click="RemoveFile(script.Id)"></i>
+                                    {{script.Name}}
+                                </div>
+
+
+                            </li>
+                        </ul>
+
+                        <div class="help-block" style="float:left; display:none" id="NameWarning">
+                            <div>Warning: Attachments with the same name will be overwritten</div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2> Test Evidence Covered<small></small></h2>
+                    <div class="clearfix"></div>
+                </div>
+
+                @* Here start the contern *@
+                <div class="x_content">
+
+                    <div class="col-md-12 col-xs-12 ScriptGroup-EvidenceTable">
+
+                        <table style="width:100%;" class="table">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-2">TC_Number</th>
+                                    <th class="col-md-7">Title</th>
+                                    <th class="col-lg-3">Priority</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr class="odd" ng-repeat="procedure in Procedures">
+
+                                    <td class="col-md-2">{{procedure.IdentifiedNumber}}</td>
+                                    <td class="col-md-8" style="text-overflow:ellipsis; overflow:hidden; white-space: nowrap;">{{procedure.Title}}</td>
+                                    <td class="col-md-2">{{procedure.Priority}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="loadingModalPlay" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modalCenter" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="loader"></div>
+                <div class="loader-txt"><p>Loading <b>Test Evidence</b> data</p></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+﻿
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Accesss</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body style="background-color:#2A3F54">
+
+    <div class="container">
+
+        <h1 style="font-weight:bold;color:#ffffff">LOCUST</h1>
+
+
+        <div class="alert alert-danger alert-dismissible fade in">
+            <strong>Access Error!</strong> You do not have permission to access <strong>"@HttpContext.Current.Request.Url.AbsoluteUri"</strong> using the user <strong>"@System.Security.Principal.WindowsIdentity.GetCurrent().Name"</strong> that is logged via AD.
+            <br />
+            If you sure that you have access click on the button <strong>"Try Again!"</strong> to verify if you have access.
+            <br />
+
+            <button style="float:right" class="btn-primary" onclick="window.location='/#'">Try Again!</button>
+            <br />
+        </div>
+
+        <div style="font-weight:bold; color:#ffffff" class="pull-left">
+            @String.Format(Resource.CopyRight, DateTime.Today.Year)
+        </div>
+        <div style="font-weight:bold; color:#ffffff" class="pull-right">
+            @Resource.VersionName @String.Format(Resource.Version, ViewContext.Controller.GetType().Assembly.GetName().Version)
+
+
+        </div>
+    </div>
+
+
+</body>
+</html>

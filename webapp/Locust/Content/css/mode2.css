@@ -1,0 +1,1391 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900);
+
+
+
+div.right_col.ng-scope > div.row > div > div > div.col-md-12 > div:nth-child(5) > div > div.panel-body > div > div > div > button.btn.btn-success {
+    border-color: #5cb85c !important;
+    background-color: #333333 !important;
+}
+
+
+
+div.right_col.ng-scope > div.row > div > div > div.col-md-12 > div:nth-child(5) > div > div.panel-body > div > div > div > button.btn.btn-danger {
+    border-color: #d9534f !important;
+    background-color: #333333 !important;
+}
+
+.panel-default > .panel-heading {
+    color: #C2C2C2 !important;
+    background-color: #333333 !important;
+    border-color: #202124 !important;
+}
+
+
+.panel-body {
+    color: #C2C2C2 !important;
+    background-color: #333333 !important;
+    border-color: #202124 !important;
+}
+
+div.right_col.ng-scope > div.row > div > div > div.col-md-12 > div:nth-child(2) > div.list-group > div > div:nth-child(1) > a {
+    color: #C2C2C2 !important;
+}
+
+.img-circle {
+    border-radius: 50%;
+}
+
+.panel {
+    margin-bottom: 20px;
+    background-color: #333333 !important;
+    border: 0px !important;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+
+.customTitle {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #C2C2C2 !important;
+}
+
+.message {
+    color: #C2C2C2 !important;
+}
+
+#result {
+    border-color: #d9534f !important;
+}
+
+.panel-right {
+    padding-right: 0 !important;
+}
+
+.search-bar-list {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+
+.execution-list {
+    padding-right: 0 !important;
+}
+
+.progress {
+    height: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    background-color: #333333;
+    border-radius: 4px;
+    width: 100%;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+}
+
+.block-update-card {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+
+.panel-body {
+    color: #C2C2C2 !important;
+    background-color: #333333 !important;
+    border-color: #202124 !important;
+}
+
+div.right_col.ng-scope > div.row > div > div > div.col-md-12 > div:nth-child(2) > div > div:nth-child(2) {
+    background-color: #333333 !important;
+    border-color: #202124 !important;
+}
+
+.textColor {
+    color: #C2C2C2 !important;
+}
+
+.btn {
+    font-size: 15px;
+}
+
+#hi > div {
+    font-size: 16px;
+}
+
+#tab_content2 > table > tbody > tr > td {
+    color: #C2C2C2;
+}
+
+#te > div.ui-select-match.ng-scope > span {
+    background-color: #333333;
+    border-color: #202124;
+}
+
+#runner > div.ui-select-match.ng-scope > span {
+    background-color: #333333;
+    border-color: #202124;
+}
+
+    #testselected > div.ui-select-match.ng-scope > span {
+        background-color: #333333;
+        border-color: #202124;
+    }
+
+
+
+
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    background-color: #333333;
+    color: #C2C2C2;
+    border-color: #202124;
+    background-image: linear-gradient(right, #5cb85c, #5cb85c 1%, transparent 1%, transparent 100%);
+    background-image: -webkit-linear-gradient(right, #5cb85c, #5cb85c 1%, transparent 1%, transparent 100%)
+}
+
+
+
+.evidence {
+    background-color: #333333;
+    color: #C2C2C2;
+    border-color: #202124;
+    background-image: linear-gradient(left, #696969, #696969 1%, transparent 1%, transparent 100%);
+    background-image: -webkit-linear-gradient(left, #696969, #696969 1%, transparent 1%, transparent 100%)
+}
+
+.evidenceSelected {
+    background-image: linear-gradient(left, #26B99A, #26B99A 1%, transparent 1%, transparent 100%);
+    background-image: -webkit-linear-gradient(left, #26B99A, #26B99A 1%, transparent 1%, transparent 100%)
+}
+
+
+.nonSelected {
+    background-image: linear-gradient(right, #333333, #333333 1%, transparent 1%, transparent 100%);
+    background-image: -webkit-linear-gradient(right, #333333, #333333 1%, transparent 1%, transparent 100%)
+}
+
+.evidenceAdded {
+    background-image: linear-gradient(left, #5cb85c, #5cb85c 1%, transparent 1%, transparent 100%);
+    background-image: -webkit-linear-gradient(left, #5cb85c, #5cb85c 1%, transparent 1%, transparent 100%)
+}
+
+
+.selected2 {
+    background-image: none;
+    border-color:firebrick;
+}
+
+
+
+
+.selected {
+    background-image: linear-gradient(right, #5cb85c, #5cb85c 1%, transparent 1%, transparent 100%);
+    background-image: -webkit-linear-gradient(right, #5cb85c, #5cb85c 1%, transparent 1%, transparent 100%)
+}
+
+.partial {
+    background-image: linear-gradient(right, #26B99A, #26B99A 1%, transparent 1%, transparent 100%);
+    background-image: -webkit-linear-gradient(right, #26B99A, #26B99A 1%, transparent 1%, transparent 100%)
+}
+
+
+
+
+.Pass {
+    background-image: linear-gradient(right, #26B99A, #26B99A 1%, transparent 1%, transparent 100%);
+    background-image: -webkit-linear-gradient(right, #26B99A, #26B99A 1%, transparent 1%, transparent 100%)
+}
+
+.Fail {
+    background-image: linear-gradient(right, #d9534f, #d9534f 1%, transparent 1%, transparent 100%);
+    background-image: -webkit-linear-gradient(right, #d9534f, #d9534f 1%, transparent 1%, transparent 100%)
+}
+
+#filter3 {
+    background-color: #202124 !important;
+    border-color: #333333 !important;
+    margin-top: 10px !important;
+    margin-left: 1px !important;
+}
+
+
+#selectAll {
+    margin-top: 10px !important;
+    margin-left: 1px !important;
+    margin-right: -1px !important;
+    font-size: 14px;
+}
+
+
+.ScriptGroup-EvidenceTable{
+    max-height:750px;
+    overflow-y:auto;
+
+}
+
+
+.TBE {
+    background-image: linear-gradient(right, #34495E, #34495E 1%, transparent 1%, transparent 100%);
+    background-image: -webkit-linear-gradient(right, #34495E, #34495E 1%, transparent 1%, transparent 100%)
+}
+
+#stepsTable > tbody > tr > td.sorting_1.gray.ng-scope > a {
+    color: #C2C2C2;
+}
+
+.gray {
+    background-color: #696969 !important;
+}
+
+
+#hila > div.right_col.ng-scope > div.row > div > div > div.col-lg-12 > div:nth-child(5) > div > div.panel-body > div > div > div > button.btn.btn-success.ng-scope {
+    background-color: #333333 !important;
+    border-color: #26B99A !important;
+}
+
+#hila > div.right_col.ng-scope > div.row > div > div > div.col-lg-12 > div:nth-child(5) > div > div.panel-body > div > div > div > button.btn.btn-danger.ng-scope {
+    background-color: #333333 !important;
+    border-color: #d9534f !important
+}
+
+
+
+.list-elements {
+    margin-top: 10px;
+    background-color: #333333;
+    border-color: #202124;
+    color: #C2C2C2;
+    text-align: center;
+}
+
+
+div > div.row > div > div > div.x_content > div:nth-child(2) > div.col-md-12 > div.input-group.col-md-9 > span > button {
+    color: #C2C2C2;
+}
+
+.list-group-item {
+    background-color: #333333 !important;
+    color: #C2C2C2;
+    border-color: #202124;
+}
+
+.modal-footer {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+    border-color: #333333 !important;
+}
+
+.modal-body {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+.modal-header {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+    border-color: #333333 !important;
+}
+
+
+#hi > div.customContainer {
+    background-color: #333333 !important;
+}
+
+
+
+
+html, body, html * {
+    font-family: 'Roboto', sans-serif;
+}
+
+.ui-select-bootstrap .ui-select-choices-row > span:hover {
+    background-color: #202124 !important;
+}
+
+
+#form > div:nth-child(3) > table > tbody > tr > td:nth-child(1) {
+    color: #C2C2C2 !important;
+}
+
+.required {
+    color: red !important;
+}
+
+tags-input {
+    background-color: #333333 !important;
+    border-color: #333333 !important;
+}
+
+body > div.container.body.ng-scope > div > div.col-md-3.left_col.menu_fixed > div > div.navbar.nav_title > a > span {
+    /*background-color: #333333 !important;*/
+    text-decoration: underline;
+}
+
+body > div.container.body.ng-scope > div > div.top_nav > div > nav > ul > li > a:hover {
+    background-color: #333333 !important;
+}
+
+
+
+
+#form > div.col-md-5.col-sm-5.col-xs-12 > div > label {
+    color: #C2C2C2 !important;
+}
+
+#collapse:hover {
+    background-color: #333333 !important;
+    color: #C2C2C2 !important;
+}
+
+
+
+.selectCustom {
+    padding: 0px 0px 0px 0px;
+}
+
+.left_col {
+    background-color: #333333 !important;
+}
+
+#stepsTable > tbody > tr {
+    border-color: #202124 !important;
+}
+/*.x_panel {
+    background-color: #333333 !important;
+}*/
+/*.ng-scope {
+    background-color: #333333 !important; 
+}*/
+body > div.container.body.ng-scope > div > div.col-md-3.left_col.menu_fixed > div > div.sidebar-footer.hidden-small > a {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+#stepsTable > tbody > tr:nth-child(1) {
+}
+
+#form > div > table > tbody > tr {
+    border-color: #202124 !important;
+}
+
+#modalSuplementalForm > div > div > div.modal-header.text-center {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+#modalSuplementalForm > div > div > div.modal-body {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+    #modalSuplementalForm > div > div > div.modal-body > div > div > div > label {
+        background-color: #202124 !important;
+        color: #C2C2C2 !important;
+    }
+
+#modalRequirementForm > div > div > div.modal-header {
+    background-color: #202124 !important;
+    border-color: #333333 !important;
+    color: #C2C2C2 !important;
+}
+
+
+#modalRequirementForm > div > div > div.modal-body {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+
+
+#modalRequirementForm > div > div > div.modal-footer {
+    background-color: #202124 !important;
+    border-color: #333333 !important;
+    color: #C2C2C2 !important;
+}
+
+
+#modalForm > div > div > div.modal-header {
+    background-color: #202124 !important;
+    border-color: #333333 !important;
+    color: #C2C2C2 !important;
+}
+
+#modalForm > div > div > div.modal-body {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+
+
+#modalForm > div > div > div.modal-footer {
+    background-color: #202124 !important;
+    border-color: #333333 !important;
+    color: #C2C2C2 !important;
+}
+
+
+#modalProjectForm > div > div > div.modal-header {
+    background-color: #202124 !important;
+    border-color: #333333 !important;
+    color: #C2C2C2 !important;
+}
+
+
+#modalProjectForm > div > div > div.modal-body {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+#modalProjectForm > div > div > div.modal-footer {
+    background-color: #202124 !important;
+    border-color: #333333 !important;
+    color: #C2C2C2 !important;
+}
+
+#modalSuplementalForm > div > div > div.modal-footer.d-flex.justify-content-center {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+
+#modalSuplementalForm > div > div > div.modal-header {
+    border-color: #333333 !important;
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+#modalSuplementalForm > div > div > div.modal-body {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+#modalSuplementalForm > div > div > div.modal-footer {
+    border-color: #333333 !important;
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+#modalSuplementalForm > div > div > div.modal-body > div > p {
+    color: #C2C2C2 !important;
+}
+
+body > div.container.body.ng-scope > div > div.ng-scope > div > div.row > div > div > div.customContainer > div > a.customTitle {
+    color: #C2C2C2 !important;
+}
+
+
+body > div.container.body.ng-scope > div > div.ng-scope > div > div.row > div > div > div.customContainer > div > a.message.ng-binding {
+    color: #C2C2C2 !important;
+}
+
+#modalTestCaseForm > div > div > div.modal-header {
+    border-color: #333333 !important;
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+#modalTestCaseForm > div > div > div.modal-body {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+#modalTestCaseForm > div > div > div.modal-footer {
+    border-color: #333333 !important;
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+#modalTestScenarioForm > div > div > div.modal-header {
+    border-color: #333333 !important;
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+#modalTestScenarioForm > div > div > div.modal-body {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+#modalTestScenarioForm > div > div > div.modal-footer {
+    border-color: #333333 !important;
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+
+#modalTestProcedureForm > div > div > div.modal-header {
+    border-color: #333333 !important;
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+#modalTestProcedureForm > div > div > div.modal-body {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+#modalTestProcedureForm > div > div > div.modal-footer {
+    border-color: #333333 !important;
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+#hi > div.x_panel {
+    background-color: #202124 !important;
+}
+
+#hi2 > div.x_panel {
+    background-color: #202124 !important;
+}
+
+
+
+
+
+
+#modalRequirementForm > div > div > div.modal-header {
+    border-color: #333333 !important;
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+#modalRequirementForm > div > div > div.modal-body {
+    border-color: #333333 !important;
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+#modalRequirementForm > div > div > div.modal-footer {
+    border-color: #333333 !important;
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+#modalRequirementForm > div > div > div.modal-body > div > div > a.customTitle {
+    color: #C2C2C2 !important;
+}
+
+#modalRequirementForm > div > div > div.modal-body > div > div > a.message.ng-binding {
+    color: #C2C2C2 !important;
+}
+
+#modalRequirementForm > div > div > div.modal-body > div {
+    background-color: #202124 !important;
+}
+
+#modalRegisterForm > div > div > div.modal-header.text-center {
+    border-color: #333333 !important;
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+#modalRegisterForm > div > div > div.modal-body.mx-3 {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+#modalRegisterForm > div > div > div.modal-footer {
+    border-color: #333333 !important;
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+table {
+    border-color: #202124 !important;
+}
+
+    table > thead > tr > th {
+        background-color: #333333 !important;
+        color: #C2C2C2 !important;
+        border-color: #202124 !important;
+    }
+
+
+table, th, td {
+    border-color: #212121 !important;
+}
+
+thead > tr > th {
+}
+
+thead > tr {
+    border-color: #202124 !important;
+}
+
+#tags_1_tagsinput {
+    background-color: #333333 !important;
+    border-color: #333333 !important;
+}
+
+body > div.container.body.ng-scope > div > div.ng-scope > div.right_col.ng-scope > div.row > div > div > div.x_panel {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+#modalAddUserForm > div > div {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+    #modalAddUserForm > div > div > div.modal-header.text-center {
+        border-color: #333333 !important;
+    }
+
+    #modalAddUserForm > div > div > div.modal-footer.d-flex.justify-content-center {
+        border-color: #333333 !important;
+    }
+
+.list-group {
+    background-color: #333333;
+    color: #C2C2C2 !important;
+}
+
+#ScriptGAddEdit_FileList{
+    background-color:#202124 !important;
+}
+
+body > div.container.body.ng-scope > div > div.ng-scope > div > div.row > div > div > table > tbody > tr {
+    color: #C2C2C2 !important;
+}
+
+
+
+#form > div > label {
+    color: #C2C2C2 !important;
+}
+
+#profile-tab {
+    background-color: #333333 !important;
+    color: #C2C2C2 !important;
+}
+
+#home-tab {
+    background-color: #333333 !important;
+    color: #C2C2C2 !important;
+}
+
+#profile-tab2 {
+    background-color: #333333 !important;
+    color: #C2C2C2 !important;
+}
+
+#profile-tab3 {
+    background-color: #333333 !important;
+    color: #C2C2C2 !important;
+}
+
+body > div.container.body.ng-scope > div > div.ng-scope > div.right_col.ng-scope > nav > ol > li > a {
+    color: #C2C2C2 !important;
+}
+
+#hi > div > div.ng-scope > a.message {
+    color: #C2C2C2 !important;
+}
+
+#hi2 > div > div.ng-scope > a.message {
+    color: #C2C2C2 !important;
+}
+
+#ulDropdown {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+    #ulDropdown > li:nth-child(1) > div > span {
+        border-color: #333333 !important;
+        background-color: #202124 !important;
+    }
+
+.pagination > .active > a {
+    background-color: #202124 !important;
+    border-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+body > div.container.body.ng-scope > div > div.ng-scope > div.right_col.ng-scope > div.row > div {
+    border-color: #202124 !important;
+}
+
+.x_panel {
+    background: #202124;
+    transition: all .2s ease;
+    border-color: #202124 !important;
+}
+
+.pagination > li > a {
+    background-color: #333333 !important;
+    border-color: #333333 !important;
+    color: #C2C2C2 !important;
+}
+
+.pagination > a {
+    background-color: #202124 !important;
+}
+
+dir-pagination-controls > ul {
+    background-color: #202124 !important;
+}
+
+#ulDropdown > li > a {
+    border-color: #333333 !important;
+    color: #C2C2C2 !important;
+}
+
+    #ulDropdown > li > a:hover {
+        background-color: #333333 !important;
+        color: #C2C2C2 !important;
+    }
+
+#form > div:nth-child(1) {
+    color: #C2C2C2 !important;
+}
+
+    #form > div:nth-child(1) > div.col-md-5.col-sm-5.col-xs-12 > div > label {
+        color: #C2C2C2 !important;
+    }
+
+#form > div:nth-child(2) > div.col-md-5.col-sm-5.col-xs-12 > div > label {
+    color: #C2C2C2 !important;
+}
+
+#form > div > div.col-md-5.col-sm-5.col-xs-12 > div > div {
+    background-color: #333333 !important;
+}
+
+
+
+.breadcrumb-item:before {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+h4 {
+    color: #C2C2C2 !important;
+}
+
+body > div.container.body.ng-scope > div > div.ng-scope > div.right_col.ng-scope > div.row > div > div > div.container > table > tbody > tr {
+    color: #C2C2C2 !important;
+}
+
+h2 {
+    color: #C2C2C2 !important;
+}
+
+
+media block-update-card ng-scope {
+    background-color: #333333 !important;
+    color: #C2C2C2 !important;
+}
+
+table > tbody > tr {
+    background-color: #333333 !important;
+    color: #C2C2C2 !important;
+}
+
+body > div.container.body.ng-scope > div > div.ng-scope > div.right_col.ng-scope > nav > ol > li {
+    color: #C2C2C2 !important;
+}
+
+body > div.container.body.ng-scope > div > div.ng-scope > div.right_col.ng-scope > div.row > div > div > div.x_title > h2 {
+    color: #C2C2C2 !important;
+}
+
+    body > div.container.body.ng-scope > div > div.ng-scope > div.right_col.ng-scope > div.row > div > div > div.x_title > h2 > small {
+        color: #C2C2C2 !important;
+    }
+
+body > div.container.body.ng-scope > div > div.ng-scope > div.right_col.ng-scope {
+    background-color: #202124 !important;
+}
+
+    body > div.container.body.ng-scope > div > div.ng-scope > div.right_col.ng-scope > div.row > div > div {
+        background-color: #202124 !important;
+        color: #C2C2C2 !important;
+    }
+
+#tab_content1 > table > tbody {
+    background-color: #333333 !important;
+    color: #C2C2C2 !important;
+}
+
+    #tab_content1 > table > tbody > tr {
+        background-color: #333333 !important;
+        color: #C2C2C2 !important;
+    }
+
+#stepsTable > tbody {
+    background-color: #333333 !important;
+}
+
+/*body > div.container.body.ng-scope > div > div.ng-scope > div.right_col.ng-scope > div.row > div > div > div.row > div > div {
+    background-color: #333333 !important;
+    color: #C2C2C2 !important;
+}*/
+
+    body > div.container.body.ng-scope > div > div.ng-scope > div.right_col.ng-scope > div.row > div > div > div.row > div > div > div > h4 {
+        color: #C2C2C2 !important;
+    }
+
+    body > div.container.body.ng-scope > div > div.ng-scope > div.right_col.ng-scope > div.row > div > div > div.row > div > div > div > p {
+        color: #C2C2C2 !important;
+    }
+
+
+body > div.container.body.ng-scope > div > div.ng-scope > div > div.row > div > div > table > thead > tr {
+    background-color: #333333 !important;
+    border-color: #C2C2C2 !important;
+}
+
+.x_title {
+    border-color: #333333 !important;
+}
+
+
+button {
+    background-color: #202124 !important;
+    border-color: #333333 !important;
+    color: #C2C2C2 !important;
+}
+
+#stepsTable > tbody > tr {
+    color: #C2C2C2 !important;
+}
+
+    #stepsTable > tbody > tr.expectedResult {
+        background-color: #333333 !important;
+        color: #C2C2C2 !important;
+    }
+
+#tags_1_tagsinput > span {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+#menu_toggle > i {
+    color: #C2C2C2 !important;
+}
+
+#hi > div > div > a.customTitle {
+    color: #C2C2C2 !important;
+}
+
+#hi > div > div > a.message.ng-binding {
+    color: #C2C2C2 !important;
+}
+
+
+#hi > div > div > div > a.customTitle {
+    color: #C2C2C2 !important;
+}
+
+#hi > div > div > div > a.message.ng-binding {
+    color: #C2C2C2 !important;
+}
+
+
+#hi2 > div > div > a.customTitle {
+    color: #C2C2C2 !important;
+}
+
+#hi2 > div > div > a.message.ng-binding {
+    color: #C2C2C2 !important;
+}
+
+.message {
+    word-wrap: break-word;
+    white-space: pre-line;
+}
+
+.btn-first-panel {
+    margin-top: 15px;
+}
+
+
+
+#hi2 > div > div > div > a.customTitle {
+    color: #C2C2C2 !important;
+}
+
+#hi2 > div > div > div > a.message.ng-binding {
+    color: #C2C2C2 !important;
+}
+
+.customContainer {
+    background-color: #333333 !important;
+    color: #C2C2C2 !important;
+}
+
+.InfoDetailsContainer {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+body > div.container.body.ng-scope > div > div.top_nav > div > nav > ul > li > a {
+    color: #C2C2C2 !important;
+}
+
+.user-profile {
+    Cursor: text !important;
+    Text-Decoration: None !important;
+}
+
+.dataTables_info {
+    color: #C2C2C2 !important;
+}
+
+
+#form > div:nth-child(4) > div > ul > li {
+    background-color: #333333 !important;
+    color: #C2C2C2 !important;
+    border-color: #202124 !important;
+}
+
+
+.nav_menu {
+    background-color: #202124 !important;
+    border-color: #202124 !important;
+    color: #C2C2C2 !important;
+}
+
+#sidebar-menu > div > ul > li > a {
+    background-color: #333333 !important;
+}
+
+#ui-select-choices-row {
+    background-color: #333333 !important;
+    color: #C2C2C2 !important;
+}
+
+#ui-rows {
+    background-color: #333333 !important;
+    color: #C2C2C2 !important;
+    font-size: 14px;
+}
+
+#form > div > div > div > ul {
+    background-color: #333333 !important;
+    color: #C2C2C2 !important;
+}
+
+
+.nav.side-menu > li.active > a {
+    background: #202124 !important;
+}
+
+span {
+    color: #C2C2C2 !important;
+}
+
+    span:hover {
+        /*background-color: #202124 !important;*/
+        text-decoration: none;
+    }
+
+#form > div:nth-child(3) > div > div > div.ui-select-match.ng-scope > span > span.ui-select-match-text.pull-left {
+    background-color: #333333 !important;
+}
+
+#form > div:nth-child(3) > div > div > div.ui-select-match.ng-scope > span > span.ui-select-placeholder.text-muted.ng-binding {
+    background-color: #333333 !important;
+}
+
+#form > div:nth-child(2) > div > div > div.ui-select-match.ng-scope > span > span.ui-select-match-text.pull-left {
+    background-color: #333333 !important;
+}
+
+#form > div:nth-child(2) > div > div > div.ui-select-match.ng-scope > span > span.ui-select-placeholder.text-muted.ng-binding {
+    background-color: #333333 !important;
+}
+
+#form > div:nth-child(1) > div > div > div.ui-select-match.ng-scope > span > span.ui-select-match-text.pull-left {
+    background-color: #333333 !important;
+}
+
+#form > div:nth-child(1) > div > div > div.ui-select-match.ng-scope > span > span.ui-select-placeholder.text-muted.ng-binding {
+    background-color: #333333 !important;
+}
+
+
+.nav.side-menu > li.active, .nav.side-menu > li.current-page {
+    border-right: #b6ff00 !important;
+}
+
+table > thead > tr {
+    background-color: #202124 !important;
+}
+
+.nav side-menu {
+    background-color: #333333 !important;
+}
+
+.nav.side-menu > li.active > a {
+    background-color: #333333 !important;
+}
+
+    .nav.side-menu > li.active > a:active {
+        background-color: #202124 !important;
+    }
+
+body {
+    background-color: #202124 !important;
+}
+
+    body > div.container.body.ng-scope > div > div.ng-scope > div.right_col.ng-scope > div.row > div > div > div.row > div > div {
+        border-color: #202124 !important;
+    }
+
+#sidebar-menu > div > ul {
+    background-color: #333333 !important;
+}
+
+footer {
+    background-color: #202124 !important;
+    color: #FFF;
+}
+
+#form > div > div > div > div.ui-select-match.ng-scope > span {
+    background-color: #333333 !important;
+    color: #FFF;
+}
+
+.pull-left {
+    color: #C2C2C2 !important; /*#202124*/
+}
+
+body > div.container.body.ng-scope > footer > div.pull-left {
+    color: #C2C2C2 !important; /*#202124*/
+    margin-top: 10px !important;
+}
+
+#filter {
+    background-color: #333333 !important;
+    border-color: #333333 !important;
+}
+
+/*.label-success {
+    background-color: #333333 !important;
+    border-color:#C2C2C2 !important;
+}*/
+#myTab {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+    border-color: #333333 !important;
+}
+
+.pull-right {
+    color: #C2C2C2 !important; /*#202124*/
+}
+
+body > div.container.body.ng-scope > footer > div.pull-right {
+    color: #C2C2C2 !important; /*#202124*/
+    margin-top: 10px !important;
+}
+
+.pagination {
+    background-color: #333333 !important;
+    color: #C2C2C2 !important;
+}
+
+#myTab > li {
+    background-color: #333333 !important;
+    color: #C2C2C2 !important;
+}
+
+.navbar {
+    background-color: #333333 !important;
+}
+
+.sidebar-menu {
+    background-color: #333333 !important;
+}
+
+input {
+    background-color: #333333 !important;
+    border-color: #333333 !important;
+    color: #ffffff !important;
+}
+
+textarea {
+    background-color: #333333 !important;
+    border-color: #333333 !important;
+    color: #ffffff !important;
+}
+
+#form > div > div > div > div.ui-select-match.ng-scope > span {
+    background-color: #333333 !important;
+    border-color: #333333 !important;
+    color: #ffffff !important;
+}
+
+select {
+    background-color: #333333 !important;
+    border-color: #333333 !important;
+    color: #ffffff !important;
+}
+
+#form > div:nth-child(1) > div:nth-child(2) > div > div > label {
+    color: #ffffff !important;
+}
+
+#hi {
+    background-color: #202124 !important;
+}
+
+#hi2 {
+    background-color: #202124 !important;
+}
+
+
+#tab_content2 > table > tbody > tr {
+    color: #ffffff !important;
+}
+
+
+.sidebar-footer hidden-small {
+    background-color: #333333 !important;
+}
+
+
+.sidebar-footer {
+    background-color: #333333 !important;
+}
+
+
+
+
+#modalUsersForm > div > div {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+    border-color: #202124 !important;
+}
+
+
+    #modalUsersForm > div > div > div.modal-header {
+        background-color: #202124 !important;
+        color: #C2C2C2 !important;
+        border-color: #333333 !important;
+    }
+
+    #modalUsersForm > div > div > div.modal-footer {
+        background-color: #202124 !important;
+        color: #C2C2C2 !important;
+        border-color: #333333 !important;
+    }
+
+    #modalUsersForm > div > div > div.modal-body > div > div {
+        background-color: #333333 !important;
+        border-color: #333333 !important;
+    }
+
+
+#disableUser > div > div > div.modal-header {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+    border-color: #333333 !important;
+}
+
+
+#disableUser > div > div > div.modal-footer {
+    background-color: #202124 !important;
+    color: #C2C2C2 !important;
+    border-color: #333333 !important;
+}
+
+#disableUser > div > div > div.modal-body {
+    color: #C2C2C2 !important;
+    border-color: #333333 !important;
+    background-color: #202124 !important;
+}
+
+.successLabel {
+    color: #5cb85c !important;
+}
+
+.errorLabel {
+    color: #d9534f !important;
+}
+
+dataTables_info {
+    background-color: #202124;
+}
+
+#hi > div:nth-child(4) > div > h4 {
+    background-color: #202124;
+}
+
+
+#hi > div > div:nth-child(15) {
+    background-color: #202124;
+}
+
+#hi2 > div:nth-child(4) > div > h4 {
+    background-color: #202124;
+}
+
+
+#hi2 > div > div:nth-child(15) {
+    background-color: #202124;
+}
+
+
+.customContainerSteps {
+    background-color: #202124;
+}
+
+.changeTitle {
+    margin-top: 10px;
+}
+
+#stepsTable {
+    font-size: 13px;
+}
+
+
+#tags_1_tagsinput {
+    font-size: 13px;
+}
+
+.loader {
+    position: relative;
+    text-align: center;
+    margin: 15px auto 35px auto;
+    z-index: 9999;
+    display: block;
+    width: 80px;
+    height: 80px;
+    border: 10px solid rgba(0, 0, 0, .3);
+    border-radius: 50%;
+    border-top-color: #26B99A;
+    animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.loader-txt {
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+.modalCenter {
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+}
+
+.font {
+    color: #FFFFFF;
+}
+
+    .font:hover {
+        color: #FFFFFF;
+    }
+
+
+
+div.right_col.ng-scope > div.row > div > div > div.x_content > table > tbody > tr > td > div > div > a {
+    color: #C2C2C2;
+}
+
+
+div.right_col.ng-scope > div.row > div > div > div.x_content > table > tbody > tr > td > div > div > :hover {
+    background-color: #333333;
+}
+
+.custom-padding {
+    padding: 0;
+}
+
+.dropdown-menu {
+    border: 1px solid #D9DEE4;
+    box-shadow: none;
+    display: none;
+    float: left;
+    font-size: 12px;
+    left: 0;
+    list-style: none;
+    padding: 0;
+    position: absolute;
+    text-shadow: none;
+    top: 100%;
+    z-index: 9998;
+}
+
+.custom-dropdown {
+    border: none;
+}
+
+
+.list-group-item:last-child {
+    /* margin-bottom: 0; */
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.list-group-item:first-child {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+#form2 > div > label {
+    color: #C2C2C2 !important;
+}
+
+
+
+div.content-4.col-md-3.col-sm-12 {
+    margin-top: 10px;
+    margin-left: -2px;
+}
+
+div.content-3.col-md-3.col-sm-12 {
+    margin-top: 10px;
+    margin-left: -3px;
+}
+
+div.content-2.col-md-3.col-sm-12 {
+    margin-top: 10px;
+    margin-left: -3px;
+}
+
+div.content-1.col-md-3.col-sm-12 {
+    margin-top: 10px;
+    margin-left: 4px;
+}
+
+
+.ui-select-choices-row-inner {
+    background-color: #333333;
+}
+
+.ui-select-bootstrap .ui-select-choices-row.active > span {
+    color: #fff;
+    text-decoration: none;
+    outline: 0;
+    background-color: #202124;
+}
+.control-label {
+    color: #C2C2C2 !important;
+}
+
+
+.attachmentList {
+    background-color: #333333 !important;
+    border-color: #333333 !important;
+}
+
+.tab .nav-tabs {
+    cursor: pointer;
+    border-bottom: 2px solid #333;
+}

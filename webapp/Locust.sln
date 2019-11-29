@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29209.62
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Locust", "Locust\Locust.csproj", "{2868482A-F8E9-4A17-98E1-5741E9D45269}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocustRunnerService", "LocustRunnerService\LocustRunnerService.csproj", "{3574B632-FF56-410E-AB5D-78501FD17746}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupLocustRunnerService", "SetupLocustRunnerService\SetupLocustRunnerService.vdproj", "{56092B5F-E11B-4BD4-98FA-73203112D636}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Locus.Core", "Locus.Core\Locus.Core.csproj", "{856E5E10-0A30-4C15-8EA2-8306B85E4664}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocustSwarm", "LocustSwarm\LocustSwarm.csproj", "{35102BD0-66F3-4170-804A-8B018FE19F50}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "LocustSwarmInstaller", "LocustSwarmInstaller\LocustSwarmInstaller.vdproj", "{D21A0866-1F15-4E60-B89C-F0D91148E9FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2868482A-F8E9-4A17-98E1-5741E9D45269}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2868482A-F8E9-4A17-98E1-5741E9D45269}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2868482A-F8E9-4A17-98E1-5741E9D45269}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2868482A-F8E9-4A17-98E1-5741E9D45269}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3574B632-FF56-410E-AB5D-78501FD17746}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3574B632-FF56-410E-AB5D-78501FD17746}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3574B632-FF56-410E-AB5D-78501FD17746}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3574B632-FF56-410E-AB5D-78501FD17746}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56092B5F-E11B-4BD4-98FA-73203112D636}.Debug|Any CPU.ActiveCfg = Debug
+		{56092B5F-E11B-4BD4-98FA-73203112D636}.Release|Any CPU.ActiveCfg = Release
+		{856E5E10-0A30-4C15-8EA2-8306B85E4664}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{856E5E10-0A30-4C15-8EA2-8306B85E4664}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{856E5E10-0A30-4C15-8EA2-8306B85E4664}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{856E5E10-0A30-4C15-8EA2-8306B85E4664}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35102BD0-66F3-4170-804A-8B018FE19F50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35102BD0-66F3-4170-804A-8B018FE19F50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35102BD0-66F3-4170-804A-8B018FE19F50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35102BD0-66F3-4170-804A-8B018FE19F50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D21A0866-1F15-4E60-B89C-F0D91148E9FD}.Debug|Any CPU.ActiveCfg = Debug
+		{D21A0866-1F15-4E60-B89C-F0D91148E9FD}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D05FB7C4-FD1C-40B8-B234-1D3260082680}
+	EndGlobalSection
+EndGlobal

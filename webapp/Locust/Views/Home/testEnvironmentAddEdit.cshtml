@@ -1,0 +1,194 @@
+﻿@Scripts.Render("~/bundles/AdjustUI")
+
+@{
+    Layout = null;
+}
+<div class="right_col" role="main">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item" ng-click="projectDetails()"><a href="" ng-click="projectDetails()">{{NameProject}}</a></li>
+            <li class="breadcrumb-item" ng-click="testEnvironment()"><a href="" ng-click="testEnvironment()">Test Environment</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+                {{action}} Test Environment
+            </li>
+        </ol>
+    </nav>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>{{action}} Test Environment<small></small></h2>
+
+                    <div class="clearfix"></div>
+                </div>
+                @* Here start the contern *@
+                <div class="x_content">
+                    <form name="form" autocomplete="off" id="form" novalidate class="form-horizontal form-label-left" ng-submit="AddUpdate(form)" align="right" style="border:0">
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">
+                                Name: <span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <input ng-model="Name" type="text" name="Name" id="Name" ng-maxlength="100" autofocus required class="form-control col-sm-5 col-md-2">
+                                <div class="help-block" ng-messages="form.Name.$error" ng-if="form.$submitted">
+                                    <div ng-messages-include="Pages/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">
+                                Server: <span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <input ng-model="Server" type="text" name="Server" id="Server" ng-maxlength="100" autofocus required class="form-control col-sm-5 col-md-2">
+                                <div class="help-block" ng-messages="form.Server.$error" ng-if="form.$submitted">
+                                    <div ng-messages-include="Pages/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">
+                                Processor: <span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <input ng-model="Processor" type="text" name="Processor" id="Processor" ng-maxlength="100" autofocus required class="form-control col-sm-5 col-md-2">
+                                <div class="help-block" ng-messages="form.Processor.$error" ng-if="form.$submitted">
+                                    <div ng-messages-include="Pages/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">
+                                RAM: <span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <input ng-model="RAM" type="text" name="RAM" id="RAM" ng-maxlength="100" autofocus required class="form-control col-sm-5 col-md-2">
+                                <div class="help-block" ng-messages="form.RAM.$error" ng-if="form.$submitted">
+                                    <div ng-messages-include="Pages/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">
+                                HardDisk: <span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <input ng-model="HardDisk" type="text" name="HardDisk" id="HardDisk" ng-maxlength="100" autofocus required class="form-control col-sm-5 col-md-2">
+                                <div class="help-block" ng-messages="form.HardDisk.$error" ng-if="form.$submitted">
+                                    <div ng-messages-include="Pages/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">
+                                OS <span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <ui-select required id="os" name="os" ng-model="os.selectedItems">
+                                    <ui-select-match placeholder="Operating System">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="os in OS | filter: $select.search">
+                                        <span ng-bind-html=os | highlight: $select.search"></span>
+                                    </ui-select-choices>
+                                </ui-select>
+                                <div class="help-block" ng-messages="form.os.$error" ng-if="form.$submitted">
+                                    <div ng-messages-include="Pages/messages.html"></div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top:15px; margin-bottom:15px;" class="form-group">
+                            <label class="control-label col-md-4">
+                                Environment Type <span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <ui-select name="teTypes" id="teTypes" required ng-model="type.selectedItems">
+                                    <ui-select-match placeholder="Environment">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="teTypes in TETypes | filter: $select.search">
+                                        <span ng-bind-html=teTypes | highlight: $select.search"></span>
+                                    </ui-select-choices>
+                                </ui-select>
+                                <div class="help-block" ng-messages="form.teTypes.$error" ng-if="form.$submitted">
+                                    <div ng-messages-include="Pages/messages.html"></div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">
+                                Test Dependencies
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <textarea ng-model="ServerSoftwareTest" type="text" name="ServerSoftwareTest" id="ServerSoftwareTest" class="form-control col-md-3 col-xs-12" />
+                                <div class="help-block" ng-messages="form.ServerSoftwareTest.$error" ng-if="form.$submitted">
+                                    <div ng-messages-include="Pages/messages.html"></div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">
+                                Dev Dependencies
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <textarea ng-model="ServerSoftwareDevs" type="text" name="ServerSoftwareDevs" id="ServerSoftwareDevs" class="form-control col-md-3 col-xs-12" />
+                                <div class="help-block" ng-messages="form.ServerSoftwareDevs.$error" ng-if="form.$submitted">
+                                    <div ng-messages-include="Pages/messages.html"></div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">
+                                Database <span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <input ng-model="Database" type="text" name="Database" id="Database" ng-maxlength="100" autofocus required class="form-control col-sm-5 col-md-2">
+                                <div class="help-block" ng-messages="form.Database.$error" ng-if="form.$submitted">
+                                    <div ng-messages-include="Pages/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">
+                                URL
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <input ng-model="URL" type="text" name="URL" id="URL" ng-maxlength="500" autofocus class="form-control col-sm-5 col-md-2">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">
+                                Notes
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <textarea ng-model="Notes" type="text" name="Notes" id="Notes" class="form-control col-md-3 col-xs-12" />
+                                <div class="help-block" ng-messages="form.Notes.$error" ng-if="form.$submitted">
+                                    <div ng-messages-include="Pages/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-4 col-sm-4 col-xs-4 col-md-offset-4" style="text-align:right">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" ng-disabled="btnSave" type="submit" style="margin:5px"><i class="fa fa-floppy-o" aria-hidden="true"></i> @Resource.BtnSave Test Environment</button>
+                                    <button class="btn btn-default" type="button" ng-click="testEnvironment()"><i class="fa fa-ban" aria-hidden="true"></i> @Resource.BtnCancel</button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

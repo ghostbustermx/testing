@@ -1,0 +1,163 @@
+﻿@Scripts.Render("~/bundles/AdjustUI")
+
+@{
+    Layout = null;
+}
+
+<div class="right_col" role="main">
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+
+                    <div class="col-md-8 col-sm-5 col-xs-12">
+                        <h2>Runners<small>Register of all runners</small></h2>
+                    </div>
+
+
+                    <div class="clearfix"></div>
+                </div>
+
+                @* Here start the content*@
+                <div class="x_content">
+
+
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+
+
+
+                        <div class="form-group row">
+
+                            <div class="col-md-1 col-sm-4 col-xs-4 selectCustom">
+                                <select name="priority" required class="form-control" ng-model="RowsSelected" ng-change="changeValue(RowsSelected)"
+                                        ng-options="option as option for option in Options"></select>
+                            </div>
+
+
+                            <div class="col-md-3 col-sm-8 col-xs-8">
+                                <div class="input-group">
+                                    <input auto-focus ng-model="filter" type="text" class="form-control" id="filter" autocomplete="off" placeholder="Search">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default filterButton" type="button"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-1 col-sm-4 col-xs-4 selectCustom">
+                                <select name="priority" required class="form-control" ng-model="RowsFilterSelected" ng-change="runnerFilter(RowsFilterSelected)"
+                                        ng-options="option as option for option in ActivesOption"></select>
+                            </div>
+
+                            @*<div class="col-md-8 col-sm-12 col-xs-12" align="right">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#modalRegisterForm"><i class="fa fa-hdd-o"></i> Generate Backup</button>
+                                    </span>
+
+                                </div>*@
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <table class="table table-striped table-bordered dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable-buttons_info">
+
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 218px;" aria-sort="ascending">Identifier</th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 100px;" aria-sort="ascending">IP Address</th>
+                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 100px;" aria-sort="ascending">MAC Address</th>
+                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 100px;">OS</th>
+                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 340px;">Description</th>
+                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 100px;">Tags</th>
+                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 60px;">Connection Status</th>
+                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 60px;">Creation Date</th>
+                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 60px;">Last Connection</th>
+                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 100px;">Actions</th>
+                    </thead>
+                    <tbody>
+                        <tr role="row" class="odd" dir-paginate="runner in filteredArray = (runners | filter: filter:strict) | itemsPerPage: pageSize" current-page="currentPage" pagination-id="pagination">
+
+                            <td tabindex="0" class="sorting_1">{{runner.Identifier}}</td>
+                            <td>{{runner.IPAddress}}</td>
+                            <td>{{runner.MAC}}</td>
+                            <td>{{runner.OS}}</td>
+                            <td>{{runner.Description}}</td>
+                            <td>{{runner.Tags}}</td>
+                            <td class="even pointer">
+                                <div ng-if="runner.IsConnected">
+                                    <a tooltips tooltip-template="Connected"><i class="fa fa-2x fa-check-circle successLabel"></i></a>
+                                </div>
+                                <div ng-if="!runner.IsConnected">
+
+                                    <a tooltips tooltip-template="Disconnected"><i class="fa fa-2x fa-times-circle errorLabel"></i></a>
+                                </div>
+                            </td>
+                            <td>{{runner.Creation_Date}}</td>
+                            <td>{{runner.Time}}</td>
+                            <td valign="middle" width="10%">
+                                <div class="btn-group">
+                                    <button ng-if="runner.Status" data-toggle="modal" data-target="#modalRunnerForm" class="btn btn-sm btn-default" type="button" data-placement="top" data-original-title="Trash" ng-click="SelectRunner(runner,'Disable')"><i class="fa fa-check-square"></i></button>
+                                    <button ng-if="!runner.Status" data-toggle="modal" data-target="#modalRunnerForm" class="btn btn-sm btn-default" type="button" data-placement="top" data-original-title="Trash" ng-click="SelectRunner(runner,'Enable')"><i class="fa fa-square-o"></i></button>
+                                    <button data-toggle="modal" data-target="#modalRunnerForm" class="btn btn-sm btn-default" type="button" data-placement="top" data-original-title="Trash" ng-click="SelectRunner(runner,'Delete')"><i class="fa fa-trash-o"></i></button>
+                                </div>
+                            </td>
+                            @*<td>
+            <div class="group-btn">
+
+                <button ng-if="!runner.Status" data-toggle="modal" data-target="#modalRunnerForm" class="btn btn-sm btn-default" type="button" data-placement="top" data-original-title="Trash" ng-click="SelectRunner(runner,'Enable')"><i class="fa fa-check-square"></i></button>
+                <button data-toggle="modal" data-target="#modalRunnerForm" class="btn btn-sm btn-default" type="button" data-placement="top" data-original-title="Trash" ng-click="SelectRunner(runner,'Delete')"><i class="fa fa-trash-o"></i></button>
+
+            </div>
+        </td>*@
+                        </tr>
+                        <tr ng-if="filteredArray.length===0">
+                            <td colspan="10">@Resource.NoDataFound</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="dataTables_info" id="datatable-buttons_info" role="status" aria-live="polite">
+                    {{filteredArray.length}} entries
+                </div>
+                <div class="paginationContainer">
+                    <dir-pagination-controls boundary-links="true" pagination-id="pagination" template-url="Pages/dirPagination.tpl.html"></dir-pagination-controls>
+                </div>
+            </div>
+            @* Here end the content*@
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalRunnerForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>{{action}} Runner</h3>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to <strong>{{action}}</strong> the Runner: <strong>Identifier-{{runnerSelected.Identifier}} IP-{{runnerSelected.IPAddress}} MAC-{{runnerSelected.MAC}}</strong></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" ng-click="DisableEnableRunner(runnerSelected)" data-dismiss="modal">{{action}}</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@*<div class="modal fade" id="loadingModalBackup" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true">
+        <div class="modal-dialog modalCenter" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div class="loader"></div>
+                    <div class="loader-txt"><p>Generating <b>Backup</b></p></div>
+                </div>
+            </div>
+        </div>
+    </div>*@

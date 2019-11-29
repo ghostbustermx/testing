@@ -1,0 +1,936 @@
+﻿.tableImage {
+    display: block;
+    width: 100%;
+    height: 50px;
+}
+
+
+.select2 > .select2-choice.ui-select-match {
+    /* Because of the inclusion of Bootstrap */
+    height: 29px;
+}
+
+.disableRow {
+    background-color: #E8E8E8 !important;
+    color: #000;
+}
+
+.cards {
+    color: #000 !important;
+    font-weight: bold;
+}
+
+footer {
+    color: #000;
+}
+
+.expectedResult {
+    background-color: #E8E8E8 !important;
+    color: #000 !important;
+    font-weight: bold;
+}
+
+.odd {
+    color: #000;
+}
+
+.modal-header {
+    color: #000 !important;
+}
+
+.modal-body {
+    color: #000 !important;
+}
+
+.selectize-control > .selectize-dropdown {
+    top: 36px;
+}
+
+
+
+
+
+.block-update-card {
+    height: 100%;
+    border: 1px #FFFFFF solid;
+    width: 100%;
+    box-shadow: 1px 1px 8px #d8d8d8;
+    background-color: #FFFFFF;
+}
+
+    .block-update-card .h-status {
+        width: 100%;
+        height: 7px;
+        background: repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px);
+    }
+
+    .block-update-card .v-status {
+        width: 5px;
+        height: 80px;
+        float: left;
+        margin-right: 5px;
+        background: repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px);
+    }
+
+    .block-update-card .update-card-MDimentions {
+        width: 80px;
+        height: 80px;
+    }
+
+    .block-update-card .update-card-body {
+        margin-top: 10px;
+        margin-left: 5px;
+    }
+
+        .block-update-card .update-card-body h4 {
+            color: #737373;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .block-update-card .update-card-body p {
+            color: #737373;
+            font-size: 12px;
+        }
+
+    .block-update-card .card-action-pellet {
+        padding: 5px;
+    }
+
+        .block-update-card .card-action-pellet div {
+            margin-right: 10px;
+            font-size: 15px;
+            cursor: pointer;
+            color: #dddddd;
+        }
+
+            .block-update-card .card-action-pellet div:hover {
+                color: #999999;
+            }
+
+    .block-update-card .card-bottom-status {
+        color: #a9a9aa;
+        font-weight: bold;
+        font-size: 14px;
+        border-top: #e0e0e0 1px solid;
+        padding-top: 5px;
+        margin: 0px;
+    }
+
+        .block-update-card .card-bottom-status:hover {
+            background-color: #dd4b39;
+            color: #FFFFFF;
+            cursor: pointer;
+        }
+
+
+
+
+
+
+/* Some additional styling to demonstrate that append-to-body helps achieve the proper z-index layering. */
+.select-box {
+    background: #fff;
+    position: relative;
+    z-index: 1;
+}
+
+.alert-info.positioned {
+    margin-top: 1em;
+    position: relative;
+    z-index: 10000; /* The select2 dropdown has a z-index of 9999 */
+}
+
+
+.customContainer {
+    background-color: #f7f7f7;
+    padding: 10px;
+}
+
+
+.customTitle {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #000;
+}
+
+.message {
+    color: #000;
+}
+
+.dataTables_info {
+    color: #000 !important;
+    font-weight: bold;
+}
+
+.breadcrumb-item {
+    color: #000 !important;
+}
+
+h2 {
+    color: #000 !important;
+    font-weight: bold;
+}
+
+.control-label {
+    color: #000 !important;
+}
+
+.actions-panel {
+    background-color: firebrick;
+    display: inline-block;
+    float: right;
+}
+
+
+
+textarea {
+    width: 100%;
+    height: 125px !important;
+    resize: none;
+}
+
+.tile-app {
+    font-weight: bold;
+    font-size: 1.2em;
+    text-decoration: underline;
+}
+
+.site_title i {
+    padding: 6px 6px;
+    font-size: 1.5em;
+    border: none;
+}
+
+video {
+    width: 100%;
+    height: auto;
+}
+
+.modalTextArea {
+    resize: none;
+    width: 100%;
+    height: 150px;
+}
+
+.modalField {
+    font: bold;
+}
+
+.index-content a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.index-content {
+    margin-bottom: 20px;
+    padding: 50px 0px 50px 0px;
+}
+
+    .index-content .row {
+        margin-top: 20px;
+    }
+
+    .index-content a {
+        color: black;
+    }
+
+    .index-content .card {
+        margin-top: 10px;
+        margin-bottom: 20px;
+        height: 250px;
+        background-color: #FFFFFF;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+    }
+
+        .index-content .card:hover {
+            box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.3);
+            color: black;
+        }
+
+        .index-content .card img {
+            width: 100%;
+            height: 100px;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+        }
+
+        .index-content .card h4 {
+            margin: 20px;
+            font-weight: bold;
+        }
+
+        .index-content .card p {
+            margin: 20px;
+            opacity: 0.65;
+        }
+
+    .index-content .blue-button {
+        width: 48%;
+        -webkit-transition: background-color 1s, color 1s; /* For Safari 3.1 to 6.0 */
+        transition: background-color 1s, color 1s;
+        background-color: red;
+        color: #ffffff;
+        font-weight: lighter;
+        margin: 0px,0px,0px,0px;
+    }
+
+
+        .index-content .blue-button:hover {
+            background-color: #dadada;
+            color: #002E5B;
+        }
+
+@media (max-width: 768px) {
+
+    .index-content .col-lg-4 {
+        margin-top: 20px;
+    }
+}
+
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+    background-color: #2A3F54;
+    border-color: #2A3F54;
+}
+
+thead {
+    background-color: #2A3F54;
+    color: #ffffff;
+    text-align: center;
+}
+
+td {
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+th, td {
+    text-align: center;
+    vertical-align: middle !important;
+}
+
+.description {
+    text-align: justify;
+    word-wrap: break-word; /* All browsers since IE 5.5+ */
+    overflow-wrap: break-word; /* Renamed property in CSS3 draft spec */
+}
+
+.pagination > li > a, .pagination > li > span {
+    color: #2A3F54;
+}
+
+.help-block {
+    color: red;
+}
+
+.required {
+    color: red;
+}
+
+.paginationContainer {
+    float: right;
+}
+
+
+.filter {
+    margin-right: 10px;
+}
+
+.btnAdd {
+    color: #ffffff;
+    display: inline-block;
+    font-size: 13px;
+    height: 34px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    background-color: #2A3F54;
+    border: 1px solid transparent;
+}
+
+.btnImage {
+    color: #ffffff;
+    float: right;
+    margin-right: -10px;
+    margin-left: -100px;
+    display: inline-block;
+    font-size: 13px;
+    height: 34px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    background-color: #2A3F54;
+    border: 1px solid transparent;
+}
+
+
+
+
+
+
+.test-separator {
+    background-color: #2A3F54;
+    width: 100%;
+    height: 3px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top-right-radius: .5em;
+    border-top-left-radius: .5em;
+    border-bottom-right-radius: .5em;
+    border-bottom-left-radius: .5em;
+}
+
+a.labelPrincipal {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 20px;
+    width: 100%;
+}
+
+.titleContainer {
+    border-top-right-radius: .5em;
+    border-top-left-radius: .5em;
+    width: 100%;
+    background-color: #2A3F54;
+    height: 40px;
+    padding-left: 15px;
+    padding-top: 5px;
+}
+
+
+
+
+.table-responsive {
+    overflow-y: visible;
+    overflow-x: visible;
+}
+
+
+.btn-group {
+    white-space: nowrap;
+}
+
+    .btn-group .btn {
+        float: none;
+        display: inline-block;
+    }
+
+.btn + .dropdown-toggle {
+    margin-left: -4px;
+}
+
+.table-responsive {
+    overflow-y: visible !important;
+}
+
+/* (320x480) iPhone (Original, 3G, 3GS) */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    /* insert styles here */
+}
+
+/* (320x480) Smartphone, Portrait */
+@media only screen and (device-width: 320px) and (orientation: portrait) {
+    /* insert styles here */
+}
+
+/* (320x480) Smartphone, Landscape */
+@media only screen and (device-width: 480px) and (orientation: landscape) {
+    /* insert styles here */
+}
+
+/* (480x800) Android */
+@media only screen and (min-device-width: 480px) and (max-device-width: 800px) {
+    /* insert styles here */
+}
+
+/* (640x960) iPhone 4 & 4S */
+@media only screen and (min-device-width: 640px) and (max-device-width: 960px) {
+    /* insert styles here */
+}
+
+/* (720x1280) Galaxy Nexus, WXGA */
+@media only screen and (min-device-width: 720px) and (max-device-width: 1280px) {
+    /* insert styles here */
+}
+
+/* (720x1280) Galaxy Nexus, Landscape */
+@media only screen and (min-device-width: 720px) and (max-device-width: 1280px) and (orientation: landscape) {
+    /* insert styles here */
+}
+
+/* (1024x768) iPad 1 & 2, XGA */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    /* insert styles here */
+}
+
+/* (768x1024) iPad 1 & 2, Portrait */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+    /* insert styles here */
+}
+
+/* (1024x768) iPad 1 & 2, Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+    /* insert styles here */
+
+}
+
+/* (2048x1536) iPad 3 */
+@media only screen and (min-device-width: 1536px) and (max-device-width: 2048px) {
+    /* insert styles here */
+
+}
+
+/* (1280x720) Galaxy Note 2, WXGA */
+@media only screen and (min-device-width: 720px) and (max-device-width: 1280px) {
+    /* insert styles here */
+}
+
+/* (1366x768) WXGA Display */
+@media screen and (max-width: 1366px) {
+    /* insert styles here */
+
+}
+
+/* (1280x1024) SXGA Display */
+@media screen and (max-width: 1280px) {
+    /* insert styles here */
+    .index-content .card {
+        height: 280px;
+    }
+}
+
+/* (1440x900) WXGA+ Display */
+@media screen and (max-width: 1440px) {
+    /* insert styles here */
+    .index-content .card {
+        height: 280px;
+    }
+}
+
+/* (1680x1050) WSXGA+ Display */
+@media screen and (max-width: 1680px) {
+    /* insert styles here */
+    .index-content .card {
+        height: 280px;
+    }
+}
+
+/* (1920x1080) Full HD Display */
+@media screen and (max-width: 1920px) {
+
+    /* insert styles here */
+}
+
+/* (1600x900) HD+ Display */
+@media screen and (max-width: 1600px) {
+    /* insert styles here */
+}
+
+.fixed_headers {
+    width: 100%;
+    min-width: 100%;
+    border-collapse: collapse;
+    align-content: center;
+    text-align: center;
+}
+
+    .fixed_headers th {
+        text-align: left;
+    }
+
+
+    .fixed_headers th,
+    .fixed_headers td {
+        height: 40px;
+        padding: 5px;
+        text-align: center;
+    }
+
+        .fixed_headers td:nth-child(1),
+        .fixed_headers th:nth-child(1) {
+            min-width: 20%;
+            text-align: center;
+            width: 20%;
+        }
+
+        .fixed_headers td:nth-child(2),
+        .fixed_headers th:nth-child(2) {
+            min-width: 72%;
+            text-align: center;
+            width: 72%;
+        }
+
+        .fixed_headers td:nth-child(3),
+        .fixed_headers th:nth-child(3) {
+            min-width: 110%;
+            text-align: left;
+            width: 110%;
+        }
+
+
+    .fixed_headers thead {
+        min-width: 100%;
+        width: 100%;
+        display: inline-table;
+        background-color: #2A3F54;
+        color: #FDFDFD;
+    }
+
+
+    .fixed_headers tbody {
+        display: block;
+        overflow-y: auto !important;
+        width: 100%;
+        max-height: 550px !important;
+    }
+
+        .fixed_headers tbody tr:nth-child(even) {
+            text-align: center;
+            height: 50px;
+            background-color: #DDD;
+        }
+
+.old_ie_wrapper {
+    height: 300px;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: center;
+}
+
+.dropdown.dropdown-scroll .dropdown-menu {
+    min-width: 200px;
+    width: 200px;
+    overflow-y: auto;
+}
+
+.search-control {
+    min-width: 200px;
+    padding: 5px 10px;
+}
+
+
+
+.fixed_headers_steps {
+    width: 340px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    align-content: center;
+    text-align: center;
+}
+
+    .fixed_headers_steps th {
+        text-align: center;
+    }
+
+
+    .fixed_headers_steps th,
+    .fixed_headers_steps td {
+        border: 1px solid #ddd;
+        height: 30px;
+        padding: 5px;
+        text-align: center;
+    }
+
+        .fixed_headers_steps td:nth-child(1),
+        .fixed_headers_steps th:nth-child(1) {
+            min-width: 169px;
+            text-align: center;
+            width: 169px;
+        }
+
+        .fixed_headers_steps td:nth-child(2),
+        .fixed_headers_steps th:nth-child(2) {
+            min-width: 169px;
+            text-align: center;
+            width: 169px;
+        }
+
+    .fixed_headers_steps thead {
+        text-align: center;
+        background-color: #2A3F54;
+        color: #FDFDFD;
+    }
+
+
+    .fixed_headers_steps tbody {
+        display: block;
+        overflow-y: auto;
+        width: 340px;
+        height: 100px;
+    }
+
+        .fixed_headers_steps tbody tr:nth-child(even) {
+            text-align: center;
+            height: 30px;
+            background-color: #DDD;
+        }
+
+.fixed_headers_reqs {
+    width: 550px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    align-content: center;
+    text-align: center;
+}
+
+    .fixed_headers_reqs th {
+        text-align: center;
+    }
+
+
+    .fixed_headers_reqs th,
+    .fixed_headers_reqs td {
+        border: 1px solid #ddd;
+        height: 30px;
+        padding: 5px;
+        text-align: center;
+    }
+
+        .fixed_headers_reqs td:nth-child(1),
+        .fixed_headers_reqs th:nth-child(1) {
+            min-width: 99px;
+            text-align: center;
+            width: 99px;
+        }
+
+        .fixed_headers_reqs td:nth-child(2),
+        .fixed_headers_reqs th:nth-child(2) {
+            min-width: 149px;
+            text-align: center;
+            width: 149px;
+        }
+
+        .fixed_headers_reqs td:nth-child(3),
+        .fixed_headers_reqs th:nth-child(3) {
+            min-width: 300px;
+            text-align: center;
+            width: 300px;
+        }
+
+
+    .fixed_headers_reqs thead {
+        text-align: center;
+        background-color: #2A3F54;
+        color: #FDFDFD;
+    }
+
+
+    .fixed_headers_reqs tbody {
+        display: block;
+        overflow-y: auto;
+        width: 550px;
+        height: 100px;
+    }
+
+        .fixed_headers_reqs tbody tr:nth-child(even) {
+            text-align: center;
+            height: 30px;
+            background-color: #DDD;
+        }
+
+
+.fixed_headers_steps_display {
+    width: 1000px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    align-content: center;
+    text-align: center;
+}
+
+    .fixed_headers_steps_display th {
+        text-align: center;
+    }
+
+
+    .fixed_headers_steps_display th,
+    .fixed_headers_steps_display td {
+        border: 1px solid #ddd;
+        height: 30px;
+        padding: 5px;
+        text-align: center;
+    }
+
+        .fixed_headers_steps_display td:nth-child(1),
+        .fixed_headers_steps_display th:nth-child(1) {
+            min-width: 400px;
+            text-align: center;
+            width: 400px;
+        }
+
+        .fixed_headers_steps_display td:nth-child(2),
+        .fixed_headers_steps_display th:nth-child(2) {
+            min-width: 598px;
+            text-align: center;
+            width: 598px;
+        }
+
+    .fixed_headers_steps_display thead {
+        text-align: center;
+        background-color: #2A3F54;
+        color: #FDFDFD;
+    }
+
+.left_col {
+    background-color: @_body !important;
+}
+
+.fixed_headers_steps_display tbody {
+    overflow-y: auto;
+    width: 1000px;
+    height: 150px;
+}
+
+    .fixed_headers_steps_display tbody tr:nth-child(even) {
+        text-align: center;
+        height: 30px;
+        background-color: #DDD;
+    }
+
+
+.fixed_headers_reqs_display {
+    width: 1500px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    align-content: center;
+    text-align: center;
+}
+
+    .fixed_headers_reqs_display th {
+        text-align: center;
+    }
+
+
+    .fixed_headers_reqs_display th,
+    .fixed_headers_reqs_display td {
+        border: 1px solid #ddd;
+        height: 30px;
+        padding: 5px;
+        text-align: center;
+    }
+
+        .fixed_headers_reqs_display td:nth-child(1),
+        .fixed_headers_reqs_display th:nth-child(1) {
+            min-width: 149px;
+            text-align: center;
+            width: 149px;
+        }
+
+        .fixed_headers_reqs_display td:nth-child(2),
+        .fixed_headers_reqs_display th:nth-child(2) {
+            min-width: 149px;
+            text-align: center;
+            width: 149px;
+        }
+
+        .fixed_headers_reqs_display td:nth-child(3),
+        .fixed_headers_reqs_display th:nth-child(3) {
+            min-width: 599px;
+            text-align: center;
+            width: 599px;
+        }
+
+        .fixed_headers_reqs_display td:nth-child(4),
+        .fixed_headers_reqs_display th:nth-child(4) {
+            min-width: 299px;
+            text-align: center;
+            width: 299px;
+        }
+
+        .fixed_headers_reqs_display td:nth-child(5),
+        .fixed_headers_reqs_display th:nth-child(5) {
+            min-width: 299px;
+            text-align: center;
+            width: 299px;
+        }
+
+
+    .fixed_headers_reqs_display thead {
+        text-align: center;
+        background-color: #2A3F54;
+        color: #FDFDFD;
+    }
+
+
+    .fixed_headers_reqs_display tbody {
+        display: block;
+        overflow-y: auto;
+        width: 1500px;
+        height: 100px;
+    }
+
+        .fixed_headers_reqs_display tbody tr:nth-child(even) {
+            text-align: center;
+            height: 30px;
+            background-color: #DDD;
+        }
+
+table.responsive-table {
+    display: table;
+    /* required for table-layout to be used (not normally necessary; included for completeness) */
+    table-layout: fixed;
+    /* this keeps your columns with fixed with exactly the right width */
+    width: 100%;
+    /* table must have width set for fixed layout to work as expected */
+    height: 100%;
+}
+
+table.responsives-table thead {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 3em;
+    background: #2A3F54;
+    table-layout: fixed;
+    display: table;
+    color: #FDFDFD;
+}
+
+table.responsives-table th {
+    background: #DDD;
+}
+
+table.responsives-table td {
+    line-height: 2em;
+}
+
+table.responsives-table tr > td,
+table.responsives-table th {
+    text-align: left;
+}
+
+#hila > div.right_col.ng-scope > div.row > div > div > div.row.tile_count {
+    margin-bottom: 0px !important;
+}
+
+    #hila > div.right_col.ng-scope > div.row > div > div > div.row.tile_count > div {
+         margin-bottom: 0px !important; 
+        border-bottom: 0 !important;
+        padding-bottom: 0px !important;
+    }

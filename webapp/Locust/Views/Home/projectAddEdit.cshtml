@@ -1,0 +1,112 @@
+﻿@Scripts.Render("~/bundles/AdjustUI")
+@{
+    Layout = null;
+}
+
+<div class="right_col" role="main">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{action}} Project</li>
+        </ol>
+    </nav>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>{{action}} Project<small></small></h2>
+                    <div class="clearfix"></div>
+                </div>
+
+                @* Here start the contern *@
+                <div class="x_content">
+                    <form name="form" autocomplete="off" id="form" novalidate class="form-horizontal form-label-left" ng-submit="AddUpdate(form)">
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                                Project <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input auto-focus maxlength="70" ng-model="name" type="text" name="name" id="Name" ng-maxlength="70" required class="form-control col-md-7 col-xs-12">
+                                <div class="help-block" ng-messages="form.name.$error" ng-if="form.$submitted">
+                                    <div ng-messages-include="Pages/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Description">
+                                Description <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <textarea maxlength="1500" required ng-model="description" type="text" name="description" id="Description" class="form-control col-md-7 col-xs-12" />
+                                <div class="help-block" ng-messages="form.description.$error" ng-if="form.$submitted">
+                                    <div ng-messages-include="Pages/messages.html"></div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group outerDivFull">
+                            <label style="margin-right:10px;" class="control-label col-md-3 col-sm-3 col-xs-12" for="Status">
+                                Status
+                            </label>
+                            <label class="switchToggle" id="switch">
+                                <input type="checkbox" checked class="switchToggle" id="switch1"> <!-- VALUE -->
+                                <label for="switch1">Toggle</label>
+                            </label>
+                            <label hidden ng-model="status" name="status" id="Status" value="0"></label>
+                            <script>
+                                $(function () {
+                                    $('#switch1').change(function () {
+                                        if ($(this).prop('checked')) {
+                                            $('#Status').html(1);
+                                        } else {
+                                            $('#Status').html(0);
+                                            console.log(document.getElementById("Status").innerHTML);
+                                        }
+                                    })
+                                })
+                            </script>
+                        </div>
+
+                        <div class="form-group">
+                            <label style="margin-right:10px;" class="control-label col-md-3 col-sm-3 col-xs-12" for="Image">
+                                Image               
+                            </label>
+                            <input type="file" ng-model="image" name="image" class="btn btn-default" id="Image"
+                                   data-role="magic-overlay" data-edit="insertImage"
+                                   accept="image/x-png,image/gif,image/jpeg" onchange="" />
+                            <img src="" width="200" style="display:none;" id="image1" />
+                            <script>
+                                $('#Image').change(function (event) {
+                                    angular.element(this).scope().onfileSelected(event);
+                                });
+
+
+                            </script>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-9 col-sm-9 col-xs-9" style="text-align:right">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit" style="margin:5px" ng-disabled="saved"><i class="fa fa-floppy-o" aria-hidden="true" ></i> @Resource.BtnSave Project</button>
+                                    <button class="btn btn-default" type="button" ng-click="cancel()"><i class="fa fa-ban" aria-hidden="true"></i> @Resource.BtnCancel</button>
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <!--<div class="form-group">
+        <div class="col-md-8 col-sm-8 col-xs-12 col-md-offset-5">
+            <button class="btnAdd" type="button" ng-click="cancel()">@Resource.BtnCancel</button>
+            <button class="btnAdd" type="submit">@Resource.BtnSave</button>
+        </div>
+    </div>-->
+                    </form>
+                </div>
+                @* Here start the contern *@
+            </div>
+        </div>
+    </div>
+</div>
+

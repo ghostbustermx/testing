@@ -1,0 +1,263 @@
+﻿@Scripts.Render("~/bundles/AdjustUI")
+
+@{
+    Layout = null;
+}
+
+<div class="right_col" role="main">
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <h2>Profile</h2>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="container">
+                    <div class="x_content">
+                        <div class="customContainer col-md-3 col-sm-3 col-xs-12 profile_left">
+                            <div class="profile_img">
+                                <div id="crop-avatar">
+
+                                    <img class="img-responsive avatar-view" ng-src="{{info.PhotoUrl}}" alt="Avatar" title="Change the avatar">
+                                </div>
+                            </div>
+                            <h3>{{info.FirstName}} {{info.LastName}}</h3>
+                            <ul class="list-unstyled user_data">
+                                <li>
+                                    <i class="fa fa-user  user-profile-icon"></i> <strong>UserName:</strong> {{info.UserName}}
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope  user-profile-icon"></i> <strong>Email:</strong>  {{info.Email}}
+                                </li>
+                                <li>
+
+                                    <i class="fa fa-users  user-profile-icon"></i> <strong>Role:</strong>  {{info.Role}}
+                                </li>
+                                <li>
+                                    <i class="fa   fa-industry  user-profile-icon"></i> <strong>Division:</strong> {{info.Division}}
+                                </li>
+                                <li>
+                                    <i class="fa fa-briefcase  user-profile-icon"></i> <strong>Job Title:</strong> {{info.JobTitle}}
+                                </li>
+                                <li>
+                                    <i class="fa fa-building  user-profile-icon"></i> <strong>Department:</strong> {{info.Department}}
+                                </li>
+                                <li>
+                                    <i class="fa fa-thumbs-up user-profile-icon"></i> <strong>Alias:</strong> {{info.Alias}}
+                                </li>
+                                <li>
+                                    <i class="fa fa-calendar  user-profile-icon"></i> <strong>Hire Date:</strong> {{info.HireDate}}
+                                </li>
+                            </ul>
+
+                            <br>
+
+                            @*<h4>Projects</h4>
+                                <ul class="list-unstyled user_data">
+                                    <li>
+                                        <p>Web Applications</p>
+                                        <div class="progress progress_sm">
+                                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50" aria-valuenow="50" style="width: 50%;"></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <p>Website Design</p>
+                                        <div class="progress progress_sm">
+                                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="70" aria-valuenow="69" style="width: 70%;"></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <p>Automation &amp; Testing</p>
+                                        <div class="progress progress_sm">
+                                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="30" aria-valuenow="29" style="width: 30%;"></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <p>UI / UX</p>
+                                        <div class="progress progress_sm">
+                                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50" aria-valuenow="50" style="width: 50%;"></div>
+                                        </div>
+                                    </li>
+                                </ul>*@
+
+                        </div>
+                        @*<div class="col-md-9 col-sm-9 col-xs-12">
+                                    <div class="profile_title">
+                                        <div class="col-md-6">
+                                            <h2>User Activity Report</h2>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div id="reportrange" class="pull-right" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
+                                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                                <span>May 23, 2019 - June 21, 2019</span> <b class="caret"></b>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="graph_bar" style="width: 100%; height: 280px; position: relative; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg height="280" version="1.1" width="1170" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; left: -0.75px;"><desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël @@VERSION</desc><defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs><text x="42.84375" y="213.11439601237498" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4.005021012374982" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan></text><path fill="none" stroke="#aaaaaa" d="M55.34375,213.11439601237498H1145" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="42.84375" y="166.08579700928124" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4.007672009281237" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">750</tspan></text><path fill="none" stroke="#aaaaaa" d="M55.34375,166.08579700928124H1145" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="42.84375" y="119.05719800618749" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4.010323006187491" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">1,500</tspan></text><path fill="none" stroke="#aaaaaa" d="M55.34375,119.05719800618749H1145" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="42.84375" y="72.02859900309375" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4.0129740030937455" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2,250</tspan></text><path fill="none" stroke="#aaaaaa" d="M55.34375,72.02859900309375H1145" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="42.84375" y="25" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">3,000</tspan></text><path fill="none" stroke="#aaaaaa" d="M55.34375,25H1145" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="1090.5171875" y="225.61439601237498" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(0.8192,-0.5736,0.5736,0.8192,55.1991,681.2063)"><tspan dy="4.005021012374982" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Other</tspan></text><text x="981.5515625" y="225.61439601237498" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(0.8192,-0.5736,0.5736,0.8192,14.5007,633.0528)"><tspan dy="4.005021012374982" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">iPhone 6S Plus</tspan></text><text x="872.5859375" y="225.61439601237498" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(0.8192,-0.5736,0.5736,0.8192,5.7195,562.9062)"><tspan dy="4.005021012374982" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">iPhone 6S</tspan></text><text x="763.6203125" y="225.61439601237498" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(0.8192,-0.5736,0.5736,0.8192,-21.6334,505.7637)"><tspan dy="4.005021012374982" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">iPhone 6 Plus</tspan></text><text x="654.6546875" y="225.61439601237498" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(0.8192,-0.5736,0.5736,0.8192,-30.5172,435.7873)"><tspan dy="4.005021012374982" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">iPhone 6</tspan></text><text x="545.6890625" y="225.61439601237498" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(0.8192,-0.5736,0.5736,0.8192,-53.398,375.4094)"><tspan dy="4.005021012374982" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">iPhone 5S</tspan></text><text x="436.7234375" y="225.61439601237498" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(0.8192,-0.5736,0.5736,0.8192,-69.9279,310.7925)"><tspan dy="4.005021012374982" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">iPhone 5</tspan></text><text x="327.7578125" y="225.61439601237498" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(0.8192,-0.5736,0.5736,0.8192,-96.6336,253.0763)"><tspan dy="4.005021012374982" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">iPhone 3GS</tspan></text><text x="218.7921875" y="225.61439601237498" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(0.8192,-0.5736,0.5736,0.8192,-112.5184,187.9037)"><tspan dy="4.005021012374982" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">iPhone 4S</tspan></text><text x="109.8265625" y="225.61439601237498" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(0.8192,-0.5736,0.5736,0.8192,-129.0483,123.2868)"><tspan dy="4.005021012374982" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">iPhone 4</tspan></text><rect x="68.964453125" y="189.28657251747416" width="81.72421875" height="23.827823494900827" rx="0" ry="0" fill="#26b99a" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="177.930078125" y="172.04275288300644" width="81.72421875" height="41.07164312936854" rx="0" ry="0" fill="#26b99a" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="286.89570312499995" y="195.87057637790727" width="81.72421875" height="17.243819634467712" rx="0" ry="0" fill="#26b99a" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="395.861328125" y="114.60515730056127" width="81.72421875" height="98.50923871181371" rx="0" ry="0" fill="#26b99a" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="504.826953125" y="172.04275288300644" width="81.72421875" height="41.07164312936854" rx="0" ry="0" fill="#26b99a" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="613.792578125" y="78.04825967548973" width="81.72421875" height="135.06613633688525" rx="0" ry="0" fill="#26b99a" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="722.758203125" y="141.38010633298933" width="81.72421875" height="71.73428967938565" rx="0" ry="0" fill="#26b99a" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="831.723828125" y="64.44131836392793" width="81.72421875" height="148.67307764844705" rx="0" ry="0" fill="#26b99a" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="940.689453125" y="120.87563716764045" width="81.72421875" height="92.23875884473453" rx="0" ry="0" fill="#26b99a" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="1049.6550781250003" y="127.14611703471961" width="81.72421875" height="85.96827897765537" rx="0" ry="0" fill="#26b99a" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect></svg><div class="morris-hover morris-default-style" style="display: none;"></div></div>
+
+                                   <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                            <li role="presentation" class="active">
+                                                <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Recent Activity</a>
+                                            </li>
+                                            <li role="presentation" class="">
+                                                <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Projects Worked on</a>
+                                            </li>
+                                            <li role="presentation" class="">
+                                                <a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
+                                            </li>
+                                        </ul>
+                                        <div id="myTabContent" class="tab-content">
+                                            <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+
+                                                <ul class="messages">
+                                                    <li>
+                                                        <img src="images/img.jpg" class="avatar" alt="Avatar">
+                                                        <div class="message_date">
+                                                            <h3 class="date text-info">24</h3>
+                                                            <p class="month">May</p>
+                                                        </div>
+                                                        <div class="message_wrapper">
+                                                            <h4 class="heading">Desmond Davison</h4>
+                                                            <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
+                                                            <br>
+                                                            <p class="url">
+                                                                <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+                                                                <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <img src="images/img.jpg" class="avatar" alt="Avatar">
+                                                        <div class="message_date">
+                                                            <h3 class="date text-error">21</h3>
+                                                            <p class="month">May</p>
+                                                        </div>
+                                                        <div class="message_wrapper">
+                                                            <h4 class="heading">Brian Michaels</h4>
+                                                            <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
+                                                            <br>
+                                                            <p class="url">
+                                                                <span class="fs1" aria-hidden="true" data-icon=""></span>
+                                                                <a href="#" data-original-title="">Download</a>
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <img src="images/img.jpg" class="avatar" alt="Avatar">
+                                                        <div class="message_date">
+                                                            <h3 class="date text-info">24</h3>
+                                                            <p class="month">May</p>
+                                                        </div>
+                                                        <div class="message_wrapper">
+                                                            <h4 class="heading">Desmond Davison</h4>
+                                                            <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
+                                                            <br>
+                                                            <p class="url">
+                                                                <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+                                                                <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <img src="images/img.jpg" class="avatar" alt="Avatar">
+                                                        <div class="message_date">
+                                                            <h3 class="date text-error">21</h3>
+                                                            <p class="month">May</p>
+                                                        </div>
+                                                        <div class="message_wrapper">
+                                                            <h4 class="heading">Brian Michaels</h4>
+                                                            <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
+                                                            <br>
+                                                            <p class="url">
+                                                                <span class="fs1" aria-hidden="true" data-icon=""></span>
+                                                                <a href="#" data-original-title="">Download</a>
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+
+                                                <table class="data table table-striped no-margin">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Project Name</th>
+                                                            <th>Client Company</th>
+                                                            <th class="hidden-phone">Hours Spent</th>
+                                                            <th>Contribution</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>New Company Takeover Review</td>
+                                                            <td>Deveint Inc</td>
+                                                            <td class="hidden-phone">18</td>
+                                                            <td class="vertical-align-mid">
+                                                                <div class="progress">
+                                                                    <div class="progress-bar progress-bar-success" data-transitiongoal="35" aria-valuenow="35" style="width: 35%;"></div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td>New Partner Contracts Consultanci</td>
+                                                            <td>Deveint Inc</td>
+                                                            <td class="hidden-phone">13</td>
+                                                            <td class="vertical-align-mid">
+                                                                <div class="progress">
+                                                                    <div class="progress-bar progress-bar-danger" data-transitiongoal="15" aria-valuenow="15" style="width: 15%;"></div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>3</td>
+                                                            <td>Partners and Inverstors report</td>
+                                                            <td>Deveint Inc</td>
+                                                            <td class="hidden-phone">30</td>
+                                                            <td class="vertical-align-mid">
+                                                                <div class="progress">
+                                                                    <div class="progress-bar progress-bar-success" data-transitiongoal="45" aria-valuenow="45" style="width: 45%;"></div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>4</td>
+                                                            <td>New Company Takeover Review</td>
+                                                            <td>Deveint Inc</td>
+                                                            <td class="hidden-phone">28</td>
+                                                            <td class="vertical-align-mid">
+                                                                <div class="progress">
+                                                                    <div class="progress-bar progress-bar-success" data-transitiongoal="75" aria-valuenow="75" style="width: 75%;"></div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                                                <p>
+                                                    xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui
+                                                    photo booth letterpress, commodo enim craft beer mlkshk
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>*@
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

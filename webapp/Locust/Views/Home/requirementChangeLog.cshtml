@@ -1,0 +1,191 @@
+﻿@Scripts.Render("~/bundles/AdjustUI")
+@{
+    Layout = null;
+}
+
+<div class="right_col" role="main">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item" ng-click="projectDetails()"><a href="" ng-click="projectDetails()">{{Project_Id}}</a></li>
+            <li class="breadcrumb-item active" ng-click="requirementDetails()"><a href="" ng-click="requirementDetails()">{{name}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Change Logs</li>
+        </ol>
+    </nav>
+    <div class="clearfix"></div>
+    <div class="row">
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Requirement "{{name}}"<small> Change Logs</small></h2>
+                    <ul class="nav navbar-right panel_toolbox" id="demo">
+                        <li>
+                            <a class="collapse-link" data-toggle="collapse" data-target="#hi" id="collapse"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+
+                <script>
+                    $(document).ready(function () {
+                        $("#hi").on("hide.bs.collapse", function () {
+                            $("#demo").html('<li> <a class="collapse-link" data-toggle="collapse" data-target="#hi" id="collapse"><i class="fa fa-chevron-down"></i></a></li>');
+                        });
+                        $("#hi").on("show.bs.collapse", function () {
+                            $("#demo").html('<li> <a class="collapse-link" data-toggle="collapse" data-target="#hi" id="collapse"><i class="fa fa-chevron-up"></i></a></li>');
+                        });
+                        $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+                            localStorage.setItem('activeTab', $(e.target).attr('data-target'));
+                        });
+                        var activeTab = localStorage.getItem('activeTab');
+                        if (activeTab) {
+                            $('a[data-target="' + activeTab + '"]').tab('show');
+                        }
+                    });
+                </script>
+                @* Here start the contern *@
+                <div class="x_content collapse in" id="hi" aria-expanded="true">
+                    <div class="customContainer">
+                        <div>
+                            <a class="customTitle">Req Number:</a>
+                            <a class="message">{{req_number}}</a>
+                        </div>
+                        <div>
+                            <a class="customTitle">Axosoft ID:</a>
+                            <a class="message">{{axosoft_Task_Id}}</a>
+                        </div>
+
+                        <div>
+                            <a class="customTitle">Description:</a>
+                            <p class="message">{{description}}</p>
+                        </div>
+                        <div>
+                            <a class="customTitle">Developer Assigned:</a>
+                            <a class="message">{{developerAssigned}}</a>
+                        </div>
+                        <div>
+                            <a class="customTitle">Tester Assigned:</a>
+                            <a class="message">{{testerAssigned}}</a>
+                        </div>
+                        <div>
+                            <a class="customTitle">Status:</a>
+                            <span ng-if="status===true" class="label label-success">Active</span>
+                            <span ng-if="status===false" class="label label-danger">Inactive</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Versions<small></small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content" id="hi" aria-expanded="true" ng-repeat="cl in changeLogs">
+                        <div class="customContainer">
+                            <div>
+                                <a class="customTitle">Req Number:</a>
+                                <a class="message">{{cl.req_number}}</a>
+                            </div>
+                            <div>
+                                <a class="customTitle">Requirement Name:</a>
+                                <a class="message">{{cl.Name}}</a>
+                            </div>
+                            <div>
+                                <a class="customTitle">Axosoft ID:</a>
+                                <a class="message">{{cl.Axosoft_Task_Id}}</a>
+                            </div>
+
+                            <div>
+                                <a class="customTitle">Description:</a>
+                                <a class="message">{{cl.Description}}</a>
+                            </div>
+                            <div>
+                                <a class="customTitle">Developer Assigned:</a>
+                                <a class="message">{{cl.Developer_Assigned}}</a>
+                            </div>
+                            <div>
+                                <a class="customTitle">Tester Assigned:</a>
+                                <a class="message">{{cl.Tester_Assigned}}</a>
+                            </div>
+                            <div>
+                                <a class="customTitle">Status:</a>
+                                <span ng-if="cl.Status === 'Active'" class="label label-success">{{cl.Status}}</span>
+                                <span ng-if="cl.Status === 'Inactive'" class="label label-danger">{{cl.Status}}</span>
+                            </div>
+                            <div>
+                                <a class="customTitle">Version:</a>
+                                <a class="message">v{{cl.Version}}.0.0</a>
+                            </div>
+                            <div>
+                                <a class="customTitle"> User:</a>
+                                <a class="message">{{cl.User}}</a>
+                            </div>
+                            <div ng-if="CurrentUserRole!='VBP'" class="input-group-btn" style="text-align:right">
+                                <button type="button" class="btn btn-default" aria-label="Change Log" data-toggle="modal" data-target="#modalRequirementForm" ng-click="clSelected(cl)"><i class="fa fa-history" aria-hidden="true"></i> Restore </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalRequirementForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true" data-toggle="modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Restore Requirement</h3>
+            </div>
+            <div class="modal-body">
+                <p style="overflow:hidden">Are you sure you want to restore the requirement: {{clselected.Name}} ?</p>
+                <div class="customContainer">
+                    <div>
+                        <a class="customTitle">Req Number:</a>
+                        <a class="message">{{clselected.req_number}}</a>
+                    </div>
+                    <div>
+                        <a class="customTitle">Requirement Name:</a>
+                        <a class="message">{{clselected.Name}}</a>
+                    </div>
+                    <div>
+                        <a class="customTitle">Axosoft ID:</a>
+                        <a class="message">{{clselected.Axosoft_Task_Id}}</a>
+                    </div>
+
+                    <div>
+                        <a class="customTitle">Description:</a>
+                        <a class="message">{{clselected.Description}}</a>
+                    </div>
+                    <div>
+                        <a class="customTitle">Developer Assigned:</a>
+                        <a class="message">{{clselected.Developer_Assigned}}</a>
+                    </div>
+                    <div>
+                        <a class="customTitle">Tester Assigned:</a>
+                        <a class="message">{{clselected.Tester_Assigned}}</a>
+                    </div>
+                    <div>
+                        <a class="customTitle">Status:</a>
+                        <span ng-if="clselected.status===true" class="label label-success">Active</span>
+                        <span ng-if="clselected.status===false" class="label label-danger">Inactive</span>
+                    </div>
+                    <div>
+                        <a class="customTitle">Version:</a>
+                        <a class="message">v{{clselected.Version}}.0.0</a>
+                    </div>
+                    <div>
+                        <a class="customTitle"> User:</a>
+                        <a class="message">{{clselected.User}}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" data-toggle="modal" data-dismiss="modal" ng-click="restore(clselected)">Restore</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

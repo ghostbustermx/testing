@@ -1,0 +1,430 @@
+﻿@Scripts.Render("~/bundles/AdjustUI")
+@{
+    Layout = null;
+}
+<div class="right_col" role="main">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item" ng-click="projectDetails()"><a href="" ng-click="projectDetails()">{{projectName}}</a></li>
+            <li class="breadcrumb-item" ng-click="requirementDetails()"><a href="" ng-click="requirementDetails()">{{requirementName}}</a></li>
+            <li class="breadcrumb-item active" ng-click="tpDetails()"><a href="" ng-click="tpDetails()">{{tpNumber}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Change Log</li>
+        </ol>
+    </nav>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Test Procedure "{{title}}"<small>Change Log</small></h2>
+                    <ul class="nav navbar-right panel_toolbox" id="demo">
+                        <li>
+                            <a class="collapse-link" data-toggle="collapse" data-target="#hi" id="collapse"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <script>
+                    $(document).ready(function () {
+                        $("#hi").on("hide.bs.collapse", function () {
+                            $("#demo").html('<li> <a class="collapse-link" data-toggle="collapse" data-target="#hi" id="collapse"><i class="fa fa-chevron-down"></i></a></li>');
+                        });
+                        $("#hi").on("show.bs.collapse", function () {
+                            $("#demo").html('<li> <a class="collapse-link" data-toggle="collapse" data-target="#hi" id="collapse"><i class="fa fa-chevron-up"></i></a></li>');
+                        });
+                    });
+                </script>
+                @* Here start the contern *@
+                <div class="x_content collapse in" id="hi" aria-expanded="true">
+                    <div class="customContainer">
+                        <div>
+                            <a class="customTitle">TP Number:</a>
+                            <a class="message">{{tpNumber}}</a>
+                        </div>
+                        <div>
+                            <a class="customTitle">Test Priority:</a>
+                            <a class="message">{{testPriority}}</a>
+                        </div>
+                        <div>
+                            <a class="customTitle">Title:</a>
+                            <a class="message">{{title}}</a>
+                        </div>
+                        <div>
+                            <a class="customTitle">Description:</a>
+                            <p class="message">{{description}}</p>
+                        </div>
+                        <div>
+                            <a class="customTitle">Creator:</a>
+                            <a class="message">{{creator}}</a>
+                        </div>
+                        <div ng-if="lastEditor!=null">
+                            <a class="customTitle">Last Editor:</a>
+                            <a class="message">{{lastEditor}}</a>
+                        </div>
+                        <div ng-if="Type!='Automated'">
+                            <a class="customTitle">Expected Result:</a>
+                            <a class="message">{{expected}}</a>
+                        </div>
+                        <div>
+                            <a class="customTitle">Creation Date:</a>
+                            <a class="message">{{creation_date}}</a>
+                        </div>
+                        <div>
+                            <a class="customTitle">Type:</a>
+                            <a class="message">{{Type}}</a>
+                        </div>
+                        <div ng-if="testcase!=null">
+                            <a class="customTitle">Test Case:</a>
+                            <a class="message">{{testcase}}</a>
+                        </div>
+                        <div>
+                            <a class="customTitle">Status:</a>
+                            <span class="label {{class}}">{{active}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12" ng-if="Type!='Automated'">
+                        <div class="x_title">
+                            <h2>Steps<small></small></h2>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12" ng-if="Type!='Automated'">
+                        <div class="x_title">
+                            <h2>Tags<small></small></h2>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>                 
+                    
+                    <div class="col-md-12 col-sm-12 col-xs-12" ng-if="Type=='Automated'">
+                        <div class="x_title">
+                            <h2>Tags<small></small></h2>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8 col-sm-8 col-xs-12" ng-if="Type!='Automated'">
+                        <table class="table table-bordered" role="grid" aria-describedby="datatable-buttons_info" id="stepsTable" ng-model="table">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting" tabindex="0" aria-controls="datatable-buttons" style="width: 10px;" aria-label="Number: activate to sort column ascending">#</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable-buttons" style="width: 92px;" aria-label="Action: activate to sort column ascending">Action</th>
+                            </thead>
+                            <tbody ng-model="update">
+                                <tr role="row" class="odd" ng-repeat="step in steps | orderBy:'number_steps'">
+                                    <td tabindex="0" class="sorting_1">{{step.number_steps}}</td>
+                                    <td>{{step.action}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <div class="dataTables_info" id="datatable-buttons_info" role="status" aria-live="polite">
+                            {{steps.length}} entries
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div>
+                            <input id="tags_1" type="text" class="tags form-control" data-tagsinput-init="true" style="display: none;">
+                            <div id="tags_1_tagsinput" class="tagsinput" style="width: auto; min-height: 100px; height: 100px;">
+                                <span class="tag" ng-repeat="tag in tags"><span>{{tag.name}}</span></span>
+                                <div id="tags_1_addTag"><input id="tags_1_tag" value="" data-default="add a tag" class="" style="color: rgb(102, 102, 102); width: 72px;"></div>
+                                <div class="tags_clear"></div>
+                            </div>
+                            <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_title">
+                            <h2>Requirements<small></small></h2>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <table class="table table-bordered" role="grid" aria-describedby="datatable-buttons_info" id="stepsTable" ng-model="table">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Axosoft ID</th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Number</th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Requirement</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Developer Assigned: activate to sort column ascending">Developer Assigned</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Tester Assigned: activate to sort column ascending">Tester Assigned</th>
+                            </thead>
+                            <tbody ng-model="update">
+                                <tr role="row" class="odd" ng-repeat="req in requirementsAssigned">
+                                    <td tabindex="0" class="sorting_1">{{req.Axosoft_Task_Id}}</td>
+                                    <td tabindex="0" class="sorting_1">{{req.req_number}}</td>
+                                    <td tabindex="0" style="overflow:hidden;" class="sorting_1">{{req.Name}}</td>
+                                    <td style="overflow:hidden">{{req.Developer_Assigned}}</td>
+                                    <td style="overflow:hidden">{{req.Tester_Assigned}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+                <!--Here start the Versions-->
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Versions<small></small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content" id="hi" aria-expanded="true" ng-repeat="changelog in cl">
+
+                        <div class="customContainer" style="margin-bottom:10px;">
+                            <div>
+                                <a class="customTitle">TP Number:</a>
+                                <a class="message">{{changelog.tp_number}}</a>
+                            </div>
+                            <div>
+                                <a class="customTitle">Test Priority:</a>
+                                <a class="message">{{changelog.Test_Priority}}</a>
+                            </div>
+                            <div>
+                                <a class="customTitle">Title:</a>
+                                <a class="message">{{changelog.Title}}</a>
+                            </div>
+                            <div>
+                                <a class="customTitle">Description:</a>
+                                <a class="message">{{changelog.Description}}</a>
+                            </div>
+                            <div>
+                                <a class="customTitle">Creator:</a>
+                                <a class="message">{{changelog.User}}</a>
+                            </div>
+                            <div>
+                                <a class="customTitle">Expected Result:</a>
+                                <a class="message">{{changelog.Expected_Result}}</a>
+                            </div>
+                            <div>
+                                <a class="customTitle">Creation Date:</a>
+                                <a class="message">{{changelog.Creation_Date}}</a>
+                            </div>
+                            <div ng-if="changelog.Type!=null">
+                                <a class="customTitle">Type:</a>
+                                <a class="message">{{changelog.Type}}</a>
+                            </div>
+                            <div ng-if="changelog.Type==null">
+                                <a class="customTitle">Type:</a>
+                                <a class="message">Functional</a>
+                            </div>
+                            <div>
+                                <a class="customTitle">Version:</a>
+                                <a class="message">v{{changelog.Version}}.0.0</a>
+                            </div>
+                            <div>
+                                <a class="customTitle">Status:</a>
+                                <span class="label {{changelog.class}}">{{changelog.active}}</span>
+                            </div>
+
+                            <div class="changeTitle col-md-8 col-sm-8 col-xs-12" ng-if="Type!='Automated'">
+                                <div class="x_title">
+                                    <h2>Steps<small></small></h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="changeTitle col-md-4 col-sm-4 col-xs-12" ng-if="Type!='Automated'">
+                                <div class="x_title">
+                                    <h2>Tags<small></small></h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>         
+                            
+                            <div class="changeTitle col-md-12 col-sm-12 col-xs-12" ng-if="Type=='Automated'" style="padding-top:15px;">
+                                <div class="x_title">
+                                    <h2>Tags<small></small></h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-8 col-sm-8 col-xs-12" ng-if="Type!='Automated'">
+                                <table class="table table-bordered" role="grid" aria-describedby="datatable-buttons_info" id="stepsTable" ng-model="table">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Number: activate to sort column ascending">#</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending">Action</th>
+                                    </thead>
+                                    <tbody ng-model="update">
+                                        <tr role="row" class="odd" ng-repeat="step in stepVersion | orderBy:'number_steps'" ng-if="step.Version == changelog.Version">
+                                            <td tabindex="0" class="sorting_1">{{step.number_steps}}</td>
+                                            <td>{{step.action}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div>
+                                    <input id="tags_1" type="text" class="tags form-control" data-tagsinput-init="true" style="display: none;">
+                                    <div id="tags_1_tagsinput" class="tagsinput" style="width: auto; min-height: 100px; height: 100px;">
+                                        <span class="tag" ng-repeat="tag in tagVersion" ng-if="tag.Version == changelog.Version"><span>{{tag.name}}</span></span>
+                                        <div id="tags_1_addTag"><input id="tags_1_tag" value="" data-default="add a tag" class="" style="color: rgb(102, 102, 102); width: 72px;"></div>
+                                        <div class="tags_clear"></div>
+                                    </div>
+                                    <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_title">
+                                    <h2>Requirements<small></small></h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <table class="table table-bordered" role="grid" aria-describedby="datatable-buttons_info" id="stepsTable" ng-model="table">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Axosoft ID</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Number</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Requirement</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Developer Assigned: activate to sort column ascending">Developer Assigned</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Tester Assigned: activate to sort column ascending">Tester Assigned</th>
+                                    </thead>
+                                    <tbody ng-model="update">
+                                        <tr role="row" class="odd" ng-repeat="req in reqVersion" ng-if="req.Version == changelog.Version">
+                                            <td tabindex="0" class="sorting_1">{{req.Axosoft_Task_Id}}</td>
+                                            <td tabindex="0" class="sorting_1">{{req.req_number}}</td>
+                                            <td tabindex="0" style="overflow:hidden;" class="sorting_1">{{req.Name}}</td>
+                                            <td style="overflow:hidden">{{req.Developer_Assigned}}</td>
+                                            <td style="overflow:hidden">{{req.Tester_Assigned}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="input-group-btn" style="text-align:right">
+                                    <button ng-if="CurrentUserRole!='VBP' && CurrentUserRole!='BA'" type="button" class="btn btn-default" aria-label="Change Log" data-toggle="modal" data-target="#modalRequirementForm" ng-click="clSelected(changelog,tagVersion)"><i class="fa fa-history" aria-hidden="true"></i> Restore </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalRequirementForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-toggle="modal">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h3>Restore Test Procedure</h3>
+            </div>
+            <div class="modal-body">
+                <p style="overflow:hidden">Are you sure you want to restore the test procedure: {{clselected.Title}} ?</p>
+                <div class="customContainer">
+                    <div>
+                        <a class="customTitle">TP Number:</a>
+                        <a class="message">{{clselected.tp_number}}</a>
+                    </div>
+                    <div>
+                        <a class="customTitle">Test Priority:</a>
+                        <a class="message">{{clselected.Test_Priority}}</a>
+                    </div>
+                    <div>
+                        <a class="customTitle">Description:</a>
+                        <a class="message">{{clselected.Description}}</a>
+                    </div>
+                    <div>
+                        <a class="customTitle">Creator:</a>
+                        <a class="message">{{clselected.Test_Procedure_Creator}}</a>
+                    </div>
+                    <div>
+                        <a class="customTitle">Expected Result:</a>
+                        <a class="message">{{clselected.Expected_Result}}</a>
+                    </div>
+                    <div>
+                        <a class="customTitle">Creation Date:</a>
+                        <a class="message">{{clselected.Creation_Date}}</a>
+                    </div>
+                    <div>
+                        <a class="customTitle">Status:</a>
+                        <span ng-if="clselected.Status===true" class="label label-success">Active</span>
+                        <span ng-if="clselected.Status===false" class="label label-danger">Inactive</span>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-12" style="margin-top:20px;">
+                    <div class="x_title">
+                        <h2>Tags<small></small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-12">
+                    <div>
+                        <input id="tags_1" type="text" class="tags form-control" data-tagsinput-init="true" style="display: none;">
+                        <div id="tags_1_tagsinput" class="tagsinput" style="width: auto; min-height: 100px; height: 100px;">
+                            <span class="tag" ng-repeat="tag in tagsAux"><span>{{tag.name}}</span></span>
+                            <div id="tags_1_addTag"><input id="tags_1_tag" value="" data-default="add a tag" class="" style="color: rgb(102, 102, 102); width: 72px;"></div>
+                            <div class="tags_clear"></div>
+                        </div>
+                        <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="x_title">
+                        <h2>Steps<small></small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <table class="table table-bordered" role="grid" aria-describedby="datatable-buttons_info" id="stepsTable" ng-model="table">
+                        <thead>
+                            <tr role="row">
+                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 92px;" aria-label="Number: activate to sort column ascending">#</th>
+                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" style="width: 92px;" aria-label="Action: activate to sort column ascending">Action</th>
+                        </thead>
+                        <tbody ng-model="update">
+                            <tr role="row" class="odd" ng-repeat="step in stepVersion | orderBy:'number_steps'" ng-if="step.Version == clselected.Version">
+                                <td tabindex="0" class="sorting_1">{{step.number_steps}}</td>
+                                <td>{{step.action}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="x_title">
+                        <h2>Requirements<small></small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <table class="table table-bordered" role="grid" aria-describedby="datatable-buttons_info" id="stepsTable" ng-model="table">
+                        <thead>
+                            <tr role="row">
+                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Axosoft ID</th>
+                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Number</th>
+                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Requirement</th>
+                        </thead>
+                        <tbody ng-model="update">
+                            <tr role="row" class="odd" ng-repeat="req in reqVersion" ng-if="req.Version == clselected.Version">
+                                <td tabindex="0" class="sorting_1">{{req.Axosoft_Task_Id}}</td>
+                                <td tabindex="0" class="sorting_1">{{req.req_number}}</td>
+                                <td tabindex="0" style="overflow:hidden;" class="sorting_1">{{req.Name}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div style="margin-left:700px">
+                    <button class="btn btn-success" data-toggle="modal" data-dismiss="modal" ng-click="restore(clselected)">Restore</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

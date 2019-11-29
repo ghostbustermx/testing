@@ -1,0 +1,134 @@
+﻿@Scripts.Render("~/bundles/AdjustUI")
+
+@{
+    Layout = null;
+}
+
+<div class="right_col" role="main">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item" ng-click="projectDetails()"><a href="" ng-click="projectDetails()">{{NameProject}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+                Test Environment
+            </li>
+        </ol>
+    </nav>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+
+                    <div class="col-md-8 col-sm-5 col-xs-12">
+                        <h2>Test Environment<small>Register of all test environments</small></h2>
+                    </div>
+
+
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="x_content">
+
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+
+                            <div class="col-md-1 col-sm-4 col-xs-4 selectCustom">
+                                <select name="priority" required class="form-control" ng-model="RowsSelected" ng-change="changeValue(RowsSelected)"
+                                        ng-options="option as option for option in Options"></select>
+                            </div>
+
+                            <div class="col-md-3 col-sm-8 col-xs-8">
+                                <div class="input-group">
+                                    <input auto-focus ng-model="filter" type="text" class="form-control" id="filter" autocomplete="off" placeholder="Search">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default filterButton" type="button"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-8 col-sm-12 col-xs-12" align="right">
+                                <span class="input-group-btn">
+                                    <button ng-if="CurrentUserRole!='VBP' && CurrentUserRole!='BA'" style="margin-right:10px" class="btn btn-default" type="button" ui-sref="testEnvironmentAdd({projectId:projectId})"><i class="fa fa-plus"></i> Add Test Environment</button>
+                                    <button class="btn btn-default" type="button" ui-sref="testEnvironmentInactive({projectId:projectId})"><i class="fa fa-folder-open"></i> Inactive Test Environment</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="container">
+                    <table class="table table-bordered dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable-buttons_info">
+
+                        <thead>
+                            <tr role="row">
+                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1">Name</th>
+                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1">Server</th>
+                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1">Processor</th>
+                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1">RAM</th>
+                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1">Hard Disk</th>
+                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1">OS</th>
+                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1">Enviroment Type</th>
+
+                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1">Actions</th>
+
+                        </thead>
+
+
+                        <tr role="row" dir-paginate="testEnvironment in filteredArray = (TE | filter: filter ) | itemsPerPage: pageSize" current-page="currentPage" pagination-id="pagination">
+                            <td ui-sref="testEnvironmentDetails({projectId:projectId,id:testEnvironment.Id})">{{testEnvironment.Name}}</td>
+                            <td ui-sref="testEnvironmentDetails({projectId:projectId,id:testEnvironment.Id})">{{testEnvironment.Server}}</td>
+                            <td ui-sref="testEnvironmentDetails({projectId:projectId,id:testEnvironment.Id})">{{testEnvironment.Processor}}</td>
+                            <td ui-sref="testEnvironmentDetails({projectId:projectId,id:testEnvironment.Id})">{{testEnvironment.RAM}}</td>
+                            <td ui-sref="testEnvironmentDetails({projectId:projectId,id:testEnvironment.Id})">{{testEnvironment.HardDisk}}</td>
+                            <td ui-sref="testEnvironmentDetails({projectId:projectId,id:testEnvironment.Id})">{{testEnvironment.OS}}</td>
+                            <td ui-sref="testEnvironmentDetails({projectId:projectId,id:testEnvironment.Id})">{{testEnvironment.SiteType}}</tdui-sref="testEnvironmentDetails({projectId:projectId,id:testEnvironment.Id})">
+                            <td valign="middle" width="10%">
+                                <div class="btn-group">
+
+                                    <button class="btn btn-sm btn-default" type="button" ui-sref="testEnvironmentDetails({projectId:projectId,id:testEnvironment.Id})"><i class="fa fa-info-circle"></i></button>
+                                    <button ng-if="CurrentUserRole!='VBP' && CurrentUserRole!='BA'" class="btn btn-sm btn-default" type="button" ui-sref="testEnvironmentEdit({projectId:projectId,id:testEnvironment.Id})"><i class="fa fa-pencil"></i></button>
+                                    <button ng-if="CurrentUserRole!='VBP' && CurrentUserRole!='BA'" data-toggle="modal" data-target="#disableTestEnvironment" class="btn btn-sm btn-default" type="button" data-placement="top" data-original-title="Trash" ng-click="selectTE(testEnvironment)"><i class="fa fa-trash"></i></button>
+                                    <button ng-if="testEnvironment.URL" class="btn btn-sm btn-default" type="button" data-placement="top" data-original-title="Trash" ng-click="OpenURL(testEnvironment.URL)"><i class="fa fa-globe"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-if="filteredArray.length===0">
+                            <td colspan="8">@Resource.NoDataFound</td>
+                        </tr>
+                    </table>
+                    <div class="dataTables_info" id="datatable-buttons_info" role="status" aria-live="polite">
+                        {{filteredArray.length}} entries
+                    </div>
+                    <div class="paginationContainer">
+                        <dir-pagination-controls boundary-links="true" pagination-id="pagination" template-url="Pages/dirPagination.tpl.html"></dir-pagination-controls>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="modal fade" id="disableTestEnvironment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Disable Test Environment</h3>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to <strong>disable</strong> the test environment: <strong>{{teSelected.Name}} ({{teSelected.Server}})</strong></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" ng-click="DisableTE(teSelected)" data-dismiss="modal">Disable</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
