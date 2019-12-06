@@ -261,38 +261,38 @@ namespace Locus.Core.Repositories
 
         public Tag Save(Tag tag, int idtc, int idts, int idtp, int idstp)
         {
-            if(idtc != 0)
+            if (idtc != 0)
             {
                 LocustDBContext newContext = new LocustDBContext();
-                    var name = tag.name.ToLower();
-                    Tag exist = context.Tags.Where(x => x.name == name).Where(y => y.Project_Id == tag.Project_Id).FirstOrDefault();
-                    int id;
+                var name = tag.name.ToLower();
+                Tag exist = context.Tags.Where(x => x.name == name).Where(y => y.Project_Id == tag.Project_Id).FirstOrDefault();
+                int id;
 
-                    if (exist == null)
-                    {
-                        //tag.Project_Id = projectId;
-                        newContext.Tags.Add(tag);
-                        newContext.SaveChanges();
-                        Tag withId = newContext.Tags.Where(x => x.name == name).Where(y => y.Project_Id == tag.Project_Id).FirstOrDefault();
-                        id = withId.id;
-                        exist = withId;
-                    }
-                    else
-                    {
-                        id = exist.id;
-                    }
-                    LocustDBContext newContext2 = new LocustDBContext();
-                    Test_Tags t = new Test_Tags();
-                    t.Test_Case_Id = idtc;
-                    t.Tag_Id = id;
-                    newContext2.test_tags.Add(t);
-                    newContext2.SaveChanges();
-                    return exist;
+                if (exist == null)
+                {
+                    //tag.Project_Id = projectId;
+                    newContext.Tags.Add(tag);
+                    newContext.SaveChanges();
+                    Tag withId = newContext.Tags.Where(x => x.name == name).Where(y => y.Project_Id == tag.Project_Id).FirstOrDefault();
+                    id = withId.id;
+                    exist = withId;
+                }
+                else
+                {
+                    id = exist.id;
+                }
+                LocustDBContext newContext2 = new LocustDBContext();
+                Test_Tags t = new Test_Tags();
+                t.Test_Case_Id = idtc;
+                t.Tag_Id = id;
+                newContext2.test_tags.Add(t);
+                newContext2.SaveChanges();
+                return exist;
 
 
-                
 
-            }else if(idts != 0)
+
+            } else if (idts != 0)
             {
                 LocustDBContext newContext = new LocustDBContext();
                 try
@@ -327,7 +327,7 @@ namespace Locus.Core.Repositories
                 {
                     return null;
                 }
-            }else if(idtp != 0)
+            } else if (idtp != 0)
             {
                 LocustDBContext newContext = new LocustDBContext();
 
@@ -404,6 +404,34 @@ namespace Locus.Core.Repositories
                 {
                     return null;
                 }
+            } else if ((idtc == 0) && (idts == 0) && (idtp == 0) && (idstp == 0)) {
+
+                LocustDBContext newContext = new LocustDBContext();
+                var name = tag.name.ToLower();
+                Tag exist = context.Tags.Where(x => x.name == name).Where(y => y.Project_Id == tag.Project_Id).FirstOrDefault();
+                int id;
+
+                if (exist == null)
+                {
+                    //tag.Project_Id = projectId;
+                    newContext.Tags.Add(tag);
+                    newContext.SaveChanges();
+                    Tag withId = newContext.Tags.Where(x => x.name == name).Where(y => y.Project_Id == tag.Project_Id).FirstOrDefault();
+                    id = withId.id;
+                    exist = withId;
+                }
+                else
+                {
+                    tag.name = "repeated" + tag.name;
+                    /*return tag;*/
+                    //id = exist.id;
+                    exist = tag;
+
+                }
+
+                return exist;
+                //return tag;
+
             }
             else
             {

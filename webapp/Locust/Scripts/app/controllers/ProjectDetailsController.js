@@ -2,7 +2,7 @@
     'use strict';
     // Get main app module
     var app = angular.module(appName);
-    app.controller('ProjectDetailsController', ['$scope', '$state', 'ProjectService', 'UserService', 'AccessService', 'TestSuplementalService', 'RequirementService', 'ModalConfirmService', 'ngToast', '$http', 'DashboardService', '$timeout', 'ExecutionGroupService', 'TestExecutionService', 'ScriptsGroupService', 'DateParse', 'TestEnvironmentService', function ($scope, $state, ProjectService, UserService, AccessService, TestSuplementalService, RequirementService, ModalConfirmService, ngToast, $http, DashboardService, $timeout, ExecutionGroupService, TestExecutionService, ScriptsGroupService, DateParse, TestEnvironmentService) {
+    app.controller('ProjectDetailsController', ['$scope', '$state', 'ProjectService', 'TagService', 'UserService', 'AccessService', 'TestSuplementalService', 'RequirementService', 'ModalConfirmService', 'ngToast', '$http', 'DashboardService', '$timeout', 'ExecutionGroupService', 'TestExecutionService', 'ScriptsGroupService', 'DateParse', 'TestEnvironmentService', function ($scope, $state, ProjectService, TagService, UserService, AccessService, TestSuplementalService, RequirementService, ModalConfirmService, ngToast, $http, DashboardService, $timeout, ExecutionGroupService, TestExecutionService, ScriptsGroupService, DateParse, TestEnvironmentService) {
         $scope.action = $state.current.data.action;
         var projectId = $state.params.id;
         HasAccess();
@@ -25,6 +25,10 @@
         $scope.optionSelected = 'Empty Report';
         $scope.Options2 = ['Empty Report', 'Last Execution'];
         $scope.Options = [];
+        $scope.tagName = "";
+        $scope.tags = [];
+
+        
         var tries = 0;
         
 
@@ -45,6 +49,8 @@
             $scope.pageSizeSupp = value;
         }
 
+        
+
         function HasAccess() {
             AccessService.HasAccess('Project', projectId, 0, 0, 0, 0, 0, function (data) {
                 if (!data.HasPermission) {
@@ -59,6 +65,7 @@
                     GetRole();
                     $scope.GetUsers(projectId);
                     $scope.GetTestEnvironment();
+                    GetTags();
                 }
             }, function (error) {
             });
@@ -326,6 +333,10 @@
             $state.go('requirementDetails', { projectId: projectId, id: id });
         }
 
+        $scope.tagDetails = function (id) {
+            TagService.Get(id);
+        }
+
         $scope.suplementalDetails = function (id) {
             $state.go('suplementalDetails', { projectId: projectId, id: id });
         }
@@ -365,6 +376,84 @@
         $scope.NavigateAddScriptGroup = function () {
             $state.go('ScriptGroupAdd', { projectId: projectId });
         }
+
+      
+
+        $scope.AddTag = function (form) {
+
+            /*var tag = {
+                name: $scope.tagName,
+                Project_Id: projectId
+            };
+            TagService.Save(tag, 0, 0, 0, 0, function (data) { }, function (error) { });*/
+
+            //alert(action);
+
+            /*if ($scope.tagName != 0) {
+                if (!$scope.tagName.toString().match('/[A-Za-z]+@[a-z]+\.[a-z]+/')) {
+                    ngToast.danger({
+                        content: 'Not valid pattern for Tag Name'
+                    });
+                    return;
+                }
+            }*/
+
+            if (form.$valid) {
+                
+                $scope.btnSave = true;
+                var tag = {
+                    name: $scope.tagName,
+                    Project_Id: projectId
+                };
+
+                TagService.Save(tag, 0, 0, 0, 0, function (data) {
+                    var rep = "repeated" + tag.name;
+
+               
+
+                    if (data.name == rep) {
+                        ngToast.danger({
+                            content: 'Tag Name repeated.'
+                        });
+                        $scope.btnSave = false;
+                        
+                    } else {
+                        
+                            var action;                         
+                            action = 'added';
+                            $('#modalTagsForm').modal('hide');
+                            ngToast.success({
+                                content: 'The Tag has been ' + action + ' successfully.'
+                            });
+                        
+                    }
+                    
+
+                  
+                }, function (error) {
+
+                    });
+                
+            } else {
+                $scope.btnSave = false;
+                ngToast.info({
+                    content: 'Please complete all fields correctly.'
+                });
+            }
+
+
+        }
+
+
+        function GetTags() {
+            TagService.GetAll(function (data) {
+                $scope.tags = data;
+            }, function (error) {
+            });
+        };
+
+        
+
 
 
     }])

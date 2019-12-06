@@ -40,7 +40,6 @@
             multiElement: true,
             priority: 5000, // This setting is used in conjunction with the later call to $compile() to prevent infinite recursion of compilation
             compile: function dirPaginationCompileFn(tElement, tAttrs) {
-
                 var expression = tAttrs.dirPaginate;
                 // regex taken directly from https://github.com/angular/angular.js/blob/master/src/ng/directive/ngRepeat.js#L211
                 var match = expression.match(/^\s*([\s\S]+?)\s+in\s+([\s\S]+?)(?:\s+track\s+by\s+([\s\S]+?))?\s*$/);

@@ -90,6 +90,7 @@
 
         $scope.cancel = function () {
             $scope.redirectToList();
+            
         };
 
         $scope.redirectToList = function () {

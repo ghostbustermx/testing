@@ -48,6 +48,8 @@
             });
         }
 
+
+
         $scope.downloadFileExcel = function () {
             $("#loadingModalProjectReport").modal({
                 backdrop: "static",
