@@ -14,4 +14,3 @@ C:\Users\ggvillegas\Downloads\Locust-feature-LocustConnectorAPI\webapp\LocustSwa
 C:\Users\ggvillegas\Downloads\Locust-feature-LocustConnectorAPI\webapp\LocustSwarm\obj\Debug\LocustSwarm.csproj.CopyComplete
 C:\Users\ggvillegas\Downloads\Locust-feature-LocustConnectorAPI\webapp\LocustSwarm\obj\Debug\LocustSwarm.exe
 C:\Users\ggvillegas\Downloads\Locust-feature-LocustConnectorAPI\webapp\LocustSwarm\obj\Debug\LocustSwarm.pdb
-C:\Users\ggvillegas\Downloads\Locust-feature-LocustConnectorAPI\webapp\LocustSwarm\obj\Debug\LocustSwarm.csprojAssemblyReference.cache
