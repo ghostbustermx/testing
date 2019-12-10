@@ -45,6 +45,7 @@ namespace Locus.Core.Repositories
             var sqlConStrBuilder = new SqlConnectionStringBuilder(connectionString);
 
             var tag = context.Tags.Find(idTag);
+            
 
             if (idtc != 0)
             {
@@ -61,7 +62,7 @@ namespace Locus.Core.Repositories
                             command.ExecuteNonQuery();
                         }
                     }
-                    
+
                     return tag;
                 }
                 catch
@@ -85,7 +86,7 @@ namespace Locus.Core.Repositories
                             command.ExecuteNonQuery();
                         }
                     }
-                    
+
                 }
                 catch
                 {
@@ -134,6 +135,27 @@ namespace Locus.Core.Repositories
                 catch
                 {
                     return null;
+                }
+
+            }
+            else if ((idtc == 0) && (idts == 0) && (idtp == 0) && (idstp == 0))
+            {
+
+               
+
+                try
+                {
+
+                    
+                    context.Tags.Remove(tag);
+                    context.SaveChanges();
+                    return tag;
+                    
+                }
+                catch
+                {
+                    return null;
+
                 }
 
             }
@@ -444,8 +466,11 @@ namespace Locus.Core.Repositories
         {
             try
             {
-                context.Entry(tag).State = System.Data.Entity.EntityState.Modified;
-                context.SaveChanges();
+                //context.Entry(tag).State = System.Data.Entity.EntityState.Modified;
+                LocustDBContext newContext = new LocustDBContext();
+                newContext.Tags.Add(tag);
+                newContext.SaveChanges();
+                //context.SaveChanges();
                 return tag;
             }
             catch

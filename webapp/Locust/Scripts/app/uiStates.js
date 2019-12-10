@@ -154,6 +154,15 @@
                 }
             })
 
+            .state('tagEdit', {
+                url: '/project/:projectId/tag/edit/:id',
+                templateUrl: base + "tagEdit",
+                controller: "TagController",
+                data: {
+                    action: 'Edit'
+                }
+            })
+
             .state('requirementDetails', {
                 url: '/project/:projectId/requirement/:id',
                 templateUrl: base + "requirementDetails",

@@ -353,6 +353,7 @@
     <Content Include="Scripts\app\controllers\ExecutionGroupsPlayController.js" />
     <Content Include="Scripts\app\controllers\ProjectExecutionController.js" />
     <Content Include="Scripts\app\controllers\ScriptGroupAddEditController.js" />
+    <Content Include="Scripts\app\controllers\TagController.js" />
     <Content Include="Scripts\app\controllers\TestAutomatedAddEditController.js" />
     <Content Include="Scripts\app\controllers\TestEnvironmentDetailsController.js" />
     <Content Include="Scripts\app\controllers\TestEnvironmentsActivateController.js" />

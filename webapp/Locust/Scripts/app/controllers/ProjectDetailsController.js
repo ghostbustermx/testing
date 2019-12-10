@@ -26,6 +26,9 @@
         $scope.Options2 = ['Empty Report', 'Last Execution'];
         $scope.Options = [];
         $scope.tagName = "";
+        $scope.tag_Name = "";
+        $scope.tag_to_delete = "";
+
         $scope.tags = [];
 
         
@@ -377,7 +380,36 @@
             $state.go('ScriptGroupAdd', { projectId: projectId });
         }
 
-      
+
+        $scope.EditTag = function (form) {
+            if (form.$valid) {
+                
+                var Tagtemp = {
+                    Name: $scope.tag_Name
+                }
+                //alert(Tagtemp.Name);       
+                TagService.Update(Tagtemp);
+                $('#modalEditTagsForm').modal('hide');
+
+                //TestCaseService.UpdateNumber(testcase, testprocedureId, function (data) {
+
+                /*TagService.Update(Tagtemp.Name, function (data) {
+                    
+                    alert(data.tag);
+                    $('#modalEditTagsForm').modal('hide');
+
+
+
+                }, function (error) {
+
+                });*/
+            } else {
+                $scope.btnSave = false;
+                ngToast.info({
+                    content: 'Please complete all fields correctly.'
+                });
+            }
+        }
 
         $scope.AddTag = function (form) {
 
@@ -421,7 +453,7 @@
                         
                             var action;                         
                             action = 'added';
-                            $('#modalTagsForm').modal('hide');
+                             $('#modalAddTagsForm').modal('hide');
                             ngToast.success({
                                 content: 'The Tag has been ' + action + ' successfully.'
                             });
@@ -452,8 +484,23 @@
             });
         };
 
-        
 
+        $scope.getEditTag = function (tag) {
+            $scope.tag_Name = tag;
+        }
+
+        $scope.DeleteTag = function (tag) {
+            //alert(tag);
+            //TagService.Delete(tag, 0, 0, 0, 0);
+
+            TagService.Delete(tag, 0, 0, 0, 0, function (data) { }, function (error) { });
+
+        }
+
+        $scope.tagDeleted = function (tag) {
+            $scope.tag_to_delete = tag;
+            $('#modalTagsForm').modal('hide');
+        }
 
 
     }])
