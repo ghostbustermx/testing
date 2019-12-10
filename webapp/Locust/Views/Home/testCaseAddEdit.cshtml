@@ -168,39 +168,16 @@
                                         <label class="control-label" for="type">
                                             Tags<span class="required">*</span>
                                         </label>
-                                        <div>
-                                            <select name="type" required class="form-control col-md-7 col-xs-12" ng-model="selectedType"
-                                                    ng-options="option as option for option in typesOfTest">
-                                                <option value="">Choose option</option>
-                                            </select>
-                                            <div class="help-block" ng-messages="form.type.$error" ng-if="form.$submitted">
-                                                <div ng-messages-include="Pages/messages.html"></div>
-                                            </div>
+                                        <div >
+                                            <input list="tagGetted" />
+                                           <datalist id="tagGetted" >
+                                               <option ng-repeat="x in tags">{{x.name}}</option>
+                                            </datalist>
                                         </div>
                                     </div>
-                                    <!--<div class="form-group">
-        <label class="control-label" for="Priority">
-            Tags<span class="required">*</span>
-        </label>
-        <tags-input ng-model="tags"
-                    add-on-enter="true"
-                    min-length="0"
-                    display-property="name"
-                    key-property="name"
-                    ng-maxlength="150"
-                    max-length="45"
-                    on-tag-added="onTagAdded($tag)"
-                    on-tag-removing="onTagRemoved($tag)"
-                    class="tagsinput">
-        </tags-input>
-    </div>-->
                                 </div>
 
                             </div>
-
-
-
-
                         </form>
                     </div>
 
