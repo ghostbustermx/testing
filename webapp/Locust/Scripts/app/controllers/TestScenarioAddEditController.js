@@ -34,6 +34,8 @@
         $scope.saveBtn = false;
         Stages();
         var index = 1;
+
+        $scope.tags = [];
         
 
         function Stages(to) {
@@ -346,6 +348,7 @@
                         GetTestScenario();
                         GetRole();
                         GetValidations();
+                        GetTags();
                     }
                 }, function (error) {
                 });
@@ -1723,6 +1726,12 @@
         }
 
 
+        function GetTags() {
+            TagService.GetAll(function (data) {
+                $scope.tags = data;
+            }, function (error) {
+            });
+        };
 
 
     }])

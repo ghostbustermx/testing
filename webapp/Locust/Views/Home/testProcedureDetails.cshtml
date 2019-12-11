@@ -168,15 +168,24 @@
 
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     <div>
-                        <input id="tags_1" type="text" class="tags form-control" data-tagsinput-init="true" style="display: none;">
-                        <div id="tags_1_tagsinput" class="tagsinput" style="width: auto; min-height: 100px; height: 100px;">
-                            <span class="tag" ng-repeat="tag in tags"><span>{{tag.name}}</span></span>
-                            <div id="tags_1_addTag"><input id="tags_1_tag" value="" data-default="add a tag" class="" style="color: rgb(102, 102, 102); width: 72px;"></div>
-                            <div class="tags_clear"></div>
+                        <label class="control-label" for="type">
+                            Tags<span class="required">*</span>
+                        </label>
+                        <div>
+                            <input id="tags_1" list="tagGetted" />
+                            <datalist id="tagGetted">
+                                <option ng-repeat="x in tags">{{x.name}}</option>
+                            </datalist>
                         </div>
-                        <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
+                        <!--<input id="tags_1" type="text" class="tags form-control" data-tagsinput-init="true" style="display: none;">
+        <div id="tags_1_tagsinput" class="tagsinput" style="width: auto; min-height: 100px; height: 100px;">
+            <span class="tag" ng-repeat="tag in tags"><span>{{tag.name}}</span></span>
+            <div id="tags_1_addTag"><input id="tags_1_tag" value="" data-default="add a tag" class="" style="color: rgb(102, 102, 102); width: 72px;"></div>
+            <div class="tags_clear"></div>
+        </div>
+        <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
+    </div>-->
                     </div>
-                </div>
                 <div class="form-group">
                     <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:right">
                         <button class="btn btn-default" type="button" ng-click="redirectToList()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Requirement Details</button>

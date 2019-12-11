@@ -53,3 +53,4 @@ C:\Users\ggvillegas\Downloads\Locust-feature-LocustConnectorAPI\webapp\Locus.Cor
 C:\Users\ggvillegas\Downloads\Locust-feature-LocustConnectorAPI\webapp\Locus.Core\obj\Debug\Locus.Core.csproj.CopyComplete
 C:\Users\ggvillegas\Downloads\Locust-feature-LocustConnectorAPI\webapp\Locus.Core\obj\Debug\Locus.Core.dll
 C:\Users\ggvillegas\Downloads\Locust-feature-LocustConnectorAPI\webapp\Locus.Core\obj\Debug\Locus.Core.pdb
+C:\Users\ggvillegas\Downloads\Locust-feature-LocustConnectorAPI\webapp\Locus.Core\obj\Debug\Locus.Core.csprojAssemblyReference.cache

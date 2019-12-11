@@ -35,6 +35,7 @@
                             });
                         } else {
                             GetTestCase();
+                            GetTags();
                         }
                     }, function (error) {
                     });
@@ -155,6 +156,13 @@
             });
 
         }
+
+        function GetTags() {
+            TagService.GetAll(function (data) {
+                $scope.tags = data;
+            }, function (error) {
+            });
+        };
 
     }])
 

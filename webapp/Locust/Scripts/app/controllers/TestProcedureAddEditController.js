@@ -34,6 +34,7 @@
         $scope.saveBtn = false;
         Stages();
 
+        $scope.tags = [];
 
         function scrollToBottom() {
             var elmnt = document.getElementById("stepsTable");
@@ -278,6 +279,7 @@
                         }
                         GetRole();
                         GetValidations();
+                        GetTags();
                     }
                 }, function (error) {
                 });
@@ -1812,6 +1814,13 @@
             });
 
         }
+
+        function GetTags() {
+            TagService.GetAll(function (data) {
+                $scope.tags = data;
+            }, function (error) {
+            });
+        };
 
 
     }])

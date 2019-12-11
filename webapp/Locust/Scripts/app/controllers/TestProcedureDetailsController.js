@@ -37,6 +37,7 @@
                             });
                         } else {
                             GetTestProcedure();
+                            GetTags();
                         }
                     }, function (error) {
                     });
@@ -179,6 +180,13 @@
             });
 
         }
+
+        function GetTags() {
+            TagService.GetAll(function (data) {
+                $scope.tags = data;
+            }, function (error) {
+            });
+        };
 
     }])
 })();
